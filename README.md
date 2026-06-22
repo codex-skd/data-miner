@@ -1,25 +1,82 @@
+# DataMiner
 
-Installation information
-=======
+DataMiner extracts all Minecraft game registries to structured JSON files for analysis and reference.
 
-This template repository can be directly cloned to get you started with a new
-mod. Simply create a new repository cloned from this one, by following the
-instructions provided by [GitHub](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template).
+## Requirements
 
-Once you have your clone, simply open the repository in the IDE of your choice. The usual recommendation for an IDE is either IntelliJ IDEA or Eclipse.
+- Minecraft **26.1.2**
+- NeoForge **26.1.2.76** or later
+- Java **25**
 
-If at any point you are missing libraries in your IDE, or you've run into problems you can
-run `gradlew --refresh-dependencies` to refresh the local cache. `gradlew clean` to reset everything 
-{this does not affect your code} and then start the process again.
+## How to Build
 
-Mapping Names:
-============
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/NeoForged/NeoForm/blob/main/Mojang.md
+```bash
+./gradlew build
+```
 
-Additional Resources: 
-==========
-Community Documentation: https://docs.neoforged.net/  
-NeoForged Discord: https://discord.neoforged.net/
+The compiled `.jar` will be in `build/libs/`.
+
+## How to Use
+
+1. Place the mod `.jar` in your `mods/` folder.
+2. Launch the game.
+3. On startup, DataMiner dumps all registries to `dataminer_dumps/` inside the game directory.
+
+### Output Files
+
+| File | Registry |
+|---|---|
+| `blocks.json` | All registered blocks |
+| `items.json` | All registered items |
+| `entities.json` | Entity types |
+| `biomes.json` | Biomes |
+| `enchantments.json` | Enchantments |
+| `status_effects.json` | Mob effects / status effects |
+| `sound_events.json` | Sound events |
+| `creative_tabs.json` | Creative mode tabs |
+| `dimension_types.json` | Dimension types |
+| `potions.json` | Potion types |
+| `villager_professions.json` | Villager professions |
+| `attributes.json` | Entity attributes |
+
+### Configuration
+
+Config file is generated at `config/dataminer-common.toml` after first launch.
+
+| Option | Type | Default | Description |
+|---|---|---|---|
+| `dumpOnStartup` | bool | `true` | Auto-dump all registries on game startup |
+| `dumpOutputDir` | string | `dataminer_dumps` | Output directory for JSON files |
+| `dumpBlocks` | bool | `true` | Include block registry |
+| `dumpItems` | bool | `true` | Include item registry |
+| `dumpEntities` | bool | `true` | Include entity type registry |
+| `dumpBiomes` | bool | `true` | Include biome registry |
+| `dumpEnchantments` | bool | `true` | Include enchantment registry |
+| `dumpStatusEffects` | bool | `true` | Include status effect registry |
+| `dumpSoundEvents` | bool | `true` | Include sound event registry |
+| `dumpCreativeTabs` | bool | `true` | Include creative tab registry |
+| `dumpDimensions` | bool | `true` | Include dimension type registry |
+| `dumpPotions` | bool | `true` | Include potion registry |
+| `dumpVillagerProfessions` | bool | `true` | Include villager profession registry |
+| `dumpAttributes` | bool | `true` | Include attribute registry |
+
+## Project Structure
+
+```
+src/main/java/com/skd/dataminer/
+├── DataMiner.java          # @Mod entry point, triggers dump on startup
+├── DataMinerConfig.java    # NeoForge config with toggles per registry
+└── dumper/
+    └── RegistryDumper.java # Iterates BuiltInRegistries, exports to JSON
+
+src/main/resources/
+├── assets/dataminer/lang/en_us.json  # Language strings
+└── dataminer.mixins.json             # Mixin config (placeholder)
+
+src/main/templates/META-INF/
+└── neoforge.mods.toml               # Mod metadata template
+```
+
+## License
+
+All Rights Reserved.
