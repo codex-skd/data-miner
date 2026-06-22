@@ -7,6 +7,7 @@ import com.google.gson.JsonObject;
 
 import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.DataMinerConfig;
+import com.skd.dataminer.init.Initializer;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -27,7 +28,7 @@ public class RegistryDumper {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     public static void dumpAll() {
-        Path outputDir = Path.of(DataMinerConfig.DUMP_OUTPUT_DIR.get());
+        Path outputDir = Initializer.baseDir.resolve("startup/registries");
         try {
             Files.createDirectories(outputDir);
         } catch (IOException e) {

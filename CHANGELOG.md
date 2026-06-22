@@ -7,6 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-06-22
+
+### Added
+
+- Folder structure initialization on startup (`Initializer.java`).
+- `info_client_data_miner/` or `info_server_data_miner/` with organized subdirectories.
+- `startup/mods.json` listing all loaded mods with IDs, versions, and dependencies.
+- `startup/info.json` with MC version, Java, OS, RAM, locale, and side info.
+- `startup/registries/` for all registry dumps (moved from `dataminer_dumps`).
+- `startup/errors/` for errors captured during startup.
+- `events/errors/` placeholder for in-game event error logging.
+- `ErrorCollector.java` capturing uncaught exceptions via `Thread.setDefaultUncaughtExceptionHandler`.
+- Performance reports now saved with timestamped filenames in `performance/` folder.
+
+### Changed
+
+- Registry dumps moved to `startup/registries/` subdirectory.
+- Performance reports moved to `performance/` subdirectory with timestamp naming.
+
 ## [0.2.0] - 2026-06-22
 
 ### Added

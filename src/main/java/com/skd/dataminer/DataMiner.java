@@ -3,6 +3,8 @@ package com.skd.dataminer;
 import com.mojang.logging.LogUtils;
 import com.skd.dataminer.command.DataMinerCommands;
 import com.skd.dataminer.dumper.RegistryDumper;
+import com.skd.dataminer.error.ErrorCollector;
+import com.skd.dataminer.init.Initializer;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
@@ -21,6 +23,7 @@ public class DataMiner {
     public static final Logger LOGGER = LogUtils.getLogger();
 
     public DataMiner(IEventBus modEventBus, ModContainer modContainer) {
+        ErrorCollector.register();
         modEventBus.addListener(this::commonSetup);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, DataMinerConfig.SPEC);
@@ -30,6 +33,8 @@ public class DataMiner {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("DataMiner initializing...");
+
+        Initializer.init();
 
         if (DataMinerConfig.DUMP_ON_STARTUP.get()) {
             LOGGER.info("Starting registry dump...");

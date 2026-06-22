@@ -65,7 +65,7 @@ public class PerformanceMonitor {
     public static Path saveReport() throws IOException {
         JsonObject report = new JsonObject();
 
-        report.addProperty("monitor_version", "0.2.0");
+        report.addProperty("monitor_version", "0.3.0");
         report.addProperty("start_time", startTime);
         report.addProperty("end_time", endTime);
         report.addProperty("duration_ms", endTime - startTime);
@@ -89,9 +89,11 @@ public class PerformanceMonitor {
             report.add("mspt", msptObj);
         }
 
-        Path outDir = Path.of("dataminer_dumps");
+        Path outDir = com.skd.dataminer.init.Initializer.baseDir.resolve("performance");
         Files.createDirectories(outDir);
-        Path reportPath = outDir.resolve("performance.json");
+        String ts = java.time.Instant.now().atZone(java.time.ZoneId.systemDefault())
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
+        Path reportPath = outDir.resolve(ts + ".json");
         Files.writeString(reportPath, GSON.toJson(report));
         DataMiner.LOGGER.info("Performance report saved to {}", reportPath);
         return reportPath;
