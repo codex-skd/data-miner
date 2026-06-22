@@ -8,25 +8,26 @@ import com.google.gson.JsonObject;
 import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.DataMinerConfig;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SoundType;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class RegistryDumper {
 
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
 
     public static void dumpAll() {
-        Path outputDir = Paths.get(DataMinerConfig.DUMP_OUTPUT_DIR.get());
+        Path outputDir = Path.of(DataMinerConfig.DUMP_OUTPUT_DIR.get());
         try {
             Files.createDirectories(outputDir);
         } catch (IOException e) {
@@ -34,42 +35,15 @@ public class RegistryDumper {
             return;
         }
 
-        if (DataMinerConfig.DUMP_BLOCKS.get()) {
-            dumpBlocks(outputDir.resolve("blocks.json"));
-        }
-        if (DataMinerConfig.DUMP_ITEMS.get()) {
-            dumpItems(outputDir.resolve("items.json"));
-        }
-        if (DataMinerConfig.DUMP_ENTITIES.get()) {
-            dumpEntities(outputDir.resolve("entities.json"));
-        }
-        if (DataMinerConfig.DUMP_BIOMES.get()) {
-            dumpRegistry(BuiltInRegistries.BIOME, outputDir.resolve("biomes.json"), "biomes");
-        }
-        if (DataMinerConfig.DUMP_ENCHANTMENTS.get()) {
-            dumpRegistry(BuiltInRegistries.ENCHANTMENT, outputDir.resolve("enchantments.json"), "enchantments");
-        }
-        if (DataMinerConfig.DUMP_STATUS_EFFECTS.get()) {
-            dumpRegistry(BuiltInRegistries.MOB_EFFECT, outputDir.resolve("status_effects.json"), "status_effects");
-        }
-        if (DataMinerConfig.DUMP_SOUND_EVENTS.get()) {
-            dumpRegistry(BuiltInRegistries.SOUND_EVENT, outputDir.resolve("sound_events.json"), "sound_events");
-        }
-        if (DataMinerConfig.DUMP_CREATIVE_TABS.get()) {
-            dumpRegistry(BuiltInRegistries.CREATIVE_MODE_TAB, outputDir.resolve("creative_tabs.json"), "creative_tabs");
-        }
-        if (DataMinerConfig.DUMP_DIMENSIONS.get()) {
-            dumpRegistry(BuiltInRegistries.DIMENSION_TYPE, outputDir.resolve("dimension_types.json"), "dimension_types");
-        }
-        if (DataMinerConfig.DUMP_POTIONS.get()) {
-            dumpRegistry(BuiltInRegistries.POTION, outputDir.resolve("potions.json"), "potions");
-        }
-        if (DataMinerConfig.DUMP_VILLAGER_PROFESSIONS.get()) {
-            dumpRegistry(BuiltInRegistries.VILLAGER_PROFESSION, outputDir.resolve("villager_professions.json"), "villager_professions");
-        }
-        if (DataMinerConfig.DUMP_ATTRIBUTES.get()) {
-            dumpRegistry(BuiltInRegistries.ATTRIBUTE, outputDir.resolve("attributes.json"), "attributes");
-        }
+        if (DataMinerConfig.DUMP_BLOCKS.get()) dumpBlocks(outputDir.resolve("blocks.json"));
+        if (DataMinerConfig.DUMP_ITEMS.get()) dumpItems(outputDir.resolve("items.json"));
+        if (DataMinerConfig.DUMP_SOUND_EVENTS.get()) dumpSimple(BuiltInRegistries.SOUND_EVENT, outputDir.resolve("sound_events.json"), "sound_events");
+        if (DataMinerConfig.DUMP_CREATIVE_TABS.get()) dumpSimple(BuiltInRegistries.CREATIVE_MODE_TAB, outputDir.resolve("creative_tabs.json"), "creative_tabs");
+        if (DataMinerConfig.DUMP_POTIONS.get()) dumpSimple(BuiltInRegistries.POTION, outputDir.resolve("potions.json"), "potions");
+        if (DataMinerConfig.DUMP_VILLAGER_PROFESSIONS.get()) dumpSimple(BuiltInRegistries.VILLAGER_PROFESSION, outputDir.resolve("villager_professions.json"), "villager_professions");
+        if (DataMinerConfig.DUMP_ATTRIBUTES.get()) dumpSimple(BuiltInRegistries.ATTRIBUTE, outputDir.resolve("attributes.json"), "attributes");
+        if (DataMinerConfig.DUMP_ENTITIES.get()) dumpEntities(outputDir.resolve("entities.json"));
+        if (DataMinerConfig.DUMP_STATUS_EFFECTS.get()) dumpSimple(BuiltInRegistries.MOB_EFFECT, outputDir.resolve("status_effects.json"), "status_effects");
     }
 
     private static void dumpBlocks(Path outputPath) {
@@ -91,26 +65,33 @@ public class RegistryDumper {
             entryJson.addProperty("type", block.getClass().getName());
 
             try {
-                var defaultState = block.defaultBlockState();
-                SoundType sound = block.getSoundType(defaultState);
-                entryJson.addProperty("hardness", getFloatOrZero(() -> defaultState.getDestroySpeed(null, null)));
-                entryJson.addProperty("blast_resistance", getFloatOrZero(block::getExplosionResistance));
-                entryJson.addProperty("light_emission", defaultState.getLightEmission());
-                entryJson.addProperty("requires_correct_tool", defaultState.requiresCorrectToolForDrops());
-                entryJson.addProperty("has_collision", defaultState.hasBlockCollision());
-                entryJson.addProperty("randomly_ticks", block.isRandomlyTicking(defaultState));
+                var state = block.defaultBlockState();
+                entryJson.addProperty("hardness", state.getDestroySpeed(null, null));
+                entryJson.addProperty("blast_resistance", block.getExplosionResistance());
+                entryJson.addProperty("light_emission", state.getLightEmission());
+                entryJson.addProperty("has_block_entity", state.hasBlockEntity());
 
-                JsonObject soundObj = new JsonObject();
-                soundObj.addProperty("volume", sound.getVolume());
-                soundObj.addProperty("pitch", sound.getPitch());
-                soundObj.addProperty("break_sound", sound.getBreakSound().getLocation().toString());
-                soundObj.addProperty("step_sound", sound.getStepSound().getLocation().toString());
-                soundObj.addProperty("place_sound", sound.getPlaceSound().getLocation().toString());
-                soundObj.addProperty("hit_sound", sound.getHitSound().getLocation().toString());
-                soundObj.addProperty("fall_sound", sound.getFallSound().getLocation().toString());
-                entryJson.add("sound_type", soundObj);
+                try {
+                    SoundType soundType = state.getSoundType();
+                    JsonObject soundObj = new JsonObject();
+                    soundObj.addProperty("volume", soundType.getVolume());
+                    soundObj.addProperty("pitch", soundType.getPitch());
+                    Identifier breakId = BuiltInRegistries.SOUND_EVENT.getKey(soundType.getBreakSound());
+                    soundObj.addProperty("break_sound", breakId != null ? breakId.toString() : "unknown");
+                    Identifier stepId = BuiltInRegistries.SOUND_EVENT.getKey(soundType.getStepSound());
+                    soundObj.addProperty("step_sound", stepId != null ? stepId.toString() : "unknown");
+                    Identifier placeId = BuiltInRegistries.SOUND_EVENT.getKey(soundType.getPlaceSound());
+                    soundObj.addProperty("place_sound", placeId != null ? placeId.toString() : "unknown");
+                    Identifier hitId = BuiltInRegistries.SOUND_EVENT.getKey(soundType.getHitSound());
+                    soundObj.addProperty("hit_sound", hitId != null ? hitId.toString() : "unknown");
+                    Identifier fallId = BuiltInRegistries.SOUND_EVENT.getKey(soundType.getFallSound());
+                    soundObj.addProperty("fall_sound", fallId != null ? fallId.toString() : "unknown");
+                    entryJson.add("sound_type", soundObj);
+                } catch (Exception e) {
+                    entryJson.addProperty("sound_type_error", e.getMessage());
+                }
             } catch (Exception e) {
-                entryJson.addProperty("error", "Failed to extract block properties: " + e.getMessage());
+                entryJson.addProperty("error", e.getMessage());
             }
 
             entries.add(entryJson);
@@ -139,26 +120,24 @@ public class RegistryDumper {
             entryJson.addProperty("type", item.getClass().getName());
 
             try {
-                entryJson.addProperty("max_stack_size", item.getDefaultMaxStackSize());
-                entryJson.addProperty("max_damage", item.getMaxDamage());
-                entryJson.addProperty("is_fire_resistant", item.isFireResistant());
-                entryJson.addProperty("rarity", item.getRarity(item.getDefaultInstance()).toString());
-                entryJson.addProperty("is_edible", item.isEdible());
+                ItemStack stack = item.getDefaultInstance();
+                entryJson.addProperty("max_stack_size", stack.getMaxStackSize());
+                entryJson.addProperty("max_damage", stack.getMaxDamage());
+                entryJson.addProperty("rarity", stack.getRarity().toString());
 
-                if (item.isEdible()) {
-                    FoodProperties food = item.getFoodProperties(item.getDefaultInstance(), null);
+                try {
+                    FoodProperties food = stack.get(DataComponents.FOOD);
                     if (food != null) {
                         JsonObject foodObj = new JsonObject();
                         foodObj.addProperty("nutrition", food.nutrition());
                         foodObj.addProperty("saturation", food.saturation());
                         foodObj.addProperty("can_always_eat", food.canAlwaysEat());
-                        foodObj.addProperty("is_fast_food", food.isFastFood());
-                        foodObj.addProperty("eat_seconds", food.eatDurationTicks() / 20f);
                         entryJson.add("food_properties", foodObj);
                     }
+                } catch (Exception ignored) {
                 }
             } catch (Exception e) {
-                entryJson.addProperty("error", "Failed to extract item properties: " + e.getMessage());
+                entryJson.addProperty("error", e.getMessage());
             }
 
             entries.add(entryJson);
@@ -194,9 +173,9 @@ public class RegistryDumper {
                 entryJson.addProperty("can_summon", entityType.canSummon());
                 entryJson.addProperty("client_tracking_range", entityType.clientTrackingRange());
                 entryJson.addProperty("update_interval", entityType.updateInterval());
-                entryJson.addProperty("dimensions", entityType.getDescription().toString());
+                entryJson.addProperty("description_id", entityType.getDescriptionId());
             } catch (Exception e) {
-                entryJson.addProperty("error", "Failed to extract entity properties: " + e.getMessage());
+                entryJson.addProperty("error", e.getMessage());
             }
 
             entries.add(entryJson);
@@ -206,7 +185,7 @@ public class RegistryDumper {
         writeJson(outputPath, root, entries.size());
     }
 
-    private static <T> void dumpRegistry(net.minecraft.core.Registry<T> registry, Path outputPath, String registryName) {
+    private static <T> void dumpSimple(net.minecraft.core.Registry<T> registry, Path outputPath, String registryName) {
         DataMiner.LOGGER.info("Dumping registry: {}", registryName);
         JsonObject root = new JsonObject();
         root.addProperty("registry_name", registryName);
@@ -236,18 +215,5 @@ public class RegistryDumper {
         } catch (IOException e) {
             DataMiner.LOGGER.error("Failed to write registry dump: {}", outputPath, e);
         }
-    }
-
-    private static float getFloatOrZero(FloatSupplier supplier) {
-        try {
-            return supplier.getAsFloat();
-        } catch (Exception e) {
-            return 0f;
-        }
-    }
-
-    @FunctionalInterface
-    private interface FloatSupplier {
-        float getAsFloat() throws Exception;
     }
 }

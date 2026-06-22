@@ -11,14 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `/dataminer dump` command to trigger registry dump manually (permission level 2).
+- `/dataminer dump` command to trigger registry dump manually.
 - `/dataminer perf start` and `/dataminer perf stop` commands for performance monitoring.
-- `PerformanceMonitor.java` tracking FPS (min/max/avg) and MSPT (min/max/avg) during monitoring sessions.
-- `PerfEventHandlers.java` with `ClientTickEvent` for FPS capture and `ServerTickEvent` for MSPT capture.
-- Enriched `blocks.json` with `hardness`, `blast_resistance`, `light_emission`, `requires_correct_tool`, `has_collision`, `randomly_ticks`, and `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
-- Enriched `items.json` with `max_stack_size`, `max_damage`, `is_fire_resistant`, `rarity`, `is_edible`, and `food_properties` (nutrition, saturation, can_always_eat, is_fast_food, eat_seconds).
-- Enriched `entities.json` with `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `dimensions`.
-- Report output to `dataminer_dumps/performance.json` after stopping perf monitor.
+- `PerformanceMonitor.java` tracking FPS (min/max/avg) and MSPT (min/max/avg) during sessions.
+- `PerfEventHandlers.java` with `ClientTickEvent` for FPS and `ServerTickEvent` for MSPT.
+- Enriched `blocks.json` with `hardness`, `blast_resistance`, `light_emission`, `has_block_entity`, and `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
+- Enriched `items.json` with `max_stack_size`, `max_damage`, `rarity`, and `food_properties` (nutrition, saturation, can_always_eat).
+- Enriched `entities.json` with `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `description_id`.
+- Performance report saved to `dataminer_dumps/performance.json`.
+
+### Removed
+
+- Biomes, enchantments, and dimension types from dump list (not accessible via `BuiltInRegistries` in this Minecraft version; will be re-added via dynamic registry access in a future version).
 
 ## [0.1.0] - 2026-06-22
 
@@ -29,6 +33,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `DataMinerConfig.java` with per-registry toggle flags and auto-dump option.
 - `RegistryDumper.java` that iterates `BuiltInRegistries` and exports each registry to a JSON file.
 - Dump output to `dataminer_dumps/` directory (configurable).
-- Supported registries: blocks, items, entity types, biomes, enchantments, mob effects, sound events, creative mode tabs, dimension types, potions, villager professions, attributes.
+- Supported registries: blocks, items, entity types, mob effects, sound events, creative mode tabs, potions, villager professions, attributes.
 - Language file `en_us.json` with future command strings.
 - Mixin config placeholder for future mixin hooks.

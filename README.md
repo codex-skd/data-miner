@@ -29,12 +29,8 @@ The compiled `.jar` will be in `build/libs/`.
 | `blocks.json` | All registered blocks |
 | `items.json` | All registered items |
 | `entities.json` | Entity types |
-| `biomes.json` | Biomes |
-| `enchantments.json` | Enchantments |
-| `status_effects.json` | Mob effects / status effects |
 | `sound_events.json` | Sound events |
 | `creative_tabs.json` | Creative mode tabs |
-| `dimension_types.json` | Dimension types |
 | `potions.json` | Potion types |
 | `villager_professions.json` | Villager professions |
 | `attributes.json` | Entity attributes |

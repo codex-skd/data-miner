@@ -1,8 +1,5 @@
 package com.skd.dataminer.command;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.dumper.RegistryDumper;
 import com.skd.dataminer.perf.PerformanceMonitor;
@@ -12,17 +9,13 @@ import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class DataMinerCommands {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(
             Commands.literal("dataminer")
-                .requires(source -> source.hasPermission(2))
                 .then(Commands.literal("dump")
                     .executes(ctx -> {
                         RegistryDumper.dumpAll();
