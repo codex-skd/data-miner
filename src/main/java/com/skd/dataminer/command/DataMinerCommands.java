@@ -1,7 +1,7 @@
 package com.skd.dataminer.command;
 
-import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.dumper.RegistryDumper;
+import com.skd.dataminer.event.EventTracer;
 import com.skd.dataminer.perf.PerformanceMonitor;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
@@ -49,6 +49,35 @@ public class DataMinerCommands {
                             } catch (IOException e) {
                                 ctx.getSource().sendFailure(
                                     Component.literal("Failed to save performance report: " + e.getMessage())
+                                );
+                            }
+                            return 1;
+                        })
+                    )
+                )
+                .then(Commands.literal("events")
+                    .then(Commands.literal("start")
+                        .executes(ctx -> {
+                            EventTracer.start();
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Event tracer started. Use /dataminer events stop to finish."),
+                                true
+                            );
+                            return 1;
+                        })
+                    )
+                    .then(Commands.literal("stop")
+                        .executes(ctx -> {
+                            EventTracer.stop();
+                            try {
+                                Path reportPath = EventTracer.saveReport();
+                                ctx.getSource().sendSuccess(
+                                    () -> Component.literal("Event report saved to " + reportPath),
+                                    true
+                                );
+                            } catch (IOException e) {
+                                ctx.getSource().sendFailure(
+                                    Component.literal("Failed to save event report: " + e.getMessage())
                                 );
                             }
                             return 1;

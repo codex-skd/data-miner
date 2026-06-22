@@ -55,7 +55,8 @@ info_client_data_miner/   (or info_server_data_miner/)
 | `startup/registries/*.json` | All game registries with detailed properties |
 | `performance/*.json` | FPS + MSPT data from `/dataminer perf start/stop` sessions |
 | `startup/errors/*.json` | Uncaught exceptions during startup |
-| `events/errors/*.json` | Future: exceptions during in-game events |
+| `events/errors/*.json` | Errors during event capture |
+| `events/*_events.json` | Live game events (player actions, blocks, entities) |
 
 ## Commands
 
@@ -64,6 +65,8 @@ info_client_data_miner/   (or info_server_data_miner/)
 | `/dataminer dump` | Trigger a registry dump manually |
 | `/dataminer perf start` | Start performance monitoring (FPS + MSPT) |
 | `/dataminer perf stop` | Stop monitoring and save timestamped report |
+| `/dataminer events start` | Start live event tracing (player actions, blocks, entities) |
+| `/dataminer events stop` | Stop tracing and save timestamped event report |
 
 ## Configuration
 
@@ -96,6 +99,9 @@ src/main/java/com/skd/dataminer/
 │   └── Initializer.java        # Folder structure + startup JSONs
 ├── error/
 │   └── ErrorCollector.java     # Uncaught exception handler
+├── event/
+│   ├── EventTracer.java         # Live event collection + JSON export
+│   └── EventHandlers.java       # @SubscribeEvent game event hooks
 ├── command/
 │   └── DataMinerCommands.java  # /dataminer commands
 ├── dumper/

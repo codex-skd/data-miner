@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-06-22
+
+### Added
+
+- `/dataminer events start` and `/dataminer events stop` commands for live game event tracing.
+- `EventTracer.java` collecting events in memory and exporting them to timestamped JSON in `events/`.
+- `EventHandlers.java` with hooks for:
+  - `PlayerTickEvent` — player position, sprinting, sneaking, health, food, biome, dimension (sampled every 1s).
+  - `BlockEvent.EntityPlaceEvent` — block placed with position and dimension.
+  - `PlayerInteractEvent.RightClickBlock` — block interaction with position and hand.
+  - `LivingDamageEvent.Pre` — damage to players with amount and source entity.
+  - `LivingDeathEvent` — entity deaths with position, type, dimension.
+  - `EntityJoinLevelEvent` — entities entering the world.
+  - `ChunkEvent.Load` — chunk loads with coordinates and dimension.
+- Event errors auto-captured to `events/errors/` with stack traces.
+- Event report JSON includes `total_events`, `total_errors`, and all captured event data.
+
 ## [0.3.0] - 2026-06-22
 
 ### Added
