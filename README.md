@@ -39,6 +39,38 @@ The compiled `.jar` will be in `build/libs/`.
 | `villager_professions.json` | Villager professions |
 | `attributes.json` | Entity attributes |
 
+## Commands
+
+| Command | Permission | Description |
+|---|---|---|
+| `/dataminer dump` | Level 2 | Trigger a registry dump manually |
+| `/dataminer perf start` | Level 2 | Start performance monitoring (FPS + MSPT) |
+| `/dataminer perf stop` | Level 2 | Stop monitoring and save `performance.json` |
+
+### Performance Report (`performance.json`)
+
+```json
+{
+  "monitor_version": "0.2.0",
+  "start_time": 1234567890,
+  "end_time": 1234570000,
+  "duration_ms": 2110,
+  "duration_seconds": 2.11,
+  "fps": {
+    "min": 58,
+    "max": 120,
+    "avg": 89.5,
+    "samples": 42
+  },
+  "mspt": {
+    "min": 1.2,
+    "max": 8.7,
+    "avg": 2.3,
+    "samples": 42
+  }
+}
+```
+
 ### Configuration
 
 Config file is generated at `config/dataminer-common.toml` after first launch.
@@ -66,8 +98,13 @@ Config file is generated at `config/dataminer-common.toml` after first launch.
 src/main/java/com/skd/dataminer/
 ├── DataMiner.java          # @Mod entry point, triggers dump on startup
 ├── DataMinerConfig.java    # NeoForge config with toggles per registry
-└── dumper/
-    └── RegistryDumper.java # Iterates BuiltInRegistries, exports to JSON
+├── command/
+│   └── DataMinerCommands.java  # /dataminer dump|perf commands
+├── dumper/
+│   └── RegistryDumper.java     # Iterates BuiltInRegistries, exports to JSON
+└── perf/
+    ├── PerformanceMonitor.java  # FPS + MSPT tracking logic
+    └── PerfEventHandlers.java   # ClientTick + ServerTick event hooks
 
 src/main/resources/
 ├── assets/dataminer/lang/en_us.json  # Language strings

@@ -10,6 +10,11 @@ import com.skd.dataminer.DataMinerConfig;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -30,13 +35,13 @@ public class RegistryDumper {
         }
 
         if (DataMinerConfig.DUMP_BLOCKS.get()) {
-            dumpRegistry(BuiltInRegistries.BLOCK, outputDir.resolve("blocks.json"), "blocks");
+            dumpBlocks(outputDir.resolve("blocks.json"));
         }
         if (DataMinerConfig.DUMP_ITEMS.get()) {
-            dumpRegistry(BuiltInRegistries.ITEM, outputDir.resolve("items.json"), "items");
+            dumpItems(outputDir.resolve("items.json"));
         }
         if (DataMinerConfig.DUMP_ENTITIES.get()) {
-            dumpRegistry(BuiltInRegistries.ENTITY_TYPE, outputDir.resolve("entities.json"), "entity_types");
+            dumpEntities(outputDir.resolve("entities.json"));
         }
         if (DataMinerConfig.DUMP_BIOMES.get()) {
             dumpRegistry(BuiltInRegistries.BIOME, outputDir.resolve("biomes.json"), "biomes");
@@ -67,6 +72,140 @@ public class RegistryDumper {
         }
     }
 
+    private static void dumpBlocks(Path outputPath) {
+        DataMiner.LOGGER.info("Dumping registry: blocks");
+        var registry = BuiltInRegistries.BLOCK;
+        JsonObject root = new JsonObject();
+        root.addProperty("registry_name", "blocks");
+        root.addProperty("size", registry.size());
+
+        JsonArray entries = new JsonArray();
+        for (Block block : registry) {
+            Identifier id = registry.getKey(block);
+            if (id == null) continue;
+
+            JsonObject entryJson = new JsonObject();
+            entryJson.addProperty("id", id.toString());
+            entryJson.addProperty("namespace", id.getNamespace());
+            entryJson.addProperty("path", id.getPath());
+            entryJson.addProperty("type", block.getClass().getName());
+
+            try {
+                var defaultState = block.defaultBlockState();
+                SoundType sound = block.getSoundType(defaultState);
+                entryJson.addProperty("hardness", getFloatOrZero(() -> defaultState.getDestroySpeed(null, null)));
+                entryJson.addProperty("blast_resistance", getFloatOrZero(block::getExplosionResistance));
+                entryJson.addProperty("light_emission", defaultState.getLightEmission());
+                entryJson.addProperty("requires_correct_tool", defaultState.requiresCorrectToolForDrops());
+                entryJson.addProperty("has_collision", defaultState.hasBlockCollision());
+                entryJson.addProperty("randomly_ticks", block.isRandomlyTicking(defaultState));
+
+                JsonObject soundObj = new JsonObject();
+                soundObj.addProperty("volume", sound.getVolume());
+                soundObj.addProperty("pitch", sound.getPitch());
+                soundObj.addProperty("break_sound", sound.getBreakSound().getLocation().toString());
+                soundObj.addProperty("step_sound", sound.getStepSound().getLocation().toString());
+                soundObj.addProperty("place_sound", sound.getPlaceSound().getLocation().toString());
+                soundObj.addProperty("hit_sound", sound.getHitSound().getLocation().toString());
+                soundObj.addProperty("fall_sound", sound.getFallSound().getLocation().toString());
+                entryJson.add("sound_type", soundObj);
+            } catch (Exception e) {
+                entryJson.addProperty("error", "Failed to extract block properties: " + e.getMessage());
+            }
+
+            entries.add(entryJson);
+        }
+
+        root.add("entries", entries);
+        writeJson(outputPath, root, entries.size());
+    }
+
+    private static void dumpItems(Path outputPath) {
+        DataMiner.LOGGER.info("Dumping registry: items");
+        var registry = BuiltInRegistries.ITEM;
+        JsonObject root = new JsonObject();
+        root.addProperty("registry_name", "items");
+        root.addProperty("size", registry.size());
+
+        JsonArray entries = new JsonArray();
+        for (Item item : registry) {
+            Identifier id = registry.getKey(item);
+            if (id == null) continue;
+
+            JsonObject entryJson = new JsonObject();
+            entryJson.addProperty("id", id.toString());
+            entryJson.addProperty("namespace", id.getNamespace());
+            entryJson.addProperty("path", id.getPath());
+            entryJson.addProperty("type", item.getClass().getName());
+
+            try {
+                entryJson.addProperty("max_stack_size", item.getDefaultMaxStackSize());
+                entryJson.addProperty("max_damage", item.getMaxDamage());
+                entryJson.addProperty("is_fire_resistant", item.isFireResistant());
+                entryJson.addProperty("rarity", item.getRarity(item.getDefaultInstance()).toString());
+                entryJson.addProperty("is_edible", item.isEdible());
+
+                if (item.isEdible()) {
+                    FoodProperties food = item.getFoodProperties(item.getDefaultInstance(), null);
+                    if (food != null) {
+                        JsonObject foodObj = new JsonObject();
+                        foodObj.addProperty("nutrition", food.nutrition());
+                        foodObj.addProperty("saturation", food.saturation());
+                        foodObj.addProperty("can_always_eat", food.canAlwaysEat());
+                        foodObj.addProperty("is_fast_food", food.isFastFood());
+                        foodObj.addProperty("eat_seconds", food.eatDurationTicks() / 20f);
+                        entryJson.add("food_properties", foodObj);
+                    }
+                }
+            } catch (Exception e) {
+                entryJson.addProperty("error", "Failed to extract item properties: " + e.getMessage());
+            }
+
+            entries.add(entryJson);
+        }
+
+        root.add("entries", entries);
+        writeJson(outputPath, root, entries.size());
+    }
+
+    private static void dumpEntities(Path outputPath) {
+        DataMiner.LOGGER.info("Dumping registry: entity_types");
+        var registry = BuiltInRegistries.ENTITY_TYPE;
+        JsonObject root = new JsonObject();
+        root.addProperty("registry_name", "entity_types");
+        root.addProperty("size", registry.size());
+
+        JsonArray entries = new JsonArray();
+        for (EntityType<?> entityType : registry) {
+            Identifier id = registry.getKey(entityType);
+            if (id == null) continue;
+
+            JsonObject entryJson = new JsonObject();
+            entryJson.addProperty("id", id.toString());
+            entryJson.addProperty("namespace", id.getNamespace());
+            entryJson.addProperty("path", id.getPath());
+            entryJson.addProperty("type", entityType.getClass().getName());
+
+            try {
+                entryJson.addProperty("width", entityType.getWidth());
+                entryJson.addProperty("height", entityType.getHeight());
+                entryJson.addProperty("category", entityType.getCategory().getName());
+                entryJson.addProperty("fire_immune", entityType.fireImmune());
+                entryJson.addProperty("can_summon", entityType.canSummon());
+                entryJson.addProperty("client_tracking_range", entityType.clientTrackingRange());
+                entryJson.addProperty("update_interval", entityType.updateInterval());
+                entryJson.addProperty("dimensions", entityType.getDescription().toString());
+            } catch (Exception e) {
+                entryJson.addProperty("error", "Failed to extract entity properties: " + e.getMessage());
+            }
+
+            entries.add(entryJson);
+        }
+
+        root.add("entries", entries);
+        writeJson(outputPath, root, entries.size());
+    }
+
     private static <T> void dumpRegistry(net.minecraft.core.Registry<T> registry, Path outputPath, String registryName) {
         DataMiner.LOGGER.info("Dumping registry: {}", registryName);
         JsonObject root = new JsonObject();
@@ -76,9 +215,7 @@ public class RegistryDumper {
         JsonArray entries = new JsonArray();
         for (T entry : registry) {
             Identifier id = registry.getKey(entry);
-            if (id == null) {
-                continue;
-            }
+            if (id == null) continue;
             JsonObject entryJson = new JsonObject();
             entryJson.addProperty("id", id.toString());
             entryJson.addProperty("namespace", id.getNamespace());
@@ -89,12 +226,28 @@ public class RegistryDumper {
         }
 
         root.add("entries", entries);
+        writeJson(outputPath, root, entries.size());
+    }
 
+    private static void writeJson(Path outputPath, JsonObject root, int entryCount) {
         try {
             Files.writeString(outputPath, GSON.toJson(root));
-            DataMiner.LOGGER.info("Dumped {} entries to {}", entries.size(), outputPath);
+            DataMiner.LOGGER.info("Dumped {} entries to {}", entryCount, outputPath);
         } catch (IOException e) {
             DataMiner.LOGGER.error("Failed to write registry dump: {}", outputPath, e);
         }
+    }
+
+    private static float getFloatOrZero(FloatSupplier supplier) {
+        try {
+            return supplier.getAsFloat();
+        } catch (Exception e) {
+            return 0f;
+        }
+    }
+
+    @FunctionalInterface
+    private interface FloatSupplier {
+        float getAsFloat() throws Exception;
     }
 }

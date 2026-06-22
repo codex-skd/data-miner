@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-06-22
+
+### Added
+
+- `/dataminer dump` command to trigger registry dump manually (permission level 2).
+- `/dataminer perf start` and `/dataminer perf stop` commands for performance monitoring.
+- `PerformanceMonitor.java` tracking FPS (min/max/avg) and MSPT (min/max/avg) during monitoring sessions.
+- `PerfEventHandlers.java` with `ClientTickEvent` for FPS capture and `ServerTickEvent` for MSPT capture.
+- Enriched `blocks.json` with `hardness`, `blast_resistance`, `light_emission`, `requires_correct_tool`, `has_collision`, `randomly_ticks`, and `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
+- Enriched `items.json` with `max_stack_size`, `max_damage`, `is_fire_resistant`, `rarity`, `is_edible`, and `food_properties` (nutrition, saturation, can_always_eat, is_fast_food, eat_seconds).
+- Enriched `entities.json` with `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `dimensions`.
+- Report output to `dataminer_dumps/performance.json` after stopping perf monitor.
+
 ## [0.1.0] - 2026-06-22
 
 ### Added
