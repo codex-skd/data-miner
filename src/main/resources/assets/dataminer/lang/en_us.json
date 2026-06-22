@@ -1,0 +1,5 @@
+{
+  "dataminer.command.dump": "Dump all registries to JSON",
+  "dataminer.command.dump.success": "Registry dump completed. Files saved to %s",
+  "dataminer.command.dump.fail": "Failed to dump registries. Check logs for details."
+}
