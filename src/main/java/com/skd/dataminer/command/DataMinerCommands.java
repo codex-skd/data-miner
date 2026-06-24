@@ -3,6 +3,7 @@ package com.skd.dataminer.command;
 import com.skd.dataminer.dumper.RegistryDumper;
 import com.skd.dataminer.event.EventTracer;
 import com.skd.dataminer.perf.PerformanceMonitor;
+import com.skd.dataminer.vision.VisionAnalyzer;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -78,6 +79,45 @@ public class DataMinerCommands {
                             } catch (IOException e) {
                                 ctx.getSource().sendFailure(
                                     Component.literal("Failed to save event report: " + e.getMessage())
+                                );
+                            }
+                            return 1;
+                        })
+                    )
+                )
+                .then(Commands.literal("vision")
+                    .then(Commands.literal("analyze")
+                        .executes(ctx -> {
+                            VisionAnalyzer.analyze();
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Screenshot captured and sent for analysis."),
+                                true
+                            );
+                            return 1;
+                        })
+                    )
+                    .then(Commands.literal("start")
+                        .executes(ctx -> {
+                            VisionAnalyzer.start();
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Vision analyzer started. Use /dataminer vision stop to finish."),
+                                true
+                            );
+                            return 1;
+                        })
+                    )
+                    .then(Commands.literal("stop")
+                        .executes(ctx -> {
+                            VisionAnalyzer.stop();
+                            try {
+                                Path reportPath = VisionAnalyzer.saveReport();
+                                ctx.getSource().sendSuccess(
+                                    () -> Component.literal("Vision report saved to " + reportPath),
+                                    true
+                                );
+                            } catch (IOException e) {
+                                ctx.getSource().sendFailure(
+                                    Component.literal("Failed to save vision report: " + e.getMessage())
                                 );
                             }
                             return 1;

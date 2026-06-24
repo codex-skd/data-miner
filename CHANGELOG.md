@@ -5,7 +5,21 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.6.1] - 2026-06-24
+
+### Added
+
+- **Vision Analysis** — screen capture + AI-powered visual inspection.
+  - `/dataminer vision analyze` captures the game screen and sends it to an AI API.
+  - `/dataminer vision start/stop` for periodic automated capture and analysis.
+  - `ScreenCapture.java` using vanilla `Screenshot.grab` for framebuffer capture.
+  - `VisionAnalyzer.java` with dual API support: OpenAI-compatible and Google Gemini.
+  - Screenshots saved to `vision/screenshots/`, analyses to `vision/analyses/`.
+  - Player context included in each analysis (position, dimension, health, food, FPS).
+  - Configurable capture interval, API endpoint, model, system prompt, and API key.
+- `visionApiType` config option to switch between `"openai"` and `"gemini"` API formats.
+- `vision/` directories auto-created on startup by `Initializer.java`.
+- README updated with full Vision Analysis documentation and setup guide.
 
 ## [0.4.1] - 2026-06-22
 

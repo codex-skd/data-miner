@@ -62,5 +62,30 @@ public class DataMinerConfig {
             .comment("Dump attribute registry")
             .define("dumpAttributes", true);
 
+    // --- Vision analysis config ---
+    public static final ModConfigSpec.ConfigValue<String> VISION_API_TYPE = BUILDER
+            .comment("API type: 'openai' for OpenAI-compatible endpoints, 'gemini' for Google Gemini")
+            .define("visionApiType", "openai");
+
+    public static final ModConfigSpec.ConfigValue<String> VISION_API_ENDPOINT = BUILDER
+            .comment("API endpoint URL for vision analysis (leave empty to disable AI analysis)")
+            .define("visionApiEndpoint", "");
+
+    public static final ModConfigSpec.ConfigValue<String> VISION_API_KEY = BUILDER
+            .comment("API key for the vision endpoint (optional for local LLMs like Ollama)")
+            .define("visionApiKey", "");
+
+    public static final ModConfigSpec.ConfigValue<String> VISION_MODEL = BUILDER
+            .comment("Model name for vision analysis (e.g., gpt-4o, llava, minicpm-v)")
+            .define("visionModel", "gpt-4o");
+
+    public static final ModConfigSpec.ConfigValue<String> VISION_SYSTEM_PROMPT = BUILDER
+            .comment("System prompt sent to the AI for vision analysis")
+            .define("visionSystemPrompt", "You are a Minecraft gameplay analyst. Your task is to inspect screenshots and identify visual issues: rendering glitches, missing textures, UI bugs, z-fighting, lighting errors, entity problems, or anything that looks wrong.");
+
+    public static final ModConfigSpec.IntValue VISION_CAPTURE_INTERVAL = BUILDER
+            .comment("Seconds between automatic screen captures when vision mode is active")
+            .defineInRange("visionCaptureInterval", 10, 1, 3600);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

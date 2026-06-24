@@ -36,6 +36,8 @@ public class Initializer {
             Files.createDirectories(baseDir.resolve("startup/errors"));
             Files.createDirectories(baseDir.resolve("performance"));
             Files.createDirectories(baseDir.resolve("events/errors"));
+            Files.createDirectories(baseDir.resolve("vision/screenshots"));
+            Files.createDirectories(baseDir.resolve("vision/analyses"));
 
             generateModsJson();
             generateInfoJson();
