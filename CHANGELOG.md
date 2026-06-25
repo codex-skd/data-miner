@@ -5,6 +5,17 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.6.2] - 2026-06-24
+
+### Fixed
+
+- **Game freeze fix**: All heavy I/O operations (registry dumps, report saves) now run on background threads via `DataMinerExecutor`, no longer blocking the game thread.
+- `DUMP_ON_STARTUP` default changed to `false` to prevent startup freeze.
+- Commands respond immediately and process work asynchronously; progress is logged to console.
+- `Initializer.init()` and `RegistryDumper.dumpAll()` moved off the main thread on startup.
+- All `/dataminer * stop` commands return instantly, saving happens in background.
+- `/dataminer dump` returns instantly, dump runs in background.
+
 ## [0.6.1] - 2026-06-24
 
 ### Added

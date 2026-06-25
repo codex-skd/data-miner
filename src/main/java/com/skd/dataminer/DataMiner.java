@@ -34,13 +34,15 @@ public class DataMiner {
     private void commonSetup(FMLCommonSetupEvent event) {
         LOGGER.info("DataMiner initializing...");
 
-        Initializer.init();
+        DataMinerExecutor.runAsync(() -> {
+            Initializer.init();
 
-        if (DataMinerConfig.DUMP_ON_STARTUP.get()) {
-            LOGGER.info("Starting registry dump...");
-            RegistryDumper.dumpAll();
-            LOGGER.info("Registry dump completed.");
-        }
+            if (DataMinerConfig.DUMP_ON_STARTUP.get()) {
+                LOGGER.info("Starting registry dump...");
+                RegistryDumper.dumpAll();
+                LOGGER.info("Registry dump completed.");
+            }
+        });
     }
 
     private void onRegisterCommands(RegisterCommandsEvent event) {

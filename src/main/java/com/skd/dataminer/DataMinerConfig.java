@@ -8,7 +8,7 @@ public class DataMinerConfig {
 
     public static final ModConfigSpec.BooleanValue DUMP_ON_STARTUP = BUILDER
             .comment("Whether to dump all registries to JSON on game startup")
-            .define("dumpOnStartup", true);
+            .define("dumpOnStartup", false);
 
     public static final ModConfigSpec.ConfigValue<String> DUMP_OUTPUT_DIR = BUILDER
             .comment("Directory to output dump files (relative to game directory)")
@@ -65,19 +65,19 @@ public class DataMinerConfig {
     // --- Vision analysis config ---
     public static final ModConfigSpec.ConfigValue<String> VISION_API_TYPE = BUILDER
             .comment("API type: 'openai' for OpenAI-compatible endpoints, 'gemini' for Google Gemini")
-            .define("visionApiType", "openai");
+            .define("visionApiType", "gemini");
 
     public static final ModConfigSpec.ConfigValue<String> VISION_API_ENDPOINT = BUILDER
             .comment("API endpoint URL for vision analysis (leave empty to disable AI analysis)")
-            .define("visionApiEndpoint", "");
+            .define("visionApiEndpoint", "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent");
 
     public static final ModConfigSpec.ConfigValue<String> VISION_API_KEY = BUILDER
             .comment("API key for the vision endpoint (optional for local LLMs like Ollama)")
-            .define("visionApiKey", "");
+            .define("visionApiKey", "CHANGE_ME");
 
     public static final ModConfigSpec.ConfigValue<String> VISION_MODEL = BUILDER
             .comment("Model name for vision analysis (e.g., gpt-4o, llava, minicpm-v)")
-            .define("visionModel", "gpt-4o");
+            .define("visionModel", "gemini-2.5-flash");
 
     public static final ModConfigSpec.ConfigValue<String> VISION_SYSTEM_PROMPT = BUILDER
             .comment("System prompt sent to the AI for vision analysis")

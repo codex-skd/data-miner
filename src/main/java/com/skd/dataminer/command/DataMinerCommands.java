@@ -1,5 +1,7 @@
 package com.skd.dataminer.command;
 
+import com.skd.dataminer.DataMiner;
+import com.skd.dataminer.DataMinerExecutor;
 import com.skd.dataminer.dumper.RegistryDumper;
 import com.skd.dataminer.event.EventTracer;
 import com.skd.dataminer.perf.PerformanceMonitor;
@@ -19,10 +21,13 @@ public class DataMinerCommands {
             Commands.literal("dataminer")
                 .then(Commands.literal("dump")
                     .executes(ctx -> {
-                        RegistryDumper.dumpAll();
+                        DataMinerExecutor.runAsync(() -> {
+                            RegistryDumper.dumpAll();
+                            DataMiner.LOGGER.info("Registry dump completed");
+                        });
                         ctx.getSource().sendSuccess(
-                            () -> Component.literal("Registry dump completed. Check dataminer_dumps/"),
-                            true
+                            () -> Component.literal("Dump started in background. Check logs for progress."),
+                            false
                         );
                         return 1;
                     })
@@ -33,7 +38,7 @@ public class DataMinerCommands {
                             PerformanceMonitor.start();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Performance monitor started. Use /dataminer perf stop to finish."),
-                                true
+                                false
                             );
                             return 1;
                         })
@@ -41,17 +46,18 @@ public class DataMinerCommands {
                     .then(Commands.literal("stop")
                         .executes(ctx -> {
                             PerformanceMonitor.stop();
-                            try {
-                                Path reportPath = PerformanceMonitor.saveReport();
-                                ctx.getSource().sendSuccess(
-                                    () -> Component.literal("Performance report saved to " + reportPath),
-                                    true
-                                );
-                            } catch (IOException e) {
-                                ctx.getSource().sendFailure(
-                                    Component.literal("Failed to save performance report: " + e.getMessage())
-                                );
-                            }
+                            DataMinerExecutor.runAsync(() -> {
+                                try {
+                                    Path reportPath = PerformanceMonitor.saveReport();
+                                    DataMiner.LOGGER.info("Performance report saved to {}", reportPath);
+                                } catch (IOException e) {
+                                    DataMiner.LOGGER.error("Failed to save performance report", e);
+                                }
+                            });
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Stopping. Report saving in background. Check logs."),
+                                false
+                            );
                             return 1;
                         })
                     )
@@ -62,7 +68,7 @@ public class DataMinerCommands {
                             EventTracer.start();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Event tracer started. Use /dataminer events stop to finish."),
-                                true
+                                false
                             );
                             return 1;
                         })
@@ -70,17 +76,18 @@ public class DataMinerCommands {
                     .then(Commands.literal("stop")
                         .executes(ctx -> {
                             EventTracer.stop();
-                            try {
-                                Path reportPath = EventTracer.saveReport();
-                                ctx.getSource().sendSuccess(
-                                    () -> Component.literal("Event report saved to " + reportPath),
-                                    true
-                                );
-                            } catch (IOException e) {
-                                ctx.getSource().sendFailure(
-                                    Component.literal("Failed to save event report: " + e.getMessage())
-                                );
-                            }
+                            DataMinerExecutor.runAsync(() -> {
+                                try {
+                                    Path reportPath = EventTracer.saveReport();
+                                    DataMiner.LOGGER.info("Event report saved to {}", reportPath);
+                                } catch (IOException e) {
+                                    DataMiner.LOGGER.error("Failed to save event report", e);
+                                }
+                            });
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Stopping. Report saving in background. Check logs."),
+                                false
+                            );
                             return 1;
                         })
                     )
@@ -91,7 +98,7 @@ public class DataMinerCommands {
                             VisionAnalyzer.analyze();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Screenshot captured and sent for analysis."),
-                                true
+                                false
                             );
                             return 1;
                         })
@@ -101,7 +108,7 @@ public class DataMinerCommands {
                             VisionAnalyzer.start();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Vision analyzer started. Use /dataminer vision stop to finish."),
-                                true
+                                false
                             );
                             return 1;
                         })
@@ -109,17 +116,18 @@ public class DataMinerCommands {
                     .then(Commands.literal("stop")
                         .executes(ctx -> {
                             VisionAnalyzer.stop();
-                            try {
-                                Path reportPath = VisionAnalyzer.saveReport();
-                                ctx.getSource().sendSuccess(
-                                    () -> Component.literal("Vision report saved to " + reportPath),
-                                    true
-                                );
-                            } catch (IOException e) {
-                                ctx.getSource().sendFailure(
-                                    Component.literal("Failed to save vision report: " + e.getMessage())
-                                );
-                            }
+                            DataMinerExecutor.runAsync(() -> {
+                                try {
+                                    Path reportPath = VisionAnalyzer.saveReport();
+                                    DataMiner.LOGGER.info("Vision report saved to {}", reportPath);
+                                } catch (IOException e) {
+                                    DataMiner.LOGGER.error("Failed to save vision report", e);
+                                }
+                            });
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Stopping. Report saving in background. Check logs."),
+                                false
+                            );
                             return 1;
                         })
                     )

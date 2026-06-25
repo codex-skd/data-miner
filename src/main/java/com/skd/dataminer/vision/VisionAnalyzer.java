@@ -3,7 +3,6 @@ package com.skd.dataminer.vision;
 import com.google.gson.*;
 import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.DataMinerConfig;
-import com.skd.dataminer.error.ErrorCollector;
 import com.skd.dataminer.init.Initializer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -24,9 +23,11 @@ import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class VisionAnalyzer {
 
@@ -36,20 +37,27 @@ public class VisionAnalyzer {
     private static final HttpClient HTTP_CLIENT = HttpClient.newBuilder()
             .connectTimeout(Duration.ofSeconds(30))
             .build();
+    private static final ExecutorService AI_EXECUTOR = Executors.newFixedThreadPool(2, r -> {
+        Thread t = new Thread(r, "dataminer-ai");
+        t.setDaemon(true);
+        return t;
+    });
 
-    private static boolean running;
+    private static volatile boolean running;
+    private static volatile boolean captureInProgress;
     private static ScheduledExecutorService scheduler;
     private static final List<AnalysisResult> results = Collections.synchronizedList(new ArrayList<>());
     private static Instant startTime;
     private static Path screenshotsDir;
     private static Path analysesDir;
 
-    private static boolean aiEnabled;
-    private static String apiType;
-    private static String apiEndpoint;
-    private static String apiKey;
-    private static String model;
-    private static String systemPrompt;
+    private static volatile boolean aiEnabled;
+    private static volatile String apiType;
+    private static volatile String apiEndpoint;
+    private static volatile String apiKey;
+    private static volatile String model;
+    private static volatile String systemPrompt;
+    private static volatile boolean configLoaded;
 
     public static void analyze() {
         Minecraft mc = Minecraft.getInstance();
@@ -62,7 +70,7 @@ public class VisionAnalyzer {
             try {
                 captureAndSend();
             } catch (Exception e) {
-                DataMiner.LOGGER.error("VisionAnalyzer: capture failed", e);
+                DataMiner.LOGGER.error("VisionAnalyzer: capture dispatch failed", e);
             }
         });
     }
@@ -71,16 +79,7 @@ public class VisionAnalyzer {
         if (running) return;
 
         loadConfig();
-
-        screenshotsDir = Initializer.baseDir.resolve("vision/screenshots");
-        analysesDir = Initializer.baseDir.resolve("vision/analyses");
-
-        try {
-            Files.createDirectories(screenshotsDir);
-            Files.createDirectories(analysesDir);
-        } catch (IOException e) {
-            DataMiner.LOGGER.error("VisionAnalyzer: failed to create output dirs", e);
-        }
+        ensureDirs();
 
         results.clear();
         startTime = Instant.now();
@@ -128,7 +127,7 @@ public class VisionAnalyzer {
         long durationMs = Duration.between(startTime, endTime).toMillis();
 
         JsonObject report = new JsonObject();
-        report.addProperty("analyzer_version", "0.1.0");
+        report.addProperty("analyzer_version", "0.2.0");
         report.addProperty("start_time", DATE_FMT.format(startTime));
         report.addProperty("end_time", DATE_FMT.format(endTime));
         report.addProperty("duration_ms", durationMs);
@@ -151,6 +150,18 @@ public class VisionAnalyzer {
         return reportPath;
     }
 
+    private static void ensureDirs() {
+        screenshotsDir = Initializer.baseDir.resolve("vision/screenshots");
+        analysesDir = Initializer.baseDir.resolve("vision/analyses");
+
+        try {
+            Files.createDirectories(screenshotsDir);
+            Files.createDirectories(analysesDir);
+        } catch (IOException e) {
+            DataMiner.LOGGER.error("VisionAnalyzer: failed to create output dirs", e);
+        }
+    }
+
     private static void loadConfig() {
         apiEndpoint = DataMinerConfig.VISION_API_ENDPOINT.get().trim();
         aiEnabled = !apiEndpoint.isEmpty();
@@ -160,49 +171,56 @@ public class VisionAnalyzer {
             model = DataMinerConfig.VISION_MODEL.get();
             systemPrompt = DataMinerConfig.VISION_SYSTEM_PROMPT.get();
         }
+        configLoaded = true;
     }
 
     private static void captureAndSend() {
-        if (!running && results.isEmpty()) {
+        if (!configLoaded) {
             loadConfig();
-            screenshotsDir = Initializer.baseDir.resolve("vision/screenshots");
-            analysesDir = Initializer.baseDir.resolve("vision/analyses");
+            ensureDirs();
         }
+
+        if (captureInProgress) {
+            DataMiner.LOGGER.debug("VisionAnalyzer: capture in progress, skipping cycle");
+            return;
+        }
+        captureInProgress = true;
 
         String timestamp = DATE_FMT.format(Instant.now());
         String filename = timestamp + ".png";
 
-        Path screenshotPath;
-        try {
-            Files.createDirectories(screenshotsDir);
-            screenshotPath = ScreenCapture.capture(screenshotsDir, filename);
-        } catch (IOException e) {
-            DataMiner.LOGGER.error("VisionAnalyzer: screenshot failed", e);
-            return;
-        }
-
         AnalysisResult result = new AnalysisResult();
         result.timestamp = timestamp;
-        result.screenshotPath = screenshotPath.toString();
         capturePlayerInfo(result);
 
-        if (aiEnabled) {
-            try {
-                String analysis = callAiApi(screenshotPath);
-                result.aiAnalysis = analysis;
-                result.aiModel = model;
-            } catch (Exception e) {
-                result.aiError = e.getMessage();
-                DataMiner.LOGGER.error("VisionAnalyzer: AI analysis failed", e);
-            }
-        }
+        ScreenCapture.capture(screenshotsDir, filename)
+            .thenAcceptAsync(screenshotPath -> {
+                result.screenshotPath = screenshotPath.toString();
 
-        if (!aiEnabled) {
-            result.aiAnalysis = "AI analysis disabled — no API endpoint configured.";
-        }
+                if (aiEnabled) {
+                    try {
+                        String analysis = callAiApi(screenshotPath);
+                        result.aiAnalysis = analysis;
+                        result.aiModel = model;
+                    } catch (Exception e) {
+                        result.aiError = e.getMessage();
+                        DataMiner.LOGGER.error("VisionAnalyzer: AI analysis failed", e);
+                    }
+                } else {
+                    result.aiAnalysis = "AI analysis disabled — no API endpoint configured.";
+                }
 
-        saveAnalysisResult(result);
-        results.add(result);
+                saveAnalysisResult(result);
+                results.add(result);
+
+                DataMiner.LOGGER.info("VisionAnalyzer: analysis saved for {}", timestamp);
+                captureInProgress = false;
+            }, AI_EXECUTOR)
+            .exceptionally(ex -> {
+                DataMiner.LOGGER.error("VisionAnalyzer: capture chain failed", ex);
+                captureInProgress = false;
+                return null;
+            });
     }
 
     private static void capturePlayerInfo(AnalysisResult result) {
@@ -275,8 +293,10 @@ public class VisionAnalyzer {
 
         if (!systemPrompt.isEmpty()) {
             JsonObject sysInstruction = new JsonObject();
-            JsonObject sysParts = new JsonObject();
-            sysParts.addProperty("text", systemPrompt);
+            JsonArray sysParts = new JsonArray();
+            JsonObject sysText = new JsonObject();
+            sysText.addProperty("text", systemPrompt);
+            sysParts.add(sysText);
             sysInstruction.add("parts", sysParts);
             requestBody.add("systemInstruction", sysInstruction);
         }
