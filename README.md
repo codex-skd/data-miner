@@ -75,7 +75,8 @@ info_client_data_miner/   (or info_server_data_miner/)
 | `/dataminer perf start` | Start performance monitoring (FPS + MSPT) |
 | `/dataminer perf stop` | Stop monitoring and save timestamped report |
 | `/dataminer events start` | Start live event tracing (player actions, blocks, entities) |
-| `/dataminer events stop` | Stop tracing and save timestamped event report |
+| `/dataminer latency start` | Start latency tracer (actions + slow ticks) |
+| `/dataminer latency stop` | Stop tracing and save latency report |
 | `/dataminer vision analyze` | Capture screen and send to AI for visual analysis |
 | `/dataminer vision start` | Start periodic screen capture + AI analysis |
 | `/dataminer vision stop` | Stop and save vision session report |

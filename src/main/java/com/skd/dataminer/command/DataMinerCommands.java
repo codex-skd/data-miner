@@ -4,6 +4,7 @@ import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.DataMinerExecutor;
 import com.skd.dataminer.dumper.RegistryDumper;
 import com.skd.dataminer.event.EventTracer;
+import com.skd.dataminer.latency.LatencyTracer;
 import com.skd.dataminer.perf.PerformanceMonitor;
 import com.skd.dataminer.vision.VisionAnalyzer;
 import com.mojang.brigadier.CommandDispatcher;
@@ -132,6 +133,36 @@ public class DataMinerCommands {
                                     DataMiner.LOGGER.info("Vision report saved to {}", reportPath);
                                 } catch (IOException e) {
                                     DataMiner.LOGGER.error("Failed to save vision report", e);
+                                }
+                            });
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Stopping. Report saving in background. Check logs."),
+                                false
+                            );
+                            return 1;
+                        })
+                    )
+                )
+                .then(Commands.literal("latency")
+                    .then(Commands.literal("start")
+                        .executes(ctx -> {
+                            LatencyTracer.start();
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal("Latency tracer started. Use /dataminer latency stop to finish."),
+                                false
+                            );
+                            return 1;
+                        })
+                    )
+                    .then(Commands.literal("stop")
+                        .executes(ctx -> {
+                            LatencyTracer.stop();
+                            DataMinerExecutor.runAsync(() -> {
+                                try {
+                                    Path reportPath = LatencyTracer.saveReport();
+                                    DataMiner.LOGGER.info("Latency report saved to {}", reportPath);
+                                } catch (IOException e) {
+                                    DataMiner.LOGGER.error("Failed to save latency report", e);
                                 }
                             });
                             ctx.getSource().sendSuccess(

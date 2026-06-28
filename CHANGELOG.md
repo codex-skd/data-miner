@@ -5,6 +5,20 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2026-06-25
+
+### Added
+
+- **Latency Analyzer** — `/dataminer latency start/stop` measures real action delays.
+  - Eating latency: `LivingEntityUseItemEvent.Start` → `Stop` delta.
+  - Slow tick detection: MSPT > 50ms recorded with entity/chunk counts.
+  - Output: `performance/latency/*_latency.json` with min/max/avg per category.
+  - `LatencyTracer.java` and `LatencyEventHandlers.java`.
+- **Mod Impact Analyzer** — `ModAnalyzer.java` generates `startup/mod_impact.json`.
+  - Blocks, items, entity types per namespace, sorted by total entries.
+  - `ModAnalyzer.snapshotWorldContext()` for runtime entity/chunk counts by mod namespace.
+- FPS tracking moved to `ClientPerfHandlers` (`@EventBusSubscriber(Dist.CLIENT)`) to avoid server crashes.
+
 ## [0.6.3] - 2026-06-25
 
 ### Fixed
