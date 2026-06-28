@@ -95,6 +95,11 @@ public class DataMinerCommands {
                 .then(Commands.literal("vision")
                     .then(Commands.literal("analyze")
                         .executes(ctx -> {
+                            if (!VisionAnalyzer.isClientReady()) {
+                                ctx.getSource().sendFailure(
+                                    Component.literal("Vision analysis only works on a client (singleplayer or integrated server)."));
+                                return 0;
+                            }
                             VisionAnalyzer.analyze();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Screenshot captured and sent for analysis."),
@@ -105,6 +110,11 @@ public class DataMinerCommands {
                     )
                     .then(Commands.literal("start")
                         .executes(ctx -> {
+                            if (!VisionAnalyzer.isClientReady()) {
+                                ctx.getSource().sendFailure(
+                                    Component.literal("Vision analysis only works on a client (singleplayer or integrated server)."));
+                                return 0;
+                            }
                             VisionAnalyzer.start();
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Vision analyzer started. Use /dataminer vision stop to finish."),

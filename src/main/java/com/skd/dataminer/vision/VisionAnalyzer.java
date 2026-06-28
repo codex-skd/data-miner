@@ -59,7 +59,20 @@ public class VisionAnalyzer {
     private static volatile String systemPrompt;
     private static volatile boolean configLoaded;
 
+    public static boolean isClientReady() {
+        try {
+            Class.forName("net.minecraft.client.Minecraft");
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
     public static void analyze() {
+        if (!isClientReady()) {
+            DataMiner.LOGGER.warn("VisionAnalyzer: not on a client side");
+            return;
+        }
         Minecraft mc = Minecraft.getInstance();
         if (mc == null || mc.getMainRenderTarget() == null) {
             DataMiner.LOGGER.warn("VisionAnalyzer: not on a render-capable side");
