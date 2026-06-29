@@ -92,7 +92,7 @@ public class LatencyTracer {
         samples.add(s);
     }
 
-    public static void recordSlowTick(double mspt, int loadedEntities, int loadedChunks) {
+    public static void recordSlowTick(double mspt, int loadedEntities, int loadedChunks, JsonObject modContext) {
         if (!running) return;
         if (mspt < SLOW_TICK_THRESHOLD) return;
         tickSlowCount++;
@@ -106,6 +106,7 @@ public class LatencyTracer {
         s.addProperty("loaded_entities", loadedEntities);
         s.addProperty("loaded_chunks", loadedChunks);
         s.addProperty("timestamp", System.currentTimeMillis());
+        if (modContext != null) s.add("entities_by_mod", modContext);
         samples.add(s);
     }
 

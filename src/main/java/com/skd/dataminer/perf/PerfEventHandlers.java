@@ -2,6 +2,8 @@ package com.skd.dataminer.perf;
 
 import com.skd.dataminer.DataMiner;
 import com.skd.dataminer.latency.LatencyTracer;
+import com.skd.dataminer.modimpact.ModAnalyzer;
+import com.google.gson.JsonObject;
 import net.minecraft.server.MinecraftServer;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -33,7 +35,9 @@ public class PerfEventHandlers {
                 for (var e : level.getAllEntities()) entityCount++;
                 chunkCount += level.getChunkSource().getLoadedChunksCount();
             }
-            LatencyTracer.recordSlowTick(mspt, entityCount, chunkCount);
+            JsonObject modCtx = ModAnalyzer.snapshotWorldContext(server)
+                    .getAsJsonObject("entities_by_namespace");
+            LatencyTracer.recordSlowTick(mspt, entityCount, chunkCount, modCtx);
         }
     }
 }

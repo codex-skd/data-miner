@@ -44,6 +44,7 @@ public class Initializer {
             generateModsJson();
             generateInfoJson();
             ModAnalyzer.generateRegistryImpact();
+            ModAnalyzer.generateModAnalysis();
 
             DataMiner.LOGGER.info("DataMiner folder structure created at {}", baseDir.toAbsolutePath());
         } catch (IOException e) {
