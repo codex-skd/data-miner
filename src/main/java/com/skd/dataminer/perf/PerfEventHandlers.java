@@ -35,8 +35,7 @@ public class PerfEventHandlers {
                 for (var e : level.getAllEntities()) entityCount++;
                 chunkCount += level.getChunkSource().getLoadedChunksCount();
             }
-            JsonObject modCtx = ModAnalyzer.snapshotWorldContext(server)
-                    .getAsJsonObject("entities_by_namespace");
+            JsonObject modCtx = ModAnalyzer.snapshotWorldContext(server);
             LatencyTracer.recordSlowTick(mspt, entityCount, chunkCount, modCtx);
         }
     }

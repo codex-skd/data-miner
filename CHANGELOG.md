@@ -5,6 +5,12 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.4] - 2026-06-29
+
+### Fixed
+
+- **Server crash** (ClassCastException: JsonArray cannot be cast to JsonObject) in PerfEventHandlers.onServerTickPost when slow tick detection triggered. Removed incorrect `.getAsJsonObject("entities_by_namespace")` call.
+
 ## [0.7.3] - 2026-06-29
 
 ### Removed
