@@ -1,5 +1,9 @@
 # CurseForge Changelog
 
+## v0.7.4
+
+- Fixed ClassCastException crash on slow tick detection (server)
+
 ## v0.7.3
 
 - Removed Vision Analysis (screenshots + AI API) due to privacy policy compliance
