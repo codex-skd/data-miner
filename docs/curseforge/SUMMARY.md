@@ -1,0 +1,1 @@
+Diagnostic mod for MC 26.1.2. Exports registries to JSON, monitors FPS/MSPT, tracks live events, measures latency (eating/breaking), profiles mod impact, AI screenshot analysis (OpenAI/Gemini). All I/O async, always-on tracing.

@@ -1,0 +1,127 @@
+# Changelog
+
+All notable changes to DataMiner are documented in this file.
+
+## [0.7.2] - 2026-06-25
+
+### Added
+
+- **Mod-aware slow tick context**: each slow tick now includes `entities_by_mod` showing which mods' entities are loaded, making it possible to identify the mod causing lag.
+- **Full mod analysis** (`startup/mod_analysis.json`): per-mod report with ID, version, registry counts, dependencies, and **potential issues** (missing deps, high entity/blocks/item counts).
+- `/dataminer mods analyze` command to regenerate mod analysis on demand.
+
+### Changed
+
+- `LatencyTracer.recordSlowTick()` accepts mod context parameter.
+- `PerfEventHandlers` integrates `ModAnalyzer.snapshotWorldContext()` during slow ticks.
+
+## [0.7.1] - 2026-06-25
+
+### Added
+
+- **Block breaking latency tracking** — via `LeftClickBlock` + `PlayerTickEvent` polling (block → air detection). No longer depends on `BlockEvent.BreakEvent`.
+- **`latencyAlwaysOn` config** — latency tracer runs automatically by default. Can disable via config or use `/dataminer latency start/stop`.
+
+### Changed
+
+- `LatencyTracer.ensureRunning()` added for auto-start.
+- Full README rewrite for CurseForge documentation.
+
+## [0.7.0] - 2026-06-25
+
+### Added
+
+- **Latency Analyzer** — `/dataminer latency start/stop` measures real action delays.
+  - Eating latency: `LivingEntityUseItemEvent.Start` → `Stop` delta.
+  - Slow tick detection: MSPT > 50ms recorded with entity/chunk counts.
+  - Output: `performance/latency/*_latency.json` with min/max/avg per category.
+  - `LatencyTracer.java` and `LatencyEventHandlers.java`.
+- **Mod Impact Analyzer** — `ModAnalyzer.java` generates `startup/mod_impact.json`.
+  - Blocks, items, entity types per namespace, sorted by total entries.
+  - `ModAnalyzer.snapshotWorldContext()` for runtime entity/chunk counts by mod namespace.
+- FPS tracking moved to `ClientPerfHandlers` (`@EventBusSubscriber(Dist.CLIENT)`) to avoid server crashes.
+
+## [0.6.3] - 2026-06-25
+
+### Fixed
+
+- **Server crash**: `/dataminer vision` no longer throws `NoClassDefFoundError` on dedicated servers. `VisionAnalyzer.isClientReady()` guard added.
+- API key default changed to `CHANGE_ME` (was hardcoded real key).
+
+## [0.6.2] - 2026-06-24
+
+### Fixed
+
+- **Game freeze fix**: All heavy I/O operations (registry dumps, report saves) now run on background threads via `DataMinerExecutor`, no longer blocking the game thread.
+- `DUMP_ON_STARTUP` default changed to `false` to prevent startup freeze.
+- Commands respond immediately and process work asynchronously; progress is logged to console.
+
+## [0.6.1] - 2026-06-24
+
+### Added
+
+- **Vision Analysis** — screen capture + AI-powered visual inspection.
+  - `/dataminer vision analyze` captures the game screen and sends it to an AI API.
+  - `/dataminer vision start/stop` for periodic automated capture and analysis.
+  - `ScreenCapture.java` using vanilla `Screenshot.grab` for framebuffer capture.
+  - `VisionAnalyzer.java` with dual API support: OpenAI-compatible and Google Gemini.
+  - Screenshots saved to `vision/screenshots/`, analyses to `vision/analyses/`.
+  - Player context included in each analysis (position, dimension, health, food, FPS).
+  - Configurable capture interval, API endpoint, model, system prompt, and API key.
+- `visionApiType` config option to switch between `"openai"` and `"gemini"` API formats.
+- `vision/` directories auto-created on startup by `Initializer.java`.
+
+## [0.4.1] - 2026-06-22
+
+### Changed
+
+- First beta release. All features tested and functional.
+- Release type promoted from Alpha to Beta.
+
+## [0.4.0] - 2026-06-22
+
+### Added
+
+- `/dataminer events start` and `/dataminer events stop` commands for live game event tracing.
+- `EventTracer.java` collecting events in memory and exporting them to timestamped JSON in `events/`.
+- `EventHandlers.java` with hooks for: PlayerTickEvent, BlockEvent.EntityPlaceEvent, PlayerInteractEvent.RightClickBlock, LivingDamageEvent.Pre, LivingDeathEvent, EntityJoinLevelEvent, ChunkEvent.Load.
+- Event errors auto-captured to `events/errors/` with stack traces.
+
+## [0.3.0] - 2026-06-22
+
+### Added
+
+- Folder structure initialization on startup (`Initializer.java`).
+- `info_client_data_miner/` or `info_server_data_miner/` with organized subdirectories.
+- `startup/mods.json` listing all loaded mods with IDs, versions, and dependencies.
+- `startup/info.json` with MC version, Java, OS, RAM, locale, and side info.
+- `startup/registries/` for all registry dumps.
+- `ErrorCollector.java` capturing uncaught exceptions.
+
+### Changed
+
+- Registry dumps moved to `startup/registries/` subdirectory.
+- Performance reports moved to `performance/` subdirectory with timestamp naming.
+
+## [0.2.0] - 2026-06-22
+
+### Added
+
+- `/dataminer dump` command to trigger registry dump manually.
+- `/dataminer perf start` and `/dataminer perf stop` commands for performance monitoring.
+- `PerformanceMonitor.java` tracking FPS (min/max/avg) and MSPT (min/max/avg).
+- Enriched `blocks.json`, `items.json`, `entities.json` with detailed properties.
+
+### Removed
+
+- Biomes, enchantments, and dimension types from dump list (not accessible via `BuiltInRegistries`).
+
+## [0.1.0] - 2026-06-22
+
+### Added
+
+- Initial project setup with NeoForge MDK for Minecraft 26.1.2.
+- `DataMiner.java` main mod class with `@Mod` annotation.
+- `DataMinerConfig.java` with per-registry toggle flags.
+- `RegistryDumper.java` that exports registries to JSON.
+- Supported registries: blocks, items, entity types, mob effects, sound events, creative mode tabs, potions, villager professions, attributes.
