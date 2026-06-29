@@ -62,31 +62,6 @@ public class DataMinerConfig {
             .comment("Dump attribute registry")
             .define("dumpAttributes", true);
 
-    // --- Vision analysis config ---
-    public static final ModConfigSpec.ConfigValue<String> VISION_API_TYPE = BUILDER
-            .comment("API type: 'openai' for OpenAI-compatible endpoints, 'gemini' for Google Gemini")
-            .define("visionApiType", "gemini");
-
-    public static final ModConfigSpec.ConfigValue<String> VISION_API_ENDPOINT = BUILDER
-            .comment("API endpoint URL for vision analysis (leave empty to disable AI analysis)")
-            .define("visionApiEndpoint", "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent");
-
-    public static final ModConfigSpec.ConfigValue<String> VISION_API_KEY = BUILDER
-            .comment("API key for the vision endpoint (optional for local LLMs like Ollama)")
-            .define("visionApiKey", "CHANGE_ME");
-
-    public static final ModConfigSpec.ConfigValue<String> VISION_MODEL = BUILDER
-            .comment("Model name for vision analysis (e.g., gpt-4o, llava, minicpm-v)")
-            .define("visionModel", "gemini-2.5-flash");
-
-    public static final ModConfigSpec.ConfigValue<String> VISION_SYSTEM_PROMPT = BUILDER
-            .comment("System prompt sent to the AI for vision analysis")
-            .define("visionSystemPrompt", "You are a Minecraft gameplay analyst. Your task is to inspect screenshots and identify visual issues: rendering glitches, missing textures, UI bugs, z-fighting, lighting errors, entity problems, or anything that looks wrong.");
-
-    public static final ModConfigSpec.IntValue VISION_CAPTURE_INTERVAL = BUILDER
-            .comment("Seconds between automatic screen captures when vision mode is active")
-            .defineInRange("visionCaptureInterval", 10, 1, 3600);
-
     // --- Latency tracer config ---
     public static final ModConfigSpec.BooleanValue LATENCY_ALWAYS_ON = BUILDER
             .comment("If true, latency tracer runs automatically at all times without needing /dataminer latency start")

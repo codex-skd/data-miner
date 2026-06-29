@@ -1,5 +1,9 @@
 # CurseForge Changelog
 
+## v0.7.3
+
+- Removed Vision Analysis (screenshots + AI API) due to privacy policy compliance
+
 ## v0.7.2
 
 - **Slow ticks now include mod context** — each slow tick shows `entities_by_mod` breakdown to identify which mod causes lag

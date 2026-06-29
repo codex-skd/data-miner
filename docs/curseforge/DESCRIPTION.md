@@ -1,4 +1,4 @@
-Comprehensive diagnostic and profiling mod for Minecraft 26.1.2. Dumps every game registry to enriched JSON, monitors FPS/MSPT, traces live game events, measures action latency (eating, block breaking, slow ticks), profiles mod impact with per-mod analysis, captures screenshots for AI visual inspection (OpenAI/Gemini), and logs errors — all with zero game-thread blocking.
+Comprehensive diagnostic and profiling mod for Minecraft 26.1.2. Dumps every game registry to enriched JSON, monitors FPS/MSPT, traces live game events, measures action latency (eating, block breaking, slow ticks), profiles mod impact with per-mod analysis, and logs errors — all with zero game-thread blocking.
 
 ## Features
 
@@ -8,7 +8,6 @@ Comprehensive diagnostic and profiling mod for Minecraft 26.1.2. Dumps every gam
 - **Mod-Aware Slow Ticks** — Each slow tick includes entities_by_mod breakdown to identify which mod causes lag
 - **Full Mod Analysis** — `startup/mod_analysis.json` with per-mod ID, version, registry counts, dependencies, and potential issues (missing deps, high entity counts)
 - **Event Tracer** — Live game events: player movement, block placement, damage, entity spawns/deaths, chunk loads
-- **Vision Analysis** — Screenshots + AI inspection for visual bugs (OpenAI-compatible + Google Gemini). Configurable endpoint, model, system prompt
 - **Error Collection** — All uncaught exceptions logged with full stack traces to `startup/errors/` and `events/errors/`
 - **Async I/O** — All file operations run on background threads, zero game freezes
 
@@ -21,8 +20,6 @@ Comprehensive diagnostic and profiling mod for Minecraft 26.1.2. Dumps every gam
 | `/dataminer perf start/stop` | Start/stop FPS + MSPT monitoring |
 | `/dataminer events start/stop` | Start/stop live game event tracing |
 | `/dataminer latency start/stop` | Start/stop latency measurement |
-| `/dataminer vision analyze` | Single screenshot + AI analysis (client only) |
-| `/dataminer vision start/stop` | Periodic screenshot + AI analysis (client only) |
 
 ## Output Structure
 
@@ -42,9 +39,6 @@ info_client_data_miner/  (or info_server_data_miner/)
 ├── events/
 │   ├── *.json             # Live event traces
 │   └── errors/            # Event handler exceptions
-└── vision/
-    ├── screenshots/       # Captured PNG files
-    └── analyses/          # AI analysis results
 ```
 
 ## Configuration
@@ -57,14 +51,9 @@ Config file: `config/dataminer-common.toml`
 |---|---|---|
 | `latencyAlwaysOn` | `true` | Run latency tracer automatically |
 | `dumpOnStartup` | `false` | Auto-dump registries on game start |
-| `visionApiType` | `gemini` | `"openai"` or `"gemini"` |
-| `visionApiEndpoint` | gemini URL | API endpoint for AI analysis |
-| `visionApiKey` | `CHANGE_ME` | Your API key |
-| `visionModel` | `gemini-2.5-flash` | Model name |
-| `visionCaptureInterval` | `10` | Seconds between captures |
 
 ## Requirements
 
 - NeoForge **26.1.2.76**+
 - Java **25**
-- Client and Server (Both) — vision features client-only
+- Client and Server (Both)

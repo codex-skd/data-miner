@@ -7,7 +7,6 @@ import com.skd.dataminer.event.EventTracer;
 import com.skd.dataminer.latency.LatencyTracer;
 import com.skd.dataminer.modimpact.ModAnalyzer;
 import com.skd.dataminer.perf.PerformanceMonitor;
-import com.skd.dataminer.vision.VisionAnalyzer;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -109,51 +108,6 @@ public class DataMinerCommands {
                             LatencyTracer.stop();
                             DataMinerExecutor.runAsync(() -> {
                                 try { LatencyTracer.saveReport(); } catch (IOException ignored) {}
-                            });
-                            ctx.getSource().sendSuccess(
-                                () -> Component.literal("Stopping. Report in background."),
-                                false
-                            );
-                            return 1;
-                        })
-                    )
-                )
-                .then(Commands.literal("vision")
-                    .then(Commands.literal("analyze")
-                        .executes(ctx -> {
-                            if (!VisionAnalyzer.isClientReady()) {
-                                ctx.getSource().sendFailure(
-                                    Component.literal("Vision: client only."));
-                                return 0;
-                            }
-                            VisionAnalyzer.analyze();
-                            ctx.getSource().sendSuccess(
-                                () -> Component.literal("Screenshot captured."),
-                                false
-                            );
-                            return 1;
-                        })
-                    )
-                    .then(Commands.literal("start")
-                        .executes(ctx -> {
-                            if (!VisionAnalyzer.isClientReady()) {
-                                ctx.getSource().sendFailure(
-                                    Component.literal("Vision: client only."));
-                                return 0;
-                            }
-                            VisionAnalyzer.start();
-                            ctx.getSource().sendSuccess(
-                                () -> Component.literal("Vision analyzer started."),
-                                false
-                            );
-                            return 1;
-                        })
-                    )
-                    .then(Commands.literal("stop")
-                        .executes(ctx -> {
-                            VisionAnalyzer.stop();
-                            DataMinerExecutor.runAsync(() -> {
-                                try { VisionAnalyzer.saveReport(); } catch (IOException ignored) {}
                             });
                             ctx.getSource().sendSuccess(
                                 () -> Component.literal("Stopping. Report in background."),
