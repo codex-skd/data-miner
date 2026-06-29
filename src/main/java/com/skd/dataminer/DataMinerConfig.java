@@ -87,5 +87,10 @@ public class DataMinerConfig {
             .comment("Seconds between automatic screen captures when vision mode is active")
             .defineInRange("visionCaptureInterval", 10, 1, 3600);
 
+    // --- Latency tracer config ---
+    public static final ModConfigSpec.BooleanValue LATENCY_ALWAYS_ON = BUILDER
+            .comment("If true, latency tracer runs automatically at all times without needing /dataminer latency start")
+            .define("latencyAlwaysOn", true);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 }

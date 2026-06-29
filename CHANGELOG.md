@@ -5,6 +5,18 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.1] - 2026-06-25
+
+### Added
+
+- **Block breaking latency tracking** — via `LeftClickBlock` + `PlayerTickEvent` polling (block → air detection). No longer depends on `BlockEvent.BreakEvent`.
+- **`latencyAlwaysOn` config** — latency tracer runs automatically by default. Can disable via config or use `/dataminer latency start/stop`.
+
+### Changed
+
+- `LatencyTracer.ensureRunning()` added for auto-start.
+- Full README rewrite for CurseForge documentation.
+
 ## [0.7.0] - 2026-06-25
 
 ### Added

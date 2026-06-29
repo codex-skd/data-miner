@@ -40,11 +40,16 @@ public class LatencyTracer {
     private static long tickStartNano;
 
     public static void start() {
+        if (running) return;
         samples.clear();
         resetStats();
         running = true;
         startTime = System.currentTimeMillis();
         DataMiner.LOGGER.info("Latency tracer started");
+    }
+
+    public static void ensureRunning() {
+        if (!running) start();
     }
 
     public static void stop() {
