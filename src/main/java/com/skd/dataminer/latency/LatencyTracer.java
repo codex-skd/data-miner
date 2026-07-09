@@ -62,6 +62,33 @@ public class LatencyTracer {
         return running;
     }
 
+    public static String getStats() {
+        long now = System.currentTimeMillis();
+        long durationSec = (now - startTime) / 1000;
+        StringBuilder sb = new StringBuilder();
+        sb.append("§6=== Latency Stats ===§r\n");
+        sb.append("§7Duration: §f").append(formatDuration(durationSec)).append("§r\n");
+        sb.append("§7Eating: §f").append(eatCount).append(" samples")
+                .append(eatCount > 0 ? String.format(" §7min/avg/max: §f%.1f/%.1f/%.1f ms", eatMin, eatSum / eatCount, eatMax) : "")
+                .append("§r\n");
+        sb.append("§7Block Break: §f").append(breakCount).append(" samples")
+                .append(breakCount > 0 ? String.format(" §7min/avg/max: §f%.1f/%.1f/%.1f ms", breakMin, breakSum / breakCount, breakMax) : "")
+                .append("§r\n");
+        sb.append("§7Slow Ticks: §f").append(tickSlowCount).append(" ticks (>50ms)")
+                .append(tickSlowCount > 0 ? String.format(" §7min/avg/max: §f%.1f/%.1f/%.1f mspt", tickMin, tickSum / tickSlowCount, tickMax) : "")
+                .append("§r\n");
+        return sb.toString();
+    }
+
+    private static String formatDuration(long secs) {
+        long h = secs / 3600;
+        long m = (secs % 3600) / 60;
+        long s = secs % 60;
+        if (h > 0) return String.format("%dh %dm %ds", h, m, s);
+        if (m > 0) return String.format("%dm %ds", m, s);
+        return String.format("%ds", s);
+    }
+
     public static void recordEat(String item, double ms) {
         if (!running) return;
         eatCount++;

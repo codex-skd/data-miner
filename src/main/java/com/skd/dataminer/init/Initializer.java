@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.skd.dataminer.DataMiner;
+import com.skd.dataminer.logs.LogRedirector;
 import com.skd.dataminer.modimpact.ModAnalyzer;
 import net.minecraft.SharedConstants;
 import net.neoforged.fml.ModList;
@@ -35,14 +36,18 @@ public class Initializer {
         try {
             Files.createDirectories(baseDir.resolve("startup/registries"));
             Files.createDirectories(baseDir.resolve("startup/errors"));
+            Files.createDirectories(baseDir.resolve("startup/logs/issues"));
             Files.createDirectories(baseDir.resolve("performance"));
             Files.createDirectories(baseDir.resolve("performance/latency"));
             Files.createDirectories(baseDir.resolve("events/errors"));
+            Files.createDirectories(baseDir.resolve("logs"));
 
             generateModsJson();
             generateInfoJson();
             ModAnalyzer.generateRegistryImpact();
             ModAnalyzer.generateModAnalysis();
+
+            LogRedirector.init(baseDir);
 
             DataMiner.LOGGER.info("DataMiner folder structure created at {}", baseDir.toAbsolutePath());
         } catch (IOException e) {

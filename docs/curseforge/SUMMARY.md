@@ -1,1 +1,1 @@
-Diagnostic mod for MC 26.1.2. Exports registries to JSON, monitors FPS/MSPT, tracks live events, measures latency (eating/breaking), profiles mod impact with per-mod analysis. All I/O async, always-on tracing, zero game-thread blocking.
+Diagnostic mod for MC 26.1.2. Exports registries to JSON, monitors FPS/MSPT, tracks live events, measures latency (eating/breaking), profiles mod impact with per-mod analysis, auto-redirects noisy third-party logs, and detects known mod issues (refmaps, ATs, textures, pack.meta). All I/O async, always-on tracing, zero game-thread blocking.

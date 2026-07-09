@@ -116,6 +116,21 @@ public class DataMinerCommands {
                             return 1;
                         })
                     )
+                    .then(Commands.literal("stats")
+                        .executes(ctx -> {
+                            if (!LatencyTracer.isRunning()) {
+                                ctx.getSource().sendFailure(
+                                    Component.literal("Latency tracer is not running. Use /dataminer latency start first.")
+                                );
+                                return 0;
+                            }
+                            ctx.getSource().sendSuccess(
+                                () -> Component.literal(LatencyTracer.getStats()),
+                                false
+                            );
+                            return 1;
+                        })
+                    )
                 )
         );
     }
