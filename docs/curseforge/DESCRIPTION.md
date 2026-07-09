@@ -34,11 +34,7 @@ info_client_data_miner/  (or info_server_data_miner/)
 │   ├── registries/          # All game registries in enriched JSON
 │   ├── logs/
 │   │   ├── captured.log     # Redirected WARN/ERROR from other mods
-│   │   └── issues/          # Structured JSON for known patterns
-│   │       ├── missing_refmap/
-│   │       ├── access_transformer/
-│   │       ├── missing_texture/
-│   │       └── pack_metadata/
+│   │   └── issues.jsonl     # Detected issues as JSON Lines (one per line)
 │   ├── mods.json            # Loaded mods with versions/deps
 │   ├── mod_impact.json      # Blocks/items/entities per namespace
 │   ├── mod_analysis.json    # Per-mod profile with potential issues
