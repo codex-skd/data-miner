@@ -3,7 +3,7 @@ Comprehensive diagnostic and profiling mod for Minecraft 26.1.2. Dumps every gam
 ## Features
 
 - **Log Redirect** — WARN/ERROR messages from other mods are automatically captured and redirected from `latest.log` to DataMiner's own `logs/captured.log`, keeping the main log clean
-- **Smart Issue Detection** — Automatically detects known patterns (missing refmaps, access transformers, missing textures, pack.meta errors) and saves structured JSON analysis to `startup/logs/issues/`
+- **Smart Issue Detection** — Automatically detects known patterns (missing refmaps, access transformers, missing textures, pack.meta errors) and saves structured data as JSON Lines to `startup/logs/issues.jsonl`
 - **Registry Dumps** — All BuiltInRegistries exported to JSON with detailed properties (hardness, food, sound, dimensions)
 - **Performance Monitor** — FPS (min/max/avg) + MSPT via `/dataminer perf start/stop`
 - **Latency Analyzer** — Automatically tracks eating time, block breaking time, and slow ticks (>50ms MSPT). Runs by default (`latencyAlwaysOn: true`), no command needed. View live stats with `/dataminer latency stats`
