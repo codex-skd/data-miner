@@ -1,15 +1,15 @@
 # CurseForge Changelog
 
-## v0.8.1
+## v0.8.1 (Beta)
 
-- **Issue files fixed** — Changed from one JSON file per event to a single `issues.jsonl` (JSON Lines), preventing file explosion across a session
+- **Single session file** — Issue detections now append to one `issues.jsonl` per session instead of spawning one JSON per event. Cleaner, faster, zero clutter.
 
-## v0.8.0
+## v0.8.0 (Beta)
 
-- **Log Redirect** — DataMiner now captures WARN/ERROR messages from other mods and redirects them from `latest.log` to its own `logs/captured.log`, keeping the main log clean
-- **Smart Issue Detection** — Known patterns (missing refmaps, access transformers, missing textures, pack.meta errors) are automatically detected and saved as structured JSON Lines to `startup/logs/issues.jsonl`
-- **Live Latency Stats** — `/dataminer latency stats` displays real-time eating/block breaking/slow tick statistics without stopping the tracer
-- **Extensible detector system** — new issue patterns can be easily added via `IssueDetector` interface
+- **Log redirect** — WARN/ERROR noise from other mods is automatically captured and moved out of `latest.log` into DataMiner's own `logs/captured.log`. Your main log stays clean.
+- **Smart issue detection** — Known problem patterns (missing refmaps, broken access transformers, missing textures, invalid pack metadata) are auto-detected and recorded as structured JSON Lines in `startup/logs/issues.jsonl`.
+- **Live latency stats** — New command `/dataminer latency stats` shows eating time, block break time, and slow tick data in real time without stopping the tracer.
+- **Extensible detectors** — Adding more issue patterns is trivial via the `IssueDetector` interface. No rewrites needed.
 
 ## v0.7.4
 
