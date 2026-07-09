@@ -36,7 +36,6 @@ public class Initializer {
         try {
             Files.createDirectories(baseDir.resolve("startup/registries"));
             Files.createDirectories(baseDir.resolve("startup/errors"));
-            Files.createDirectories(baseDir.resolve("startup/logs/issues"));
             Files.createDirectories(baseDir.resolve("performance"));
             Files.createDirectories(baseDir.resolve("performance/latency"));
             Files.createDirectories(baseDir.resolve("events/errors"));

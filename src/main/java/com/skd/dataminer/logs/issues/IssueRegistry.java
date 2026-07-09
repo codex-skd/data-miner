@@ -10,8 +10,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Instant;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -19,9 +17,7 @@ import java.util.regex.Pattern;
 
 public class IssueRegistry {
 
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create();
-    private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss-SSS")
-            .withZone(ZoneId.systemDefault());
+    private static final Gson GSON_COMPACT = new GsonBuilder().disableHtmlEscaping().create();
     private static final List<IssueDetector> DETECTORS = new ArrayList<>();
 
     static {
@@ -36,7 +32,6 @@ public class IssueRegistry {
             @Override
             public JsonObject extract(String loggerName, String message, String thread) {
                 JsonObject json = new JsonObject();
-                json.addProperty("type", type());
                 json.addProperty("logger", loggerName);
                 Matcher m = p.matcher(message);
                 String refmap = m.find() ? (m.group(1) != null ? m.group(1) : m.group(2)) : "unknown";
@@ -59,7 +54,6 @@ public class IssueRegistry {
             @Override
             public JsonObject extract(String loggerName, String message, String thread) {
                 JsonObject json = new JsonObject();
-                json.addProperty("type", type());
                 json.addProperty("logger", loggerName);
                 json.addProperty("message", message.length() > 300 ? message.substring(0, 300) + "..." : message);
                 json.addProperty("thread", thread);
@@ -79,7 +73,6 @@ public class IssueRegistry {
             @Override
             public JsonObject extract(String loggerName, String message, String thread) {
                 JsonObject json = new JsonObject();
-                json.addProperty("type", type());
                 json.addProperty("logger", loggerName);
                 json.addProperty("message", message.length() > 300 ? message.substring(0, 300) + "..." : message);
                 json.addProperty("thread", thread);
@@ -99,7 +92,6 @@ public class IssueRegistry {
             @Override
             public JsonObject extract(String loggerName, String message, String thread) {
                 JsonObject json = new JsonObject();
-                json.addProperty("type", type());
                 json.addProperty("logger", loggerName);
                 json.addProperty("message", message.length() > 300 ? message.substring(0, 300) + "..." : message);
                 json.addProperty("thread", thread);
@@ -122,12 +114,12 @@ public class IssueRegistry {
 
     private static synchronized void saveIssue(String type, JsonObject json) {
         if (Initializer.baseDir == null) return;
+        json.addProperty("type", type);
         try {
-            Path dir = Initializer.baseDir.resolve("startup/logs/issues/" + type);
-            Files.createDirectories(dir);
-            String ts = DATE_FMT.format(Instant.now());
-            Path file = dir.resolve(ts + ".json");
-            Files.writeString(file, GSON.toJson(json));
+            Path file = Initializer.baseDir.resolve("startup/logs/issues.jsonl");
+            Files.createDirectories(file.getParent());
+            Files.writeString(file, GSON_COMPACT.toJson(json) + System.lineSeparator(),
+                    java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
         } catch (IOException e) {
             DataMiner.LOGGER.error("Failed to save issue report", e);
         }
