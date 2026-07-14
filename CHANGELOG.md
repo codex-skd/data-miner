@@ -1,182 +1,180 @@
 # Changelog
 
-All notable changes to DataMiner are documented in this file.
+Todos los cambios notables de DataMiner se documentan en este archivo.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [0.0.0-beta.1] - 2026-07-14
 
-### Added
+### Añadido
 
-- **Log redirect**: WARN/ERROR from third-party mods is captured via a custom Log4j2 appender and redirected from `latest.log` to `logs/captured.log`. The appender also adds a DENY filter to the RollingFile appender so those messages no longer pollute the main log.
-- **Smart issue detection**: `IssueRegistry` auto-detects known patterns (missing refmaps, access transformers, missing textures, pack.meta errors) and saves structured JSON Lines to `startup/logs/issues.jsonl`. Extensible via `IssueDetector` interface.
-- **Live latency stats**: `/dataminer latency stats` command displays real-time eating/block break/slow tick statistics without stopping the tracer.
+- **Redirección de logs**: WARN/ERROR de mods de terceros se capturan mediante un appender personalizado de Log4j2 y se redirigen de `latest.log` a `logs/captured.log`. El appender también añade un filtro DENY al RollingFile appender para que esos mensajes no sigan apareciendo en el log principal.
+- **Detección inteligente de incidencias**: `IssueRegistry` detecta automáticamente patrones conocidos (refmaps faltantes, access transformers rotos, texturas faltantes, errores de pack.meta) y guarda JSON Lines estructurados en `startup/logs/issues.jsonl`. Extensible mediante la interfaz `IssueDetector`.
+- **Estadísticas de latencia en vivo**: Comando `/dataminer latency stats` que muestra estadísticas en tiempo real de comida/rotura de bloques/ticks lentos sin necesidad de detener el trazador.
 
-### Fixed
+### Corregido
 
-- **Issue file explosion**: Changed from one JSON file per issue event to a single `issues.jsonl` appended per session.
+- **Explosión de archivos de incidencias**: Cambiado de un JSON por evento a un único `issues.jsonl` que se va añadiendo durante la sesión.
 
-### Changed
+### Cambiado
 
-- Versioning aligned to `0.0.0-beta.X` scheme.
-- Documentation restructured per `WORKFLOW.md`: `curseforge/project_description.md`, `curseforge/versions/`, `CHANGELOG.md`.
+- Versionado alineado al esquema `0.0.0-beta.X`.
+- Documentación reestructurada según `WORKFLOW.md`: `docs/curseforge/project_description.md`, `docs/curseforge/versions/`, `CHANGELOG.md`.
 
 ## [0.7.4] - 2026-06-29
 
-### Fixed
+### Corregido
 
-- **Server crash** (ClassCastException: JsonArray cannot be cast to JsonObject) in PerfEventHandlers.onServerTickPost when slow tick detection triggered. Removed incorrect `.getAsJsonObject("entities_by_namespace")` call.
+- **Caída del servidor** (ClassCastException: JsonArray no puede convertirse a JsonObject) en PerfEventHandlers.onServerTickPost al detectar ticks lentos. Se eliminó la llamada incorrecta `.getAsJsonObject("entities_by_namespace")`.
 
 ## [0.7.3] - 2026-06-29
 
-### Removed
+### Eliminado
 
-- Vision Analysis module (ScreenCapture.java, VisionAnalyzer.java) removed due to CurseForge privacy policy.
-- All vision-related commands, config options, and output directories removed.
+- Módulo Vision Analysis (ScreenCapture.java, VisionAnalyzer.java) eliminado por cumplimiento de la política de privacidad de CurseForge.
+- Todos los comandos relacionados con visión, opciones de configuración y directorios de salida eliminados.
 
 ## [0.7.2] - 2026-06-25
 
-### Added
+### Añadido
 
-- **Mod-aware slow tick context**: each slow tick now includes `entities_by_mod` showing which mods' entities are loaded, making it possible to identify the mod causing lag.
-- **Full mod analysis** (`startup/mod_analysis.json`): per-mod report with ID, version, registry counts, dependencies, and **potential issues** (missing deps, high entity/blocks/item counts).
-- `/dataminer mods analyze` command to regenerate mod analysis on demand.
+- **Contexto de ticks lentos por mod**: cada tick lento incluye ahora `entities_by_mod` mostrando qué mods tienen entidades cargadas, permitiendo identificar el mod que causa el lag.
+- **Análisis completo de mods** (`startup/mod_analysis.json`): informe por mod con ID, versión, recuentos de registros, dependencias y **posibles problemas** (deps faltantes, recuentos altos de entidades/bloques/items).
+- Comando `/dataminer mods analyze` para regenerar el análisis de mods bajo demanda.
 
-### Changed
+### Cambiado
 
-- `LatencyTracer.recordSlowTick()` accepts mod context parameter.
-- `PerfEventHandlers` integrates `ModAnalyzer.snapshotWorldContext()` during slow ticks.
+- `LatencyTracer.recordSlowTick()` acepta parámetro de contexto de mod.
+- `PerfEventHandlers` integra `ModAnalyzer.snapshotWorldContext()` durante ticks lentos.
 
 ## [0.7.1] - 2026-06-25
 
-### Added
+### Añadido
 
-- **Block breaking latency tracking** — via `LeftClickBlock` + `PlayerTickEvent` polling (block → air detection). No longer depends on `BlockEvent.BreakEvent`.
-- **`latencyAlwaysOn` config** — latency tracer runs automatically by default. Can disable via config or use `/dataminer latency start/stop`.
+- **Seguimiento de latencia de rotura de bloques** — mediante `LeftClickBlock` + sondeo en `PlayerTickEvent` (transición bloque → aire). Ya no depende de `BlockEvent.BreakEvent`.
+- **Config `latencyAlwaysOn`** — el trazador de latencia se ejecuta automáticamente por defecto. Se puede desactivar mediante configuración o usar `/dataminer latency start/stop`.
 
-### Changed
+### Cambiado
 
-- `LatencyTracer.ensureRunning()` added for auto-start.
-- Full README rewrite for CurseForge documentation.
+- Se añadió `LatencyTracer.ensureRunning()` para auto-arranque.
 
 ## [0.7.0] - 2026-06-25
 
-### Added
+### Añadido
 
-- **Latency Analyzer** — `/dataminer latency start/stop` measures real action delays.
-  - Eating latency: `LivingEntityUseItemEvent.Start` → `Stop` delta.
-  - Slow tick detection: MSPT > 50ms recorded with entity/chunk counts.
-  - Output: `performance/latency/*_latency.json` with min/max/avg per category.
-  - `LatencyTracer.java` and `LatencyEventHandlers.java`.
-- **Mod Impact Analyzer** — `ModAnalyzer.java` generates `startup/mod_impact.json`.
-  - Blocks, items, entity types per namespace, sorted by total entries.
-  - `ModAnalyzer.snapshotWorldContext()` for runtime entity/chunk counts by mod namespace.
-- FPS tracking moved to `ClientPerfHandlers` (`@EventBusSubscriber(Dist.CLIENT)`) to avoid server crashes.
+- **Analizador de Latencia** — `/dataminer latency start/stop` mide retardos reales de acciones.
+  - Latencia al comer: delta `LivingEntityUseItemEvent.Start` → `Stop`.
+  - Detección de ticks lentos: MSPT > 50ms registrado con recuentos de entidades/chunks.
+  - Salida: `performance/latency/*_latency.json` con min/max/avg por categoría.
+  - `LatencyTracer.java` y `LatencyEventHandlers.java`.
+- **Analizador de Impacto de Mods** — `ModAnalyzer.java` genera `startup/mod_impact.json`.
+  - Bloques, items, tipos de entidad por namespace, ordenados por total de entradas.
+  - `ModAnalyzer.snapshotWorldContext()` para recuentos de entidades/chunks por namespace de mod en tiempo de ejecución.
+- Seguimiento de FPS movido a `ClientPerfHandlers` (`@EventBusSubscriber(Dist.CLIENT)`) para evitar caídas del servidor.
 
 ## [0.6.3] - 2026-06-25
 
-### Fixed
+### Corregido
 
-- **Server crash**: `/dataminer vision` no longer throws `NoClassDefFoundError` on dedicated servers. `VisionAnalyzer.isClientReady()` guard added.
-- API key default changed to `CHANGE_ME` (was hardcoded real key).
+- **Caída del servidor**: `/dataminer vision` ya no lanza `NoClassDefFoundError` en servidores dedicados. Se añadió guarda `VisionAnalyzer.isClientReady()`.
+- Clave API por defecto cambiada a `CHANGE_ME` (era una clave real hardcodeada).
 
 ## [0.6.2] - 2026-06-24
 
-### Fixed
+### Corregido
 
-- **Game freeze fix**: All heavy I/O operations (registry dumps, report saves) now run on background threads via `DataMinerExecutor`, no longer blocking the game thread.
-- `DUMP_ON_STARTUP` default changed to `false` to prevent startup freeze.
-- Commands respond immediately and process work asynchronously; progress is logged to console.
-- `Initializer.init()` and `RegistryDumper.dumpAll()` moved off the main thread on startup.
-- All `/dataminer * stop` commands return instantly, saving happens in background.
-- `/dataminer dump` returns instantly, dump runs in background.
+- **Congelación del juego corregida**: todas las operaciones pesadas de I/O (volcados de registros, guardado de informes) ahora se ejecutan en hilos en segundo plano mediante `DataMinerExecutor`, sin bloquear el hilo del juego.
+- `DUMP_ON_STARTUP` cambiado a `false` por defecto para evitar congelación al arrancar.
+- Los comandos responden inmediatamente y procesan el trabajo de forma asíncrona; el progreso se registra en la consola.
+- `Initializer.init()` y `RegistryDumper.dumpAll()` movidos fuera del hilo principal al arrancar.
+- Todos los comandos `/dataminer * stop` devuelven respuesta inmediata, el guardado ocurre en segundo plano.
+- `/dataminer dump` devuelve respuesta inmediata, el volcado ocurre en segundo plano.
 
 ## [0.6.1] - 2026-06-24
 
-### Added
+### Añadido
 
-- **Vision Analysis** — screen capture + AI-powered visual inspection.
-  - `/dataminer vision analyze` captures the game screen and sends it to an AI API.
-  - `/dataminer vision start/stop` for periodic automated capture and analysis.
-  - `ScreenCapture.java` using vanilla `Screenshot.grab` for framebuffer capture.
-  - `VisionAnalyzer.java` with dual API support: OpenAI-compatible and Google Gemini.
-  - Screenshots saved to `vision/screenshots/`, analyses to `vision/analyses/`.
-  - Player context included in each analysis (position, dimension, health, food, FPS).
-  - Configurable capture interval, API endpoint, model, system prompt, and API key.
-- `visionApiType` config option to switch between `"openai"` and `"gemini"` API formats.
-- `vision/` directories auto-created on startup by `Initializer.java`.
-- README updated with full Vision Analysis documentation and setup guide.
+- **Vision Analysis** — captura de pantalla + inspección visual mediante IA.
+  - `/dataminer vision analyze` captura la pantalla y la envía a una API de IA.
+  - `/dataminer vision start/stop` para captura y análisis periódico automatizado.
+  - `ScreenCapture.java` usando `Screenshot.grab` de vanilla para captura del framebuffer.
+  - `VisionAnalyzer.java` con soporte de API dual: OpenAI-compatible y Google Gemini.
+  - Capturas guardadas en `vision/screenshots/`, análisis en `vision/analyses/`.
+  - Contexto del jugador incluido en cada análisis (posición, dimensión, salud, comida, FPS).
+  - Intervalo de captura, endpoint de API, modelo, system prompt y clave API configurables.
+- Opción de configuración `visionApiType` para cambiar entre formatos de API `"openai"` y `"gemini"`.
+- Directorios `vision/` creados automáticamente al arrancar por `Initializer.java`.
 
 ## [0.4.1] - 2026-06-22
 
-### Changed
+### Cambiado
 
-- First beta release. All features tested and functional.
-- Release type promoted from Alpha to Beta.
+- Primera beta. Todas las funcionalidades probadas y operativas.
+- Tipo de lanzamiento promocionado de Alpha a Beta.
 
 ## [0.4.0] - 2026-06-22
 
-### Added
+### Añadido
 
-- `/dataminer events start` and `/dataminer events stop` commands for live game event tracing.
-- `EventTracer.java` collecting events in memory and exporting them to timestamped JSON in `events/`.
-- `EventHandlers.java` with hooks for:
-  - `PlayerTickEvent` — player position, sprinting, sneaking, health, food, biome, dimension (sampled every 1s).
-  - `BlockEvent.EntityPlaceEvent` — block placed with position and dimension.
-  - `PlayerInteractEvent.RightClickBlock` — block interaction with position and hand.
-  - `LivingDamageEvent.Pre` — damage to players with amount and source entity.
-  - `LivingDeathEvent` — entity deaths with position, type, dimension.
-  - `EntityJoinLevelEvent` — entities entering the world.
-  - `ChunkEvent.Load` — chunk loads with coordinates and dimension.
-- Event errors auto-captured to `events/errors/` with stack traces.
-- Event report JSON includes `total_events`, `total_errors`, and all captured event data.
+- Comandos `/dataminer events start` y `/dataminer events stop` para trazado de eventos del juego en vivo.
+- `EventTracer.java` recolectando eventos en memoria y exportándolos a JSON con timestamp en `events/`.
+- `EventHandlers.java` con hooks para:
+  - `PlayerTickEvent` — posición del jugador, sprinting, sneaking, salud, comida, bioma, dimensión (muestreado cada 1s).
+  - `BlockEvent.EntityPlaceEvent` — bloque colocado con posición y dimensión.
+  - `PlayerInteractEvent.RightClickBlock` — interacción con bloque con posición y mano.
+  - `LivingDamageEvent.Pre` — daño a jugadores con cantidad y entidad fuente.
+  - `LivingDeathEvent` — muertes de entidades con posición, tipo, dimensión.
+  - `EntityJoinLevelEvent` — entidades entrando al mundo.
+  - `ChunkEvent.Load` — carga de chunks con coordenadas y dimensión.
+- Errores de eventos auto-capturados en `events/errors/` con stack traces.
+- El JSON del informe de eventos incluye `total_events`, `total_errors` y todos los datos de eventos capturados.
 
 ## [0.3.0] - 2026-06-22
 
-### Added
+### Añadido
 
-- Folder structure initialization on startup (`Initializer.java`).
-- `info_client_data_miner/` or `info_server_data_miner/` with organized subdirectories.
-- `startup/mods.json` listing all loaded mods with IDs, versions, and dependencies.
-- `startup/info.json` with MC version, Java, OS, RAM, locale, and side info.
-- `startup/registries/` for all registry dumps (moved from `dataminer_dumps`).
-- `startup/errors/` for errors captured during startup.
-- `events/errors/` placeholder for in-game event error logging.
-- `ErrorCollector.java` capturing uncaught exceptions via `Thread.setDefaultUncaughtExceptionHandler`.
-- Performance reports now saved with timestamped filenames in `performance/` folder.
+- Inicialización de estructura de carpetas al arrancar (`Initializer.java`).
+- `info_client_data_miner/` o `info_server_data_miner/` con subdirectorios organizados.
+- `startup/mods.json` listando todos los mods cargados con IDs, versiones y dependencias.
+- `startup/info.json` con versión de MC, Java, SO, RAM, locale e información de lado.
+- `startup/registries/` para todos los volcados de registros (movido de `dataminer_dumps`).
+- `startup/errors/` para errores capturados durante el arranque.
+- `events/errors/` placeholder para registro de errores de eventos en juego.
+- `ErrorCollector.java` capturando excepciones no capturadas mediante `Thread.setDefaultUncaughtExceptionHandler`.
+- Informes de rendimiento ahora guardados con nombres de archivo con timestamp en carpeta `performance/`.
 
-### Changed
+### Cambiado
 
-- Registry dumps moved to `startup/registries/` subdirectory.
-- Performance reports moved to `performance/` subdirectory with timestamp naming.
+- Volcados de registros movidos a subdirectorio `startup/registries/`.
+- Informes de rendimiento movidos a subdirectorio `performance/` con nombres con timestamp.
 
 ## [0.2.0] - 2026-06-22
 
-### Added
+### Añadido
 
-- `/dataminer dump` command to trigger registry dump manually.
-- `/dataminer perf start` and `/dataminer perf stop` commands for performance monitoring.
-- `PerformanceMonitor.java` tracking FPS (min/max/avg) and MSPT (min/max/avg) during sessions.
-- `PerfEventHandlers.java` with `ClientTickEvent` for FPS and `ServerTickEvent` for MSPT.
-- Enriched `blocks.json` with `hardness`, `blast_resistance`, `light_emission`, `has_block_entity`, and `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
-- Enriched `items.json` with `max_stack_size`, `max_damage`, `rarity`, and `food_properties` (nutrition, saturation, can_always_eat).
-- Enriched `entities.json` with `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `description_id`.
-- Performance report saved to `dataminer_dumps/performance.json`.
+- Comando `/dataminer dump` para activar volcado de registros manualmente.
+- Comandos `/dataminer perf start` y `/dataminer perf stop` para monitorización de rendimiento.
+- `PerformanceMonitor.java` monitorizando FPS (min/max/avg) y MSPT (min/max/avg) durante las sesiones.
+- `PerfEventHandlers.java` con `ClientTickEvent` para FPS y `ServerTickEvent` para MSPT.
+- `blocks.json` enriquecido con `hardness`, `blast_resistance`, `light_emission`, `has_block_entity` y `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
+- `items.json` enriquecido con `max_stack_size`, `max_damage`, `rarity` y `food_properties` (nutrition, saturation, can_always_eat).
+- `entities.json` enriquecido con `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `description_id`.
+- Informe de rendimiento guardado en `dataminer_dumps/performance.json`.
 
-### Removed
+### Eliminado
 
-- Biomes, enchantments, and dimension types from dump list (not accessible via `BuiltInRegistries` in this Minecraft version; will be re-added via dynamic registry access in a future version).
+- Biomas, encantamientos y tipos de dimensión de la lista de volcado (no accesibles mediante `BuiltInRegistries` en esta versión de Minecraft; se readicionarán mediante acceso dinámico a registros en una versión futura).
 
 ## [0.1.0] - 2026-06-22
 
-### Added
+### Añadido
 
-- Initial project setup with NeoForge MDK for Minecraft 26.1.2.
-- `DataMiner.java` main mod class with `@Mod` annotation and `FMLCommonSetupEvent` listener.
-- `DataMinerConfig.java` with per-registry toggle flags and auto-dump option.
-- `RegistryDumper.java` that iterates `BuiltInRegistries` and exports each registry to a JSON file.
-- Dump output to `dataminer_dumps/` directory (configurable).
-- Supported registries: blocks, items, entity types, mob effects, sound events, creative mode tabs, potions, villager professions, attributes.
-- Language file `en_us.json` with future command strings.
-- Mixin config placeholder for future mixin hooks.
+- Configuración inicial del proyecto con NeoForge MDK para Minecraft 26.1.2.
+- `DataMiner.java` clase principal del mod con anotación `@Mod` y listener `FMLCommonSetupEvent`.
+- `DataMinerConfig.java` con opciones de activación por registro y opción de volcado automático.
+- `RegistryDumper.java` que itera `BuiltInRegistries` y exporta cada registro a un archivo JSON.
+- Volcado de salida al directorio `dataminer_dumps/` (configurable).
+- Registros soportados: blocks, items, entity types, mob effects, sound events, creative mode tabs, potions, villager professions, attributes.
+- Archivo de idioma `en_us.json` con futuras cadenas de comandos.
+- Placeholder de configuración Mixin para futuros hooks de mixin.

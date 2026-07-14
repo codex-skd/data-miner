@@ -1,102 +1,102 @@
 # DataMiner
 
-Comprehensive diagnostic and profiling mod for Minecraft. Dumps every game registry to JSON, monitors performance (FPS/MSPT), traces live game events, measures action latency, analyzes mod impact, redirects noisy third-party logs, and detects known mod issues — all with zero game-thread blocking.
+Mod de diagnóstico y profiling para Minecraft. Exporta todos los registros del juego a JSON, monitoriza FPS/MSPT, rastrea eventos en vivo, mide latencia de acciones, analiza el impacto de mods, redirige logs ruidosos de terceros y detecta problemas conocidos — todo sin bloquear el hilo del juego.
 
-## Requirements
+## Requisitos
 
 - Minecraft **26.1.2**
 - NeoForge **26.1.2.76**+
 - Java **25**
 
-## Quick Start
+## Inicio rápido
 
-1. Drop `dataminer-*.jar` in `mods/`
-2. Launch the game
-3. DataMiner creates its folder structure on startup (async, no freeze)
-4. Latency tracker runs automatically by default (`latencyAlwaysOn: true`)
+1. Coloca `dataminer-*.jar` en `mods/`
+2. Inicia el juego
+3. DataMiner crea su estructura de carpetas al arrancar (async, sin congelaciones)
+4. El trazador de latencia se activa automáticamente por defecto (`latencyAlwaysOn: true`)
 
-## Commands
+## Comandos
 
-| Command | Description |
+| Comando | Descripción |
 |---|---|
-| `/dataminer dump` | Export all registries to JSON (background) |
-| `/dataminer mods analyze` | Regenerate full mod analysis |
-| `/dataminer perf start` | Start FPS + MSPT monitoring |
-| `/dataminer perf stop` | Stop and save performance report |
-| `/dataminer events start` | Trace player actions, entities, chunks |
-| `/dataminer events stop` | Stop and save event report |
-| `/dataminer latency start` | Start measuring eating/breaking/tick latency |
-| `/dataminer latency stop` | Stop and save latency report |
-| `/dataminer latency stats` | Show live latency stats without stopping |
+| `/dataminer dump` | Exporta todos los registros a JSON (segundo plano) |
+| `/dataminer mods analyze` | Regenera el análisis completo de mods |
+| `/dataminer perf start` | Inicia monitorización de FPS + MSPT |
+| `/dataminer perf stop` | Detiene y guarda el informe de rendimiento |
+| `/dataminer events start` | Traza acciones de jugador, entidades, chunks |
+| `/dataminer events stop` | Detiene y guarda el informe de eventos |
+| `/dataminer latency start` | Inicia medición de latencia (comer/romper/tick) |
+| `/dataminer latency stop` | Detiene y guarda el informe de latencia |
+| `/dataminer latency stats` | Muestra estadísticas de latencia en vivo sin detener |
 
-## Output Structure
+## Estructura de salida
 
 ```
-info_client_data_miner/  (or info_server_data_miner/)
+info_client_data_miner/  (o info_server_data_miner/)
 ├── startup/
-│   ├── registries/          # All game registries in enriched JSON
+│   ├── registries/          # Todos los registros del juego en JSON
 │   ├── logs/
-│   │   ├── captured.log     # Redirected WARN/ERROR from other mods
-│   │   └── issues.jsonl     # Detected issues as JSON Lines
-│   ├── mods.json            # Loaded mods with versions/deps
-│   ├── mod_impact.json      # Blocks/items/entities per namespace
-│   ├── mod_analysis.json    # Per-mod profile with potential issues
-│   ├── info.json            # MC version, Java, OS, RAM, locale
-│   └── errors/              # Startup exceptions
+│   │   ├── captured.log     # WARN/ERROR redirigidos de otros mods
+│   │   └── issues.jsonl     # Problemas detectados como JSON Lines
+│   ├── mods.json            # Mods cargados con versiones/deps
+│   ├── mod_impact.json      # Blocks/items/entities por namespace
+│   ├── mod_analysis.json    # Perfil por mod con posibles problemas
+│   ├── info.json            # Versión MC, Java, SO, RAM, locale
+│   └── errors/              # Excepciones de arranque
 ├── performance/
-│   ├── *.json               # FPS/MSPT session reports
+│   ├── *.json               # Informes de sesión FPS/MSPT
 │   └── latency/
-│       └── *.json           # Eating/breaking/slow-tick reports with mod context
+│       └── *.json           # Informes de latencia (comer/romper/tick)
 ├── events/
-│   ├── *.json               # Live event traces
-│   └── errors/              # Event handler exceptions
+│   ├── *.json               # Trazas de eventos en vivo
+│   └── errors/              # Excepciones de manejadores de eventos
 ```
 
-## Configuration
+## Configuración
 
-Config file: `config/dataminer-common.toml`
+Archivo de configuración: `config/dataminer-common.toml`
 
-| Key | Default | Description |
+| Clave | Por defecto | Descripción |
 |---|---|---|
-| `latencyAlwaysOn` | `true` | Run latency tracer automatically at all times |
-| `dumpOnStartup` | `false` | Auto-dump registries on game start |
+| `latencyAlwaysOn` | `true` | Ejecuta el trazador de latencia automáticamente |
+| `dumpOnStartup` | `false` | Exporta registros al iniciar el juego |
 
-## Project Structure
+## Estructura del proyecto
 
 ```
 src/main/java/com/skd/dataminer/
-├── DataMiner.java              # @Mod entry point
-├── DataMinerConfig.java        # NeoForge config
-├── DataMinerExecutor.java      # Background I/O thread pool
+├── DataMiner.java              # @Mod punto de entrada
+├── DataMinerConfig.java        # Configuración NeoForge
+├── DataMinerExecutor.java      # Pool de hilos para I/O en segundo plano
 ├── init/
-│   └── Initializer.java        # Folder structure + startup JSONs
+│   └── Initializer.java        # Estructura de carpetas + JSONs de arranque
 ├── error/
-│   └── ErrorCollector.java     # Uncaught exception handler
+│   └── ErrorCollector.java     # Manejador de excepciones no capturadas
 ├── command/
-│   └── DataMinerCommands.java  # All /dataminer subcommands
+│   └── DataMinerCommands.java  # Todos los subcomandos /dataminer
 ├── dumper/
-│   └── RegistryDumper.java     # Registry iteration + enriched JSON
+│   └── RegistryDumper.java     # Iteración de registros + JSON enriquecido
 ├── perf/
-│   ├── PerformanceMonitor.java # FPS + MSPT tracking
-│   └── PerfEventHandlers.java  # Server tick hooks
+│   ├── PerformanceMonitor.java # Seguimiento de FPS + MSPT
+│   └── PerfEventHandlers.java  # Hooks de ticks del servidor
 ├── event/
-│   ├── EventTracer.java        # Live event collection
-│   └── EventHandlers.java      # Game event hooks
+│   ├── EventTracer.java        # Colección de eventos en vivo
+│   └── EventHandlers.java      # Hooks de eventos del juego
 ├── latency/
-│   ├── LatencyTracer.java      # Action latency tracker
-│   ├── LatencyEventHandlers.java # Eating + block break hooks
-│   └── ClientPerfHandlers.java # Client FPS capture
+│   ├── LatencyTracer.java      # Trazador de latencia de acciones
+│   ├── LatencyEventHandlers.java # Hooks de comer + romper bloques
+│   └── ClientPerfHandlers.java # Captura de FPS del cliente
 ├── logs/
-│   ├── CapturedAppender.java   # Log4j2 appender for log capture
-│   ├── LogRedirector.java      # Appender registration + filter setup
+│   ├── CapturedAppender.java   # Appender Log4j2 para captura de logs
+│   ├── LogRedirector.java      # Registro del appender + configuración de filtros
 │   └── issues/
-│       ├── IssueDetector.java  # Pattern detector interface
-│       └── IssueRegistry.java  # Pattern registry + JSONL writer
+│       ├── IssueDetector.java  # Interfaz de detectores de patrones
+│       └── IssueRegistry.java  # Registro de patrones + escritor JSONL
 ├── modimpact/
-│   └── ModAnalyzer.java        # Registry impact + world context
+│   └── ModAnalyzer.java        # Impacto de registros + contexto del mundo
 └── mixin/
 ```
 
-## License
+## Licencia
 
 All Rights Reserved.
