@@ -5,6 +5,23 @@ All notable changes to DataMiner are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.0-beta.1] - 2026-07-14
+
+### Added
+
+- **Log redirect**: WARN/ERROR from third-party mods is captured via a custom Log4j2 appender and redirected from `latest.log` to `logs/captured.log`. The appender also adds a DENY filter to the RollingFile appender so those messages no longer pollute the main log.
+- **Smart issue detection**: `IssueRegistry` auto-detects known patterns (missing refmaps, access transformers, missing textures, pack.meta errors) and saves structured JSON Lines to `startup/logs/issues.jsonl`. Extensible via `IssueDetector` interface.
+- **Live latency stats**: `/dataminer latency stats` command displays real-time eating/block break/slow tick statistics without stopping the tracer.
+
+### Fixed
+
+- **Issue file explosion**: Changed from one JSON file per issue event to a single `issues.jsonl` appended per session.
+
+### Changed
+
+- Versioning aligned to `0.0.0-beta.X` scheme.
+- Documentation restructured per `WORKFLOW.md`: `curseforge/project_description.md`, `curseforge/versions/`, `CHANGELOG.md`.
+
 ## [0.7.4] - 2026-06-29
 
 ### Fixed
