@@ -1,6 +1,6 @@
-<h1 align="center">📊 DataMiner</h1>
+<h1 align="center">🔍 Data Miner</h1>
 
-<p align="center"><strong>Diagnostic and profiling mod — registry dumps, performance monitoring, latency analysis, and mod issue detection.</strong></p>
+<p align="center"><strong>Comprehensive diagnostic and profiling mod for Minecraft — no game-thread blocking.</strong></p>
 
 <br>
 
@@ -10,46 +10,38 @@
 
 <h2>✨ Overview</h2>
 
-<p>DataMiner is a comprehensive diagnostic tool that dumps every game registry to enriched JSON, monitors FPS and MSPT in real time, traces live game events, measures action latency (eating, block breaking, slow ticks), and profiles mod impact — all without blocking the game thread.</p>
-
-<p>It also captures WARN/ERROR messages from third-party mods and redirects them from <code>latest.log</code> to its own log files, keeping the main log clean. Known issue patterns (missing refmaps, broken access transformers, missing textures, invalid pack metadata) are automatically detected and saved as structured data for easy analysis.</p>
+<p>Data Miner dumps every game registry to enriched JSON, monitors FPS and MSPT, traces live game events, measures action latency (eating, block breaking, slow ticks), profiles mod impact with per-mod analysis, redirects noisy third-party logs, and detects known mod issues — all without blocking the game thread.</p>
 
 <br>
 
 <h2>🎯 Features</h2>
 
-<h3>📋 Registry Dumps</h3>
-<p>Every <code>BuiltInRegistry</code> exported to enriched JSON — blocks (hardness, blast resistance, light emission, sound), items (stack size, max damage, rarity, food), entities (width, height, category, fire immunity, tracking range), status effects, sound events, creative tabs, potions, villager professions, and attributes.</p>
+<h3>📋 Log Redirect</h3>
+<p>WARN/ERROR messages from other mods are automatically captured and redirected from <code>latest.log</code> to Data Miner's own <code>logs/captured.log</code>, keeping the main log clean.</p>
 
-<h3>📈 Performance Monitor</h3>
-<p>Real-time FPS (min/max/avg) and MSPT (min/max/avg) tracking via <code>/dataminer perf start/stop</code>. Identify performance bottlenecks across sessions.</p>
+<h3>🧠 Smart Issue Detection</h3>
+<p>Automatically detects known patterns — missing refmaps, access transformers, missing textures, pack.meta errors — and saves structured data as JSON Lines to <code>startup/logs/issues.jsonl</code>.</p>
+
+<h3>🗂️ Registry Dumps</h3>
+<p>All BuiltInRegistries exported to JSON with detailed properties: hardness, food values, sounds, dimensions, and more.</p>
+
+<h3>📊 Performance Monitor</h3>
+<p>Track FPS (min/max/avg) and MSPT via <code>/dataminer perf start/stop</code>. Each slow tick includes an entities_by_mod breakdown to identify which mod causes lag.</p>
 
 <h3>⏱️ Latency Analyzer</h3>
-<p>Automatically measures eating time, block breaking time, and slow ticks (>50ms MSPT). Runs by default (<code>latencyAlwaysOn: true</code>) — no command needed. View live stats with <code>/dataminer latency stats</code> without stopping the tracer.</p>
-
-<h3>🔍 Mod-Aware Slow Ticks</h3>
-<p>Each slow tick includes an <code>entities_by_mod</code> breakdown, showing exactly which mod's entities are loaded. Pinpoint the mod causing lag at a glance.</p>
+<p>Automatically tracks eating time, block breaking time, and slow ticks (&gt;50ms MSPT). Runs by default — no command needed. View live stats with <code>/dataminer latency stats</code>.</p>
 
 <h3>📦 Full Mod Analysis</h3>
-<p>Per-mod report in <code>startup/mod_analysis.json</code> with ID, version, registry counts (blocks, items, entities), dependencies, and potential issues (missing deps, high entity/block counts).</p>
+<p><code>startup/mod_analysis.json</code> with per-mod ID, version, registry counts, dependencies, and potential issues (missing deps, high entity counts).</p>
 
-<h3>🔴 Log Redirect</h3>
-<p>WARN/ERROR messages from other mods are automatically captured and redirected from <code>latest.log</code> to DataMiner's own <code>logs/captured.log</code>. Your main log stays clean and readable.</p>
+<h3>🔴 Event Tracer</h3>
+<p>Live game events: player movement, block placement, damage, entity spawns/deaths, chunk loads.</p>
 
-<h3>🕵️ Smart Issue Detection</h3>
-<p>Known problem patterns — missing refmaps, broken access transformers, missing textures, invalid pack metadata — are auto-detected and saved as structured JSON Lines in <code>startup/logs/issues.jsonl</code>.</p>
-
-<h3>🎬 Live Event Tracer</h3>
-<p>Capture game events in real time: player movement, block placement, entity interaction, damage, entity spawns/deaths, chunk loads. Output to timestamped JSON with full context.</p>
-
-<h3>⚰️ Error Collection</h3>
-<p>All uncaught exceptions are logged with full stack traces and causal chains to <code>startup/errors/</code> and <code>events/errors/</code>.</p>
+<h3>⚠️ Error Collection</h3>
+<p>All uncaught exceptions logged with full stack traces to <code>startup/errors/</code> and <code>events/errors/</code>.</p>
 
 <h3>⚡ Async I/O</h3>
-<p>All file operations run on background threads via <code>DataMinerExecutor</code>. Zero game-thread blocking, zero freezes.</p>
-
-<h3>🧩 Extensible Detection</h3>
-<p>New issue patterns can be added via the <code>IssueDetector</code> interface. No rewrites needed.</p>
+<p>All file operations run on background threads — zero game freezes.</p>
 
 <br>
 
@@ -65,41 +57,14 @@
 
 <h2>🎮 Commands</h2>
 
-<table>
-<tr><td><strong>Command</strong></td><td><strong>Description</strong></td></tr>
-<tr><td><code>/dataminer dump</code></td><td>Export all registries to JSON</td></tr>
-<tr><td><code>/dataminer mods analyze</code></td><td>Regenerate full mod analysis</td></tr>
-<tr><td><code>/dataminer perf start/stop</code></td><td>Start/stop FPS + MSPT monitoring</td></tr>
-<tr><td><code>/dataminer events start/stop</code></td><td>Start/stop live event tracing</td></tr>
-<tr><td><code>/dataminer latency start</code></td><td>Start latency measurement</td></tr>
-<tr><td><code>/dataminer latency stop</code></td><td>Stop and save latency report</td></tr>
-<tr><td><code>/dataminer latency stats</code></td><td>Show live latency stats</td></tr>
-</table>
-
-<br>
-
-<h2>🎮 How to Use</h2>
-
-<ol>
-<li>Drop <code>dataminer-*.jar</code> in <code>mods/</code> and launch the game.</li>
-<li>DataMiner creates its folder structure on startup — no configuration needed.</li>
-<li>Use <code>/dataminer latency stats</code> to view real-time latency data.</li>
-<li>Run <code>/dataminer dump</code> to export all registries at any time.</li>
-<li>Check <code>startup/logs/issues.jsonl</code> for detected mod issues.</li>
-<li>Review <code>startup/mod_analysis.json</code> for per-mod impact profiling.</li>
-</ol>
-
-<br>
-
-<h2>⚙️ Configuration</h2>
-
-<p>Config file: <code>config/dataminer-common.toml</code></p>
-
-<table>
-<tr><td><strong>Key</strong></td><td><strong>Default</strong></td><td><strong>Description</strong></td></tr>
-<tr><td><code>latencyAlwaysOn</code></td><td><code>true</code></td><td>Run latency tracer automatically</td></tr>
-<tr><td><code>dumpOnStartup</code></td><td><code>false</code></td><td>Auto-dump registries on game start</td></tr>
-</table>
+<ul>
+<li><code>/dataminer dump</code> — Export all registries to JSON (async)</li>
+<li><code>/dataminer mods analyze</code> — Regenerate full mod analysis</li>
+<li><code>/dataminer perf start/stop</code> — Start/stop FPS + MSPT monitoring</li>
+<li><code>/dataminer events start/stop</code> — Start/stop live event tracing</li>
+<li><code>/dataminer latency start/stop</code> — Start/stop latency measurement</li>
+<li><code>/dataminer latency stats</code> — Show live latency stats</li>
+</ul>
 
 <br>
 
