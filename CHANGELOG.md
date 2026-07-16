@@ -5,6 +5,21 @@ Todos los cambios notables de DataMiner se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.0-beta.2] - 2026-07-16
+
+### Añadido
+
+- Sección **Ramas** en WORKFLOW.md: define `main` (commit inicial) y `minecraft/<mc-version>/neoforge-<neo-version>/production` como rama de trabajo.
+- Sección **Nombre del JAR**: formato `<mod_id>-<minecraft_version>-<framework>-<version>.jar`.
+- Sección **Idioma**: commits unificados a inglés con código/logs; README/CHANGELOG en castellano.
+
+### Cambiado
+
+- Formato de tags actualizado: `<mc-version>-neoforge-beta.X` (ej: `26.1.2-neoforge-beta.2`).
+- Rama `main` reseteada al commit inicial según workflow.
+- Rama `minecraft/26.1.2/neoforge-26.1.2.76/production` creada con el historial completo.
+- `build.gradle`: `archivesName` ahora incluye MC version y framework.
+
 ## [0.0.0-beta.1] - 2026-07-14
 
 ### Añadido
