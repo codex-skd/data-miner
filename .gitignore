@@ -39,4 +39,4 @@ run/
 repo/
 !**/src/**/repo/
 nul
-graphify-out/
+temp/
