@@ -10,7 +10,7 @@ Comprehensive diagnostic and profiling mod for Minecraft. Dumps every game regis
 
 ## Quick Start
 
-1. Drop `dataminer-*.jar` in `mods/`
+1. Drop `data_miner-*.jar` in `mods/`
 2. Launch the game
 3. DataMiner creates its folder structure on startup (async, no freezes)
 4. Latency tracker starts automatically by default (`latencyAlwaysOn: true`)
@@ -19,15 +19,15 @@ Comprehensive diagnostic and profiling mod for Minecraft. Dumps every game regis
 
 | Command | Description |
 |---|---|
-| `/dataminer dump` | Export all registries to JSON (background) |
-| `/dataminer mods analyze` | Regenerate full mod analysis |
-| `/dataminer perf start` | Start FPS + MSPT monitoring |
-| `/dataminer perf stop` | Stop and save performance report |
-| `/dataminer events start` | Trace player actions, entities, chunks |
-| `/dataminer events stop` | Stop and save event report |
-| `/dataminer latency start` | Start eating/breaking/tick latency measurement |
-| `/dataminer latency stop` | Stop and save latency report |
-| `/dataminer latency stats` | Show live latency stats without stopping |
+| `/data_miner dump` | Export all registries to JSON (background) |
+| `/data_miner mods analyze` | Regenerate full mod analysis |
+| `/data_miner perf start` | Start FPS + MSPT monitoring |
+| `/data_miner perf stop` | Stop and save performance report |
+| `/data_miner events start` | Trace player actions, entities, chunks |
+| `/data_miner events stop` | Stop and save event report |
+| `/data_miner latency start` | Start eating/breaking/tick latency measurement |
+| `/data_miner latency stop` | Stop and save latency report |
+| `/data_miner latency stats` | Show live latency stats without stopping |
 
 ## Output Structure
 
@@ -54,7 +54,7 @@ info_client_data_miner/  (or info_server_data_miner/)
 
 ## Configuration
 
-Config file: `config/dataminer-common.toml`
+Config file: `config/data_miner-common.toml`
 
 | Key | Default | Description |
 |---|---|---|

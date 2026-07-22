@@ -5,8 +5,8 @@
 | Variable | Valor |
 |----------|-------|
 | `curseforge_project_id` | `1584390` |
-| `mod_id` | `dataminer` |
-| `display_name` | `Data Miner` (separado, no junto) |
+| `mod_id` | `data_miner` |
+| `display_name` | `Data Miner` |
 
 ## Tokens
 
@@ -69,7 +69,7 @@ Ejemplo: `26.1.2-neoforge-1.0.21`
 
 <hr>
 
-<p><strong>JAR</strong>: <code>dataminer-26.1.2-neoforge-1.0.21.jar</code></p>
+<p><strong>JAR</strong>: <code>data_miner-26.1.2-neoforge-1.0.21.jar</code></p>
 ```
 
 ## Subir archivo (JAR) con Python
@@ -88,7 +88,7 @@ metadata = {
     "releaseType": "release"
 }
 
-with open(f"build/libs/dataminer-26.1.2-neoforge-{version}.jar", "rb") as f:
+with open(f"build/libs/data_miner-26.1.2-neoforge-{version}.jar", "rb") as f:
     jar_data = f.read()
 
 meta_bytes = json.dumps(metadata, ensure_ascii=False).encode("utf-8")
@@ -99,7 +99,7 @@ body += b'Content-Disposition: form-data; name="metadata"\r\n'
 body += b"Content-Type: application/json\r\n\r\n"
 body += meta_bytes + b"\r\n"
 body += f"--{boundary}\r\n".encode()
-body += b'Content-Disposition: form-data; name="file"; filename="dataminer-26.1.2-neoforge-{version}.jar"\r\n'
+body += b'Content-Disposition: form-data; name="file"; filename="data_miner-26.1.2-neoforge-{version}.jar"\r\n'
 body += b"Content-Type: application/java-archive\r\n\r\n"
 body += jar_data + b"\r\n"
 body += f"--{boundary}--\r\n".encode()

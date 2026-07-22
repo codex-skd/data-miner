@@ -26,10 +26,10 @@
 <p>All BuiltInRegistries exported to JSON with detailed properties: hardness, food values, sounds, dimensions, and more.</p>
 
 <h3>📊 Performance Monitor</h3>
-<p>Track FPS (min/max/avg) and MSPT via <code>/dataminer perf start/stop</code>. Each slow tick includes an entities_by_mod breakdown to identify which mod causes lag.</p>
+<p>Track FPS (min/max/avg) and MSPT via <code>/data_miner perf start/stop</code>. Each slow tick includes an entities_by_mod breakdown to identify which mod causes lag.</p>
 
 <h3>⏱️ Latency Analyzer</h3>
-<p>Automatically tracks eating time, block breaking time, and slow ticks (&gt;50ms MSPT). Runs by default — no command needed. View live stats with <code>/dataminer latency stats</code>.</p>
+<p>Automatically tracks eating time, block breaking time, and slow ticks (&gt;50ms MSPT). Runs by default — no command needed. View live stats with <code>/data_miner latency stats</code>.</p>
 
 <h3>📦 Full Mod Analysis</h3>
 <p><code>startup/mod_analysis.json</code> with per-mod ID, version, registry counts, dependencies, and potential issues (missing deps, high entity counts).</p>
@@ -58,12 +58,12 @@
 <h2>🎮 Commands</h2>
 
 <ul>
-<li><code>/dataminer dump</code> — Export all registries to JSON (async)</li>
-<li><code>/dataminer mods analyze</code> — Regenerate full mod analysis</li>
-<li><code>/dataminer perf start/stop</code> — Start/stop FPS + MSPT monitoring</li>
-<li><code>/dataminer events start/stop</code> — Start/stop live event tracing</li>
-<li><code>/dataminer latency start/stop</code> — Start/stop latency measurement</li>
-<li><code>/dataminer latency stats</code> — Show live latency stats</li>
+<li><code>/data_miner dump</code> — Export all registries to JSON (async)</li>
+<li><code>/data_miner mods analyze</code> — Regenerate full mod analysis</li>
+<li><code>/data_miner perf start/stop</code> — Start/stop FPS + MSPT monitoring</li>
+<li><code>/data_miner events start/stop</code> — Start/stop live event tracing</li>
+<li><code>/data_miner latency start/stop</code> — Start/stop latency measurement</li>
+<li><code>/data_miner latency stats</code> — Show live latency stats</li>
 </ul>
 
 <br>
