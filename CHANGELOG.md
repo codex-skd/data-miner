@@ -11,7 +11,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - Redirección de logs: WARN/ERROR de mods de terceros redirigidos de `latest.log` a `logs/captured.log`.
 - Detección inteligente de incidencias: patrones conocidos (refmaps, ATs, texturas, pack.meta) guardados como JSON Lines en `startup/logs/issues.jsonl`.
-- Estadísticas de latencia en vivo: `/dataminer latency stats`.
+- Estadísticas de latencia en vivo: `/data_miner latency stats`.
 
 ### Cambiado
 
@@ -31,7 +31,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - **Redirección de logs**: WARN/ERROR de mods de terceros se capturan mediante un appender personalizado de Log4j2 y se redirigen de `latest.log` a `logs/captured.log`. El appender también añade un filtro DENY al RollingFile appender para que esos mensajes no sigan apareciendo en el log principal.
 - **Detección inteligente de incidencias**: `IssueRegistry` detecta automáticamente patrones conocidos (refmaps faltantes, access transformers rotos, texturas faltantes, errores de pack.meta) y guarda JSON Lines estructurados en `startup/logs/issues.jsonl`. Extensible mediante la interfaz `IssueDetector`.
-- **Estadísticas de latencia en vivo**: Comando `/dataminer latency stats` que muestra estadísticas en tiempo real de comida/rotura de bloques/ticks lentos sin necesidad de detener el trazador.
+- **Estadísticas de latencia en vivo**: Comando `/data_miner latency stats` que muestra estadísticas en tiempo real de comida/rotura de bloques/ticks lentos sin necesidad de detener el trazador.
 
 ### Corregido
 
@@ -61,7 +61,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 - **Contexto de ticks lentos por mod**: cada tick lento incluye ahora `entities_by_mod` mostrando qué mods tienen entidades cargadas, permitiendo identificar el mod que causa el lag.
 - **Análisis completo de mods** (`startup/mod_analysis.json`): informe por mod con ID, versión, recuentos de registros, dependencias y **posibles problemas** (deps faltantes, recuentos altos de entidades/bloques/items).
-- Comando `/dataminer mods analyze` para regenerar el análisis de mods bajo demanda.
+- Comando `/data_miner mods analyze` para regenerar el análisis de mods bajo demanda.
 
 ### Cambiado
 
@@ -73,7 +73,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ### Añadido
 
 - **Seguimiento de latencia de rotura de bloques** — mediante `LeftClickBlock` + sondeo en `PlayerTickEvent` (transición bloque → aire). Ya no depende de `BlockEvent.BreakEvent`.
-- **Config `latencyAlwaysOn`** — el trazador de latencia se ejecuta automáticamente por defecto. Se puede desactivar mediante configuración o usar `/dataminer latency start/stop`.
+- **Config `latencyAlwaysOn`** — el trazador de latencia se ejecuta automáticamente por defecto. Se puede desactivar mediante configuración o usar `/data_miner latency start/stop`.
 
 ### Cambiado
 
@@ -83,7 +83,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Añadido
 
-- **Analizador de Latencia** — `/dataminer latency start/stop` mide retardos reales de acciones.
+- **Analizador de Latencia** — `/data_miner latency start/stop` mide retardos reales de acciones.
   - Latencia al comer: delta `LivingEntityUseItemEvent.Start` → `Stop`.
   - Detección de ticks lentos: MSPT > 50ms registrado con recuentos de entidades/chunks.
   - Salida: `performance/latency/*_latency.json` con min/max/avg por categoría.
@@ -97,7 +97,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Corregido
 
-- **Caída del servidor**: `/dataminer vision` ya no lanza `NoClassDefFoundError` en servidores dedicados. Se añadió guarda `VisionAnalyzer.isClientReady()`.
+- **Caída del servidor**: `/data_miner vision` ya no lanza `NoClassDefFoundError` en servidores dedicados. Se añadió guarda `VisionAnalyzer.isClientReady()`.
 - Clave API por defecto cambiada a `CHANGE_ME` (era una clave real hardcodeada).
 
 ## [0.6.2] - 2026-06-24
@@ -108,16 +108,16 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `DUMP_ON_STARTUP` cambiado a `false` por defecto para evitar congelación al arrancar.
 - Los comandos responden inmediatamente y procesan el trabajo de forma asíncrona; el progreso se registra en la consola.
 - `Initializer.init()` y `RegistryDumper.dumpAll()` movidos fuera del hilo principal al arrancar.
-- Todos los comandos `/dataminer * stop` devuelven respuesta inmediata, el guardado ocurre en segundo plano.
-- `/dataminer dump` devuelve respuesta inmediata, el volcado ocurre en segundo plano.
+- Todos los comandos `/data_miner * stop` devuelven respuesta inmediata, el guardado ocurre en segundo plano.
+- `/data_miner dump` devuelve respuesta inmediata, el volcado ocurre en segundo plano.
 
 ## [0.6.1] - 2026-06-24
 
 ### Añadido
 
 - **Vision Analysis** — captura de pantalla + inspección visual mediante IA.
-  - `/dataminer vision analyze` captura la pantalla y la envía a una API de IA.
-  - `/dataminer vision start/stop` para captura y análisis periódico automatizado.
+  - `/data_miner vision analyze` captura la pantalla y la envía a una API de IA.
+  - `/data_miner vision start/stop` para captura y análisis periódico automatizado.
   - `ScreenCapture.java` usando `Screenshot.grab` de vanilla para captura del framebuffer.
   - `VisionAnalyzer.java` con soporte de API dual: OpenAI-compatible y Google Gemini.
   - Capturas guardadas en `vision/screenshots/`, análisis en `vision/analyses/`.
@@ -137,7 +137,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Añadido
 
-- Comandos `/dataminer events start` y `/dataminer events stop` para trazado de eventos del juego en vivo.
+- Comandos `/data_miner events start` y `/data_miner events stop` para trazado de eventos del juego en vivo.
 - `EventTracer.java` recolectando eventos en memoria y exportándolos a JSON con timestamp en `events/`.
 - `EventHandlers.java` con hooks para:
   - `PlayerTickEvent` — posición del jugador, sprinting, sneaking, salud, comida, bioma, dimensión (muestreado cada 1s).
@@ -158,7 +158,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `info_client_data_miner/` o `info_server_data_miner/` con subdirectorios organizados.
 - `startup/mods.json` listando todos los mods cargados con IDs, versiones y dependencias.
 - `startup/info.json` con versión de MC, Java, SO, RAM, locale e información de lado.
-- `startup/registries/` para todos los volcados de registros (movido de `dataminer_dumps`).
+- `startup/registries/` para todos los volcados de registros (movido de `data_miner_dumps`).
 - `startup/errors/` para errores capturados durante el arranque.
 - `events/errors/` placeholder para registro de errores de eventos en juego.
 - `ErrorCollector.java` capturando excepciones no capturadas mediante `Thread.setDefaultUncaughtExceptionHandler`.
@@ -173,14 +173,14 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ### Añadido
 
-- Comando `/dataminer dump` para activar volcado de registros manualmente.
-- Comandos `/dataminer perf start` y `/dataminer perf stop` para monitorización de rendimiento.
+- Comando `/data_miner dump` para activar volcado de registros manualmente.
+- Comandos `/data_miner perf start` y `/data_miner perf stop` para monitorización de rendimiento.
 - `PerformanceMonitor.java` monitorizando FPS (min/max/avg) y MSPT (min/max/avg) durante las sesiones.
 - `PerfEventHandlers.java` con `ClientTickEvent` para FPS y `ServerTickEvent` para MSPT.
 - `blocks.json` enriquecido con `hardness`, `blast_resistance`, `light_emission`, `has_block_entity` y `sound_type` (volume, pitch, break/step/place/hit/fall sounds).
 - `items.json` enriquecido con `max_stack_size`, `max_damage`, `rarity` y `food_properties` (nutrition, saturation, can_always_eat).
 - `entities.json` enriquecido con `width`, `height`, `category`, `fire_immune`, `can_summon`, `client_tracking_range`, `update_interval`, `description_id`.
-- Informe de rendimiento guardado en `dataminer_dumps/performance.json`.
+- Informe de rendimiento guardado en `data_miner_dumps/performance.json`.
 
 ### Eliminado
 
@@ -194,7 +194,7 @@ y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `DataMiner.java` clase principal del mod con anotación `@Mod` y listener `FMLCommonSetupEvent`.
 - `DataMinerConfig.java` con opciones de activación por registro y opción de volcado automático.
 - `RegistryDumper.java` que itera `BuiltInRegistries` y exporta cada registro a un archivo JSON.
-- Volcado de salida al directorio `dataminer_dumps/` (configurable).
+- Volcado de salida al directorio `data_miner_dumps/` (configurable).
 - Registros soportados: blocks, items, entity types, mob effects, sound events, creative mode tabs, potions, villager professions, attributes.
 - Archivo de idioma `en_us.json` con futuras cadenas de comandos.
 - Placeholder de configuración Mixin para futuros hooks de mixin.
