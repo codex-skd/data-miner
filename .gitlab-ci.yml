@@ -17,26 +17,35 @@ publish-public:
     - git config user.email "ci@mods-minecraft.dev"
     - git config user.name "Mods Minecraft CI"
 
-    # Derive main branch: minecraft/X/N/production → minecraft/X/N/main
+    # Derivar la rama main: minecraft/X/N/production → minecraft/X/N/main
     - MAIN_BRANCH=$(echo "$CI_COMMIT_BRANCH" | sed 's|/production$|/main|')
     - echo "Publishing to $MAIN_BRANCH"
 
-    # Fetch or create main branch
-    - git fetch origin "$MAIN_BRANCH" 2>/dev/null || true
-    - git checkout "$MAIN_BRANCH" || git checkout --orphan "$MAIN_BRANCH"
+    # Obtener la rama main hermana. Si no existe, falla — el agente debe crearla manualmente.
+    - |
+      if ! git fetch origin "$MAIN_BRANCH" 2>/dev/null; then
+        echo "ERROR: $MAIN_BRANCH no existe. Créala desde production primero."
+        exit 1
+      fi
+    - git checkout "$MAIN_BRANCH"
 
-    # Clean and copy only public files from production
+    # Limpiar y copiar solo archivos públicos desde production
     - git rm -rf --ignore-unmatch --quiet . 2>/dev/null || true
-    - git checkout "$CI_COMMIT_SHA" -- src/ build.gradle settings.gradle gradle.properties gradlew gradlew.bat .gitignore README.md CHANGELOG.md libs/
 
-    # Sanitize secrets in gradle.properties
+    # Archivos obligatorios (deben existir en todos los mods)
+    - git checkout "$CI_COMMIT_SHA" -- src/ build.gradle settings.gradle gradle.properties gradlew gradlew.bat .gitignore README.md CHANGELOG.md
+
+    # Archivos opcionales (pueden no existir en algunos mods)
+    - git checkout "$CI_COMMIT_SHA" -- libs/ 2>/dev/null || true
+
+    # Sanitizar secrets en gradle.properties
     - sed -i 's/^mod_version=.*/mod_version=0.0.0/' gradle.properties
     - sed -i 's/^mod_group_id=.*/mod_group_id=com\.skd\.placeholder/' gradle.properties
     - sed -i 's/^mod_curseforge_project_id=.*/mod_curseforge_project_id=/' gradle.properties
     # Nota: el API token de CurseForge está en docs/curseforge/project_vars.md,
     # no en gradle.properties. No se sanitiza aquí porque GitLab es privado.
 
-    # Commit and push (force push to main sister branch)
+    # Commit y push (force push a la rama main hermana)
     - git add -A
     - |
       if ! git diff --cached --quiet; then

@@ -1,6 +1,6 @@
 # Flujo de trabajo — DataMiner (NeoForge)
 
-> **Versión del workflow**: 1.1.0 (codex-docs)
+> **Versión del workflow**: 1.2.7 (codex-docs)
 > Este archivo pertenece al proyecto **DataMiner**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 > Para actualizar este workflow, revisar la última versión en `codex-docs/WORKFLOW_GENERIC.md`.
@@ -153,18 +153,54 @@ El changelog se envía en formato **HTML**, no Markdown. Aunque CurseForge acept
 ### Estructura
 
 | Rama | Propósito |
-|------|-----------|
-| `main` | Vacía. Solo contiene un commit inicial. No se usa para desarrollo |
-| `minecraft/<mc-version>/neoforge-<neo-version>/production` | Rama de trabajo para una versión específica de Minecraft/NeoForge |
+|---|---|
+|  | Ya no existe. La default ahora es  |
+|  | **Rama por defecto**. Rama de trabajo con todo el proyecto: código, docs/, lib_ext/, graphify-out/, tokens reales |
+|  | **Rama protegida**. Recibe el mirror a GitHub. Solo contiene código fuente compilable. Se actualiza vía CI/CD con force push |
 
 ### Ejemplos
 
-| Rama | Versión |
-|------|---------|
-| `minecraft/26.1.2/neoforge-26.1.2.78/production` | Minecraft 26.1.2, NeoForge 26.1.2.78 |
-| `minecraft/1.21.1/neoforge-21.1.141/production` | Minecraft 1.21.1, NeoForge 21.1.141 |
+| Rama | Propósito |
+|---|---|
+|  | Trabajo diario en Minecraft 26.1.2 |
+|  | Código público para GitHub (misma versión) |
 
----
+### Esquema de publicación
+
+
+
+Cada versión de Minecraft/NeoForge tiene su propio par  ↔ . El mirror de GitLab replica **todas** las ramas  a GitHub automáticamente.
+
+### Inicialización única de cada rama 
+
+Cada vez que se crea una rama  para una nueva versión, la agente (sesión) debe crear su hermana  inmediatamente después. Sin este paso, el CI/CD fallará (ya no la crea automáticamente).
+
+> La rama  raíz (vacía) puede y debe eliminarse. La rama por defecto del repositorio debe ser . Si GitLab no permite borrar la rama por defecto, cámbiala primero a  en Settings → Repository → Default branch.
+
+**Responsabilidades:**
+
+| Rol | Acción |
+|---|---|
+| **Agente (sesión)** | Crear la rama  desde  y pushearla |
+| **Operador (desarrollador)** | Cambiar rama por defecto a  y eliminar  raíz. También proteger ramas  y configurar mirror a GitHub |
+
+**1. La agente crea la rama ** (al crear ):
+
+M	docs/WORKFLOW_DATA_MINER_26-1-2.md
+Your branch is up to date with 'origin/minecraft/26.1.2/neoforge-26.1.2.76/production'.
+M	docs/WORKFLOW_DATA_MINER_26-1-2.md
+Your branch is up to date with 'origin/minecraft/26.1.2/neoforge-26.1.2.76/production'.
+
+Esto solo se hace **una vez por versión**. A partir de ahí el CI/CD mantiene  actualizada con force push automático.
+
+**2. El operador configura el repositorio** (una sola vez por repo):
+
+1. **Settings → Repository → Default branch**: cambiar a 
+2. **Settings → Repository → Branches**: eliminar  raíz
+3. **Settings → Repository → Protected branches**: proteger  con force push permitido
+4. **Settings → Repository → Mirroring repositories**: configurar mirror a GitHub
+
+> ⚠️  Las ramas  nunca se tocan manualmente después de creadas. Solo el CI/CD escribe en ellas con force push.
 
 ## Versionado
 
@@ -388,3 +424,11 @@ git push origin 26.1.2-neoforge-1.0.0
 | CurseForge (descripción del proyecto, release notes) | **Inglés** (en-US) — plataforma global |
 
 El código, los logs y los commits siguen el estándar internacional de programación en inglés. La documentación interna y el repositorio se mantienen en castellano por ser el idioma del equipo. CurseForge se publica en inglés para llegar a la mayor audiencia posible.
+
+
+## Historial de versiones del workflow
+
+| Versión | Fecha | Cambios |
+|---|---|---|
+| 1.2.7 | 2026-07-23 | Adaptado de WORKFLOW_GENERIC v1.2.7: ramas actualizadas, CI fail si no existe */main, libs/ opcional |
+| 1.0.0 | 2026-07-21 | Versión inicial derivada del genérico |
