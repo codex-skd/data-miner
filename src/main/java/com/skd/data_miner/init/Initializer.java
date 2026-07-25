@@ -29,7 +29,7 @@ public class Initializer {
 
     public static void init() {
         boolean isClient = isClientSide();
-        String folderName = isClient ? "info_client_data_miner" : "info_server_data_miner";
+        String folderName = isClient ? "data_miner/info_client" : "data_miner/info_server";
 
         baseDir = Path.of(folderName);
 
