@@ -32,7 +32,7 @@ Comprehensive diagnostic and profiling mod for Minecraft. Dumps every game regis
 ## Output Structure
 
 ```
-info_client_data_miner/  (or info_server_data_miner/)
+data_miner/info_client/  (or data_miner/info_server/)
 ├── startup/
 │   ├── registries/          # All game registries in enriched JSON
 │   ├── logs/
