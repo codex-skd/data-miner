@@ -5,6 +5,18 @@ Todos los cambios notables de DataMiner se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.1] - 2026-07-23
+
+### Cambiado
+
+- Carpeta de salida: ahora `data_miner/info_client/` o `data_miner/info_server/`.
+- Mod ID renombrado de `dataminer` a `data_miner` en packages, assets, configs y JAR.
+- Workflow alineado con WORKFLOW_GENERIC v1.2.7.
+
+### Corregido
+
+- Historial de git limpiado: eliminada API key hardcodeada de commits antiguos.
+
 ## [1.0.0] - 2026-07-16
 
 ### Añadido
