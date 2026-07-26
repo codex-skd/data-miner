@@ -48,8 +48,8 @@
 <h2>📋 Requirements</h2>
 
 <table>
-<tr><td><strong>Minecraft</strong></td><td>26.1.2</td></tr>
-<tr><td><strong>NeoForge</strong></td><td>26.1.2.76+</td></tr>
+<tr><td><strong>Minecraft</strong></td><td>26.2</td></tr>
+<tr><td><strong>NeoForge</strong></td><td>26.2.0.32-beta+</td></tr>
 <tr><td><strong>Java</strong></td><td>25</td></tr>
 </table>
 
