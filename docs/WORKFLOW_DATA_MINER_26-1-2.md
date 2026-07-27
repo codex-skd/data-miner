@@ -1,9 +1,41 @@
 # Flujo de trabajo — DataMiner (NeoForge)
 
-> **Versión del workflow**: 1.2.7 (codex-docs)
+> **Versión del workflow**: 1.4.0 (codex-docs)
 > Este archivo pertenece al proyecto **DataMiner**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 > Para actualizar este workflow, revisar la última versión en `codex-docs/WORKFLOW_GENERIC.md`.
+
+## Organización en el workspace
+
+Todos los mods siguen esta estructura en el directorio raíz (`Mods_Minecraft/`), tengan una o varias versiones de Minecraft:
+
+```
+<mod_id>/                    # Carpeta padre del mod (solo organizativa, sin .git)
+└── <minecraft_version>/     # Proyecto real con su propio .git y repositorio GitLab
+    ├── .git/
+    ├── build.gradle
+    ├── gradle.properties
+    ├── src/
+    ├── docs/
+    └── ...
+```
+
+Ejemplo:
+
+```
+data_miner/
+└── 26.1.2/                  # Repositorio independiente en GitLab
+    ├── .git/
+    ├── gradle.properties → minecraft_version=26.1.2
+    └── ...
+```
+
+**Reglas:**
+- La carpeta padre `<mod_id>/` es solo organizativa, **no tiene `.git`**
+- Cada `<minecraft_version>/` tiene su propio `.git/` y es un repositorio independiente en GitLab
+- El `mod_id` en `gradle.properties` debe coincidir con la carpeta padre
+- La rama default del repo es `minecraft/<mc-version>/neoforge-<neo-version>/production`
+- El nombre del workflow sigue el patrón `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`
 
 ## Estructura del proyecto
 
@@ -430,5 +462,6 @@ El código, los logs y los commits siguen el estándar internacional de programa
 
 | Versión | Fecha | Cambios |
 |---|---|---|
+| 1.4.0 | 2026-07-23 | Adaptado de WORKFLOW_GENERIC v1.4.0: nueva sección organización en workspace, estructura `<mod_id>/<mc-version>/` |
 | 1.2.7 | 2026-07-23 | Adaptado de WORKFLOW_GENERIC v1.2.7: ramas actualizadas, CI fail si no existe */main, libs/ opcional |
 | 1.0.0 | 2026-07-21 | Versión inicial derivada del genérico |
