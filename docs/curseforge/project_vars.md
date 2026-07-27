@@ -36,16 +36,16 @@ minecraft/26.2/neoforge-26.2.0.32-beta/production
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.2-neoforge-0.0.0-beta.1`
+Ejemplo: `26.2-neoforge-1.0.0`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Data Miner (0.0.0-beta.1)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Data Miner (1.0.0)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
-| `releaseType` | `beta` | Según el tipo de versión |
+| `releaseType` | `release` | Según el tipo de versión |
 | `gameVersionNames` | `["Client", "Server", "26.2", "NeoForge"]` | Entorno + MC + modloader |
 
 ## Estructura del changelog (HTML)
@@ -70,11 +70,11 @@ Ejemplo: `26.2-neoforge-0.0.0-beta.1`
 import json, uuid, urllib.request
 
 boundary = uuid.uuid4().hex
-version = "0.0.0-beta.1"
+version = "1.0.0"
 
 metadata = {
     "displayName": f"Data Miner ({version})",
-    "changelog": "<h2>v0.0.0-beta.1 - Initial port to Minecraft 26.2</h2>",
+    "changelog": "<h2>v1.0.0 - First Stable Release</h2>",
     "changelogType": "html",
     "gameVersionNames": ["Client", "Server", "26.2", "NeoForge"],
     "releaseType": "beta"
