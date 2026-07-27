@@ -1,7 +1,7 @@
-# Flujo de trabajo — DataMiner (NeoForge)
+# Flujo de trabajo — Data Miner (NeoForge)
 
 > **Versión del workflow**: 1.4.0 (codex-docs)
-> Este archivo pertenece al proyecto **DataMiner**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
+> Este archivo pertenece al proyecto **Data Miner**. Cada proyecto tiene su propio `WORKFLOW_<MOD_ID>_<MC-VERSION>.md`.
 > No es un archivo central ni template compartido. Los cambios aquí solo afectan a este proyecto.
 > Para actualizar este workflow, revisar la última versión en `codex-docs/WORKFLOW_GENERIC.md`.
 
