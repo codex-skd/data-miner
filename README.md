@@ -1,4 +1,4 @@
-# DataMiner
+# Data Miner
 
 Comprehensive diagnostic and profiling mod for Minecraft. Dumps every game registry to JSON, monitors FPS/MSPT, traces live events, measures action latency, analyzes mod impact, redirects noisy third-party logs, and detects known issues — all without blocking the game thread.
 

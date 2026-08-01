@@ -1,8 +1,8 @@
 {
   "build.gradle": {
-    "mtime": 1782131987.2960174,
-    "ast_hash": "24f138214d7cb04c96d4c98e35d808e0",
-    "semantic_hash": "24f138214d7cb04c96d4c98e35d808e0"
+    "mtime": 1784680435.1997378,
+    "ast_hash": "ff8d2598045d5eca7441ccb336fec40b",
+    "semantic_hash": ""
   },
   "gradlew": {
     "mtime": 1782131987.3021636,
@@ -14,109 +14,164 @@
     "ast_hash": "58a5df05c6546d7d2671a516793e02e7",
     "semantic_hash": "58a5df05c6546d7d2671a516793e02e7"
   },
-  "src/main/java/com/skd/dataminer/DataMiner.java": {
-    "mtime": 1782414201.197802,
-    "ast_hash": "7495d6fff03343ff992c0e8fb03a41e2",
-    "semantic_hash": "7495d6fff03343ff992c0e8fb03a41e2"
+  "src/main/java/com/skd/data_miner/DataMiner.java": {
+    "mtime": 1784744677.6701603,
+    "ast_hash": "26ef3258009301d4a04a7447d7b6fa54",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/DataMinerConfig.java": {
-    "mtime": 1782734814.6441162,
-    "ast_hash": "18b9c70683110269f5e3e2228c8d7fba",
-    "semantic_hash": "18b9c70683110269f5e3e2228c8d7fba"
+  "src/main/java/com/skd/data_miner/DataMinerConfig.java": {
+    "mtime": 1784744677.706859,
+    "ast_hash": "65119d2377c73c4599c0555be622b8f1",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/DataMinerExecutor.java": {
-    "mtime": 1782414199.6940281,
-    "ast_hash": "1967d04aab45d60193af4054d22bba9c",
-    "semantic_hash": "1967d04aab45d60193af4054d22bba9c"
+  "src/main/java/com/skd/data_miner/DataMinerExecutor.java": {
+    "mtime": 1784744677.7555668,
+    "ast_hash": "3ee805d8a5089c302047cbd6c0f5cf44",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/command/DataMinerCommands.java": {
-    "mtime": 1783594822.3424945,
-    "ast_hash": "0fab2028c1afff15a68838146c84cffc",
-    "semantic_hash": "0fab2028c1afff15a68838146c84cffc"
+  "src/main/java/com/skd/data_miner/command/DataMinerCommands.java": {
+    "mtime": 1784744677.6455302,
+    "ast_hash": "581618c94bb3fd444c186bc128221981",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/dumper/RegistryDumper.java": {
-    "mtime": 1782137952.4566562,
-    "ast_hash": "f5071abd663b8b9b9923ac368182f250",
-    "semantic_hash": "f5071abd663b8b9b9923ac368182f250"
+  "src/main/java/com/skd/data_miner/dumper/RegistryDumper.java": {
+    "mtime": 1784744677.8034449,
+    "ast_hash": "e7c87cc295c7abb38c2cb01d9a3e2aaa",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/error/ErrorCollector.java": {
-    "mtime": 1782137923.087841,
-    "ast_hash": "e193c0f675d62ae62fd2633acaa14ee1",
-    "semantic_hash": "e193c0f675d62ae62fd2633acaa14ee1"
+  "src/main/java/com/skd/data_miner/error/ErrorCollector.java": {
+    "mtime": 1784744677.8770075,
+    "ast_hash": "e54abad253464e95b17c03d1f528374b",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/event/EventHandlers.java": {
-    "mtime": 1782143116.9776812,
-    "ast_hash": "b75355b73baecd8aa40244cc39b4e53f",
-    "semantic_hash": "b75355b73baecd8aa40244cc39b4e53f"
+  "src/main/java/com/skd/data_miner/event/EventHandlers.java": {
+    "mtime": 1784744677.9227984,
+    "ast_hash": "28b250aa84d3eeeaa28d4a1ee33b6da2",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/event/EventTracer.java": {
-    "mtime": 1782143056.2251978,
-    "ast_hash": "184b0b29214cd81f9b90b95f50cd5b5b",
-    "semantic_hash": "184b0b29214cd81f9b90b95f50cd5b5b"
+  "src/main/java/com/skd/data_miner/event/EventTracer.java": {
+    "mtime": 1784744677.9574668,
+    "ast_hash": "d98377d0fae2602150442a7b16b67334",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/init/Initializer.java": {
-    "mtime": 1783597798.0935361,
-    "ast_hash": "934b5e5328719584e4ce48e4961845bb",
-    "semantic_hash": "934b5e5328719584e4ce48e4961845bb"
+  "src/main/java/com/skd/data_miner/init/Initializer.java": {
+    "mtime": 1785005691.2203324,
+    "ast_hash": "2a7c3d18c20abc946abe0baad2b1cf9f",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/latency/ClientPerfHandlers.java": {
-    "mtime": 1782684143.0463407,
-    "ast_hash": "9aaaba9dbdd7053513c90bbe76000c0b",
-    "semantic_hash": "9aaaba9dbdd7053513c90bbe76000c0b"
+  "src/main/java/com/skd/data_miner/latency/ClientPerfHandlers.java": {
+    "mtime": 1784744678.0560327,
+    "ast_hash": "0e5eadc6616f91a149ac2e4e8ac57111",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/latency/LatencyEventHandlers.java": {
-    "mtime": 1782719358.8044767,
-    "ast_hash": "ba38fbea7080d58cdea4d9914135945d",
-    "semantic_hash": "ba38fbea7080d58cdea4d9914135945d"
+  "src/main/java/com/skd/data_miner/latency/LatencyEventHandlers.java": {
+    "mtime": 1784744678.1365619,
+    "ast_hash": "bfe52f9d21fb899c1979445388383bac",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/latency/LatencyTracer.java": {
-    "mtime": 1783594817.3037732,
-    "ast_hash": "aed01231bcaaeff416b6f91fd8d9f8ee",
-    "semantic_hash": "aed01231bcaaeff416b6f91fd8d9f8ee"
+  "src/main/java/com/skd/data_miner/latency/LatencyTracer.java": {
+    "mtime": 1784744678.1657243,
+    "ast_hash": "e85ac161ed3b63384eae48961e5617d0",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/logs/CapturedAppender.java": {
-    "mtime": 1783595121.4375682,
-    "ast_hash": "2b52d245f65419a48ef2d9bc8009b0ac",
-    "semantic_hash": "2b52d245f65419a48ef2d9bc8009b0ac"
+  "src/main/java/com/skd/data_miner/logs/CapturedAppender.java": {
+    "mtime": 1784744678.2188804,
+    "ast_hash": "b0d73544dfe8d6d9dbf100da35956fa9",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/logs/LogRedirector.java": {
-    "mtime": 1783594746.808509,
-    "ast_hash": "6962e4928266d5b27d7ffb04f39b0ebb",
-    "semantic_hash": "6962e4928266d5b27d7ffb04f39b0ebb"
+  "src/main/java/com/skd/data_miner/logs/LogRedirector.java": {
+    "mtime": 1784744678.3498805,
+    "ast_hash": "034cf3fcc0bb8c45bb8d6f35bd9998ed",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/logs/issues/IssueDetector.java": {
-    "mtime": 1783595105.0006301,
-    "ast_hash": "fce0248aed6575d7806df0a14a50e4ff",
-    "semantic_hash": "fce0248aed6575d7806df0a14a50e4ff"
+  "src/main/java/com/skd/data_miner/logs/issues/IssueDetector.java": {
+    "mtime": 1784744678.2671897,
+    "ast_hash": "4412cb1510a8704a7cffaefce1cb0ff2",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/logs/issues/IssueRegistry.java": {
-    "mtime": 1783597794.243448,
-    "ast_hash": "a97622a3faaa68436927ae758134bb79",
-    "semantic_hash": "a97622a3faaa68436927ae758134bb79"
+  "src/main/java/com/skd/data_miner/logs/issues/IssueRegistry.java": {
+    "mtime": 1784744678.306007,
+    "ast_hash": "8c7332e5425c6196e694ba02a3835e61",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/modimpact/ModAnalyzer.java": {
-    "mtime": 1782727214.6756098,
-    "ast_hash": "c291c31699f457fe63a6483bb7ee3806",
-    "semantic_hash": "c291c31699f457fe63a6483bb7ee3806"
+  "src/main/java/com/skd/data_miner/modimpact/ModAnalyzer.java": {
+    "mtime": 1784744678.3980792,
+    "ast_hash": "2456b322aac4924e71387dd83f1dc213",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/perf/PerfEventHandlers.java": {
-    "mtime": 1782739654.104422,
-    "ast_hash": "5771ff0abaa965812ae9cfe50dc93c40",
-    "semantic_hash": "5771ff0abaa965812ae9cfe50dc93c40"
+  "src/main/java/com/skd/data_miner/perf/PerfEventHandlers.java": {
+    "mtime": 1784744678.4474268,
+    "ast_hash": "45364569b5c219e1ddd5e89dc5eb166a",
+    "semantic_hash": ""
   },
-  "src/main/java/com/skd/dataminer/perf/PerformanceMonitor.java": {
-    "mtime": 1782137944.0505402,
-    "ast_hash": "2101a121e86f6062c1c14ea1a493a179",
-    "semantic_hash": "2101a121e86f6062c1c14ea1a493a179"
+  "src/main/java/com/skd/data_miner/perf/PerformanceMonitor.java": {
+    "mtime": 1784744678.5065396,
+    "ast_hash": "452deafb694fca7249cdb2d082e54860",
+    "semantic_hash": ""
   },
-  "src/main/resources/assets/dataminer/lang/en_us.json": {
+  "src/main/resources/assets/data_miner/lang/en_us.json": {
     "mtime": 1782134831.359829,
     "ast_hash": "fd86262020c1af9bb9ded412991f8f83",
-    "semantic_hash": "fd86262020c1af9bb9ded412991f8f83"
+    "semantic_hash": ""
   },
-  "src/main/resources/dataminer.mixins.json": {
-    "mtime": 1782132114.035878,
-    "ast_hash": "50f887028c59979e4f2234d649a1c091",
-    "semantic_hash": "50f887028c59979e4f2234d649a1c091"
+  "src/main/resources/data_miner.mixins.json": {
+    "mtime": 1784744707.3895144,
+    "ast_hash": "e2e8456f8d27c8ebd1eb4a67888a0b5d",
+    "semantic_hash": ""
+  },
+  ".claude/CLAUDE.md": {
+    "mtime": 1785489188.613974,
+    "ast_hash": "751dd37871a7c0b20511f5fa05d41d51",
+    "semantic_hash": ""
+  },
+  ".gitlab-ci.yml": {
+    "mtime": 1784823666.4511423,
+    "ast_hash": "075837d192768b1cf94bed61a7ba7dae",
+    "semantic_hash": ""
+  },
+  "CHANGELOG.md": {
+    "mtime": 1785005861.822641,
+    "ast_hash": "41e9f7681603ebf1a8d2ccb531898c7e",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785626660.7576091,
+    "ast_hash": "35846d3054b3cf19c1336e585e31965e",
+    "semantic_hash": ""
+  },
+  "docs/WORKFLOW_DATA_MINER_26-1-2.md": {
+    "mtime": 1785626678.1404407,
+    "ast_hash": "5f7cc185888998313358b02322e3b640",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_description.md": {
+    "mtime": 1784744797.4439857,
+    "ast_hash": "b462d987bc9a302b0337f352bf123779",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_vars.md": {
+    "mtime": 1784744797.4751241,
+    "ast_hash": "45554b6b3b8370d4998b1059fa066359",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.1.md": {
+    "mtime": 1784744797.491543,
+    "ast_hash": "e264cc8cc47829d8cbbad88b7eae60e7",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.0.md": {
+    "mtime": 1784744797.5121837,
+    "ast_hash": "a5ca972acc216927c673fea8e7ba7df4",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.1.md": {
+    "mtime": 1785005857.1340582,
+    "ast_hash": "c99a8b772d08328a4f3f0dec9593192d",
+    "semantic_hash": ""
+  },
+  "src/main/resources/data_miner.png": {
+    "mtime": 1782140705.539475,
+    "ast_hash": "d75bfd94abe46dc4e1b3cfeb62810aba",
+    "semantic_hash": ""
   }
 }
