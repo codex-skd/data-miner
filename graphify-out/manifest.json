@@ -1,0 +1,137 @@
+{
+  "build.gradle": {
+    "mtime": 1785633627.5832608,
+    "ast_hash": "d1d714fb4f1236fc4f0a6b90faf85206",
+    "semantic_hash": "d1d714fb4f1236fc4f0a6b90faf85206"
+  },
+  "gradlew": {
+    "mtime": 1785632547.9294405,
+    "ast_hash": "45bf2667b1fbec0e07e42808dc662b6b",
+    "semantic_hash": "45bf2667b1fbec0e07e42808dc662b6b"
+  },
+  "settings.gradle": {
+    "mtime": 1785632560.1482272,
+    "ast_hash": "24d10997c59ddb4c9df784467a689e7e",
+    "semantic_hash": "24d10997c59ddb4c9df784467a689e7e"
+  },
+  "src/client/java/com/skd/data_miner/client/DataMinerClient.java": {
+    "mtime": 1785633147.1493664,
+    "ast_hash": "412fb0136877cf625678238250a97932",
+    "semantic_hash": "412fb0136877cf625678238250a97932"
+  },
+  "src/client/java/com/skd/data_miner/latency/ClientPerfHandlers.java": {
+    "mtime": 1785633150.5765007,
+    "ast_hash": "b1db5c5d4e7db4556f937f02cec48307",
+    "semantic_hash": "b1db5c5d4e7db4556f937f02cec48307"
+  },
+  "src/client/resources/data_miner.client.mixins.json": {
+    "mtime": 1785632576.4292872,
+    "ast_hash": "ccf0aa3851216c7ee0604c2e0198e287",
+    "semantic_hash": "ccf0aa3851216c7ee0604c2e0198e287"
+  },
+  "src/main/java/com/skd/data_miner/DataMiner.java": {
+    "mtime": 1785633028.203754,
+    "ast_hash": "51c0500eb46eebd5721ed8db59a4d2fa",
+    "semantic_hash": "51c0500eb46eebd5721ed8db59a4d2fa"
+  },
+  "src/main/java/com/skd/data_miner/DataMinerConfig.java": {
+    "mtime": 1785633036.2418127,
+    "ast_hash": "636fd05b243c06222cb1f98988b7a8ed",
+    "semantic_hash": "636fd05b243c06222cb1f98988b7a8ed"
+  },
+  "src/main/java/com/skd/data_miner/DataMinerExecutor.java": {
+    "mtime": 1785633039.5729494,
+    "ast_hash": "12d04c746c9f17e5483ac07f49495fab",
+    "semantic_hash": "12d04c746c9f17e5483ac07f49495fab"
+  },
+  "src/main/java/com/skd/data_miner/command/DataMinerCommands.java": {
+    "mtime": 1785633047.5078242,
+    "ast_hash": "1994beba5575bc800415398326a4fcfa",
+    "semantic_hash": "1994beba5575bc800415398326a4fcfa"
+  },
+  "src/main/java/com/skd/data_miner/dumper/RegistryDumper.java": {
+    "mtime": 1785633064.2493355,
+    "ast_hash": "7e01563ef4162bfb7d4f8215027d4f40",
+    "semantic_hash": "7e01563ef4162bfb7d4f8215027d4f40"
+  },
+  "src/main/java/com/skd/data_miner/error/ErrorCollector.java": {
+    "mtime": 1785633057.3991718,
+    "ast_hash": "e54abad253464e95b17c03d1f528374b",
+    "semantic_hash": "e54abad253464e95b17c03d1f528374b"
+  },
+  "src/main/java/com/skd/data_miner/event/EventHandlers.java": {
+    "mtime": 1785633596.2421515,
+    "ast_hash": "46076963608187dab89d137a4569c4e5",
+    "semantic_hash": "46076963608187dab89d137a4569c4e5"
+  },
+  "src/main/java/com/skd/data_miner/event/EventTracer.java": {
+    "mtime": 1785633057.446349,
+    "ast_hash": "d98377d0fae2602150442a7b16b67334",
+    "semantic_hash": "d98377d0fae2602150442a7b16b67334"
+  },
+  "src/main/java/com/skd/data_miner/init/Initializer.java": {
+    "mtime": 1785633599.7888129,
+    "ast_hash": "de9f744b634d3df901f4c12c9fd75ddd",
+    "semantic_hash": "de9f744b634d3df901f4c12c9fd75ddd"
+  },
+  "src/main/java/com/skd/data_miner/latency/LatencyEventHandlers.java": {
+    "mtime": 1785633596.253622,
+    "ast_hash": "7999f4ebdbf5c21956d8e604e84892e7",
+    "semantic_hash": "7999f4ebdbf5c21956d8e604e84892e7"
+  },
+  "src/main/java/com/skd/data_miner/latency/LatencyTracer.java": {
+    "mtime": 1785633057.494401,
+    "ast_hash": "e85ac161ed3b63384eae48961e5617d0",
+    "semantic_hash": "e85ac161ed3b63384eae48961e5617d0"
+  },
+  "src/main/java/com/skd/data_miner/logs/CapturedAppender.java": {
+    "mtime": 1785633057.5405319,
+    "ast_hash": "b0d73544dfe8d6d9dbf100da35956fa9",
+    "semantic_hash": "b0d73544dfe8d6d9dbf100da35956fa9"
+  },
+  "src/main/java/com/skd/data_miner/logs/LogRedirector.java": {
+    "mtime": 1785633057.5859914,
+    "ast_hash": "034cf3fcc0bb8c45bb8d6f35bd9998ed",
+    "semantic_hash": "034cf3fcc0bb8c45bb8d6f35bd9998ed"
+  },
+  "src/main/java/com/skd/data_miner/logs/issues/IssueDetector.java": {
+    "mtime": 1785633057.6518497,
+    "ast_hash": "4412cb1510a8704a7cffaefce1cb0ff2",
+    "semantic_hash": "4412cb1510a8704a7cffaefce1cb0ff2"
+  },
+  "src/main/java/com/skd/data_miner/logs/issues/IssueRegistry.java": {
+    "mtime": 1785633057.699261,
+    "ast_hash": "8c7332e5425c6196e694ba02a3835e61",
+    "semantic_hash": "8c7332e5425c6196e694ba02a3835e61"
+  },
+  "src/main/java/com/skd/data_miner/modimpact/ModAnalyzer.java": {
+    "mtime": 1785633522.5616825,
+    "ast_hash": "308fba843890c175024b168a03ccb695",
+    "semantic_hash": "308fba843890c175024b168a03ccb695"
+  },
+  "src/main/java/com/skd/data_miner/perf/PerfEventHandlers.java": {
+    "mtime": 1785633142.275395,
+    "ast_hash": "985666c0dfe6af058ea773e5ad502a31",
+    "semantic_hash": "985666c0dfe6af058ea773e5ad502a31"
+  },
+  "src/main/java/com/skd/data_miner/perf/PerformanceMonitor.java": {
+    "mtime": 1785633057.743799,
+    "ast_hash": "452deafb694fca7249cdb2d082e54860",
+    "semantic_hash": "452deafb694fca7249cdb2d082e54860"
+  },
+  "src/main/resources/assets/data_miner/lang/en_us.json": {
+    "mtime": 1785632985.2893941,
+    "ast_hash": "fd86262020c1af9bb9ded412991f8f83",
+    "semantic_hash": "fd86262020c1af9bb9ded412991f8f83"
+  },
+  "src/main/resources/data_miner.mixins.json": {
+    "mtime": 1785632573.4592392,
+    "ast_hash": "144c7c4f15f2febf8167488eb8e9c733",
+    "semantic_hash": "144c7c4f15f2febf8167488eb8e9c733"
+  },
+  "src/main/resources/fabric.mod.json": {
+    "mtime": 1785632564.1261618,
+    "ast_hash": "be46f5e1a127447619aece8647f1ef3e",
+    "semantic_hash": "be46f5e1a127447619aece8647f1ef3e"
+  }
+}

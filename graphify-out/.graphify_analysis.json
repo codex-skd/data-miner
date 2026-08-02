@@ -1,0 +1,311 @@
+{
+  "communities": {
+    "0": [
+      "commanddispatcher",
+      "commandsourcestack",
+      "src_main_java_com_skd_data_miner_command_dataminercommands",
+      "src_main_java_com_skd_data_miner_command_dataminercommands_dataminercommands",
+      "src_main_java_com_skd_data_miner_command_dataminercommands_dataminercommands_register",
+      "src_main_java_com_skd_data_miner_dataminerexecutor",
+      "src_main_java_com_skd_data_miner_dataminerexecutor_dataminerexecutor",
+      "src_main_java_com_skd_data_miner_dataminerexecutor_dataminerexecutor_runasync",
+      "src_main_java_com_skd_data_miner_event_eventtracer",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_record",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_savereport",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_start",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_stop",
+      "src_main_java_com_skd_data_miner_event_eventtracer_java_gson",
+      "src_main_java_com_skd_data_miner_event_eventtracer_java_jsonobject",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_java_gson",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_resetdata",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_savereport",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_start",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_stop"
+    ],
+    "1": [
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_java_minecraftserver",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers_onservertick",
+      "src_main_java_com_skd_data_miner_latency_latencytracer",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_java_gson",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_java_jsonobject",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_ensurerunning",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_formatduration",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_getstats",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_isrunning",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_recordblockbreak",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_recordeat",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_recordslowtick",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_resetstats",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_savereport",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_start",
+      "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_stop",
+      "src_main_java_com_skd_data_miner_perf_perfeventhandlers",
+      "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_minecraftserver",
+      "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers",
+      "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_onservertickend",
+      "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_register",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_recordtick"
+    ],
+    "2": [
+      "src_main_java_com_skd_data_miner_init_initializer",
+      "src_main_java_com_skd_data_miner_init_initializer_initializer",
+      "src_main_java_com_skd_data_miner_init_initializer_initializer_generateinfojson",
+      "src_main_java_com_skd_data_miner_init_initializer_initializer_generatemodsjson",
+      "src_main_java_com_skd_data_miner_init_initializer_initializer_init",
+      "src_main_java_com_skd_data_miner_init_initializer_initializer_isclientside",
+      "src_main_java_com_skd_data_miner_init_initializer_java_gson",
+      "src_main_java_com_skd_data_miner_logs_logredirector",
+      "src_main_java_com_skd_data_miner_logs_logredirector_java_logger",
+      "src_main_java_com_skd_data_miner_logs_logredirector_logredirector",
+      "src_main_java_com_skd_data_miner_logs_logredirector_logredirector_init",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_java_gson",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_java_jsonobject",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_java_minecraftserver",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modanalyzer",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modanalyzer_generatemodanalysis",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modanalyzer_generateregistryimpact",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modanalyzer_snapshotworldcontext",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modstats",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modstats_modstats",
+      "src_main_java_com_skd_data_miner_modimpact_modanalyzer_modstats_total"
+    ],
+    "3": [
+      "block",
+      "damagesource",
+      "entity",
+      "livingentity",
+      "src_main_java_com_skd_data_miner_event_eventhandlers",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onblockplace",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onentitydamage",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onentitydeath",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onentityjoin",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onplayerinteract",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_onservertick",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_recordevent",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers_register",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_java_blockpos",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_java_jsonobject",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_java_minecraftserver",
+      "src_main_java_com_skd_data_miner_event_eventhandlers_java_player",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_isrunning",
+      "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer_saveerror"
+    ],
+    "4": [
+      "pattern",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector_issuedetector",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector_issuedetector_extract",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector_issuedetector_pattern",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector_issuedetector_type",
+      "src_main_java_com_skd_data_miner_logs_issues_issuedetector_java_jsonobject",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_extract",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_issueregistry",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_issueregistry_check",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_issueregistry_saveissue",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_java_gson",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_java_jsonobject",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_java_override",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_pattern",
+      "src_main_java_com_skd_data_miner_logs_issues_issueregistry_type"
+    ],
+    "5": [
+      "interactionhand",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_breakentry",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_breakentry_breakentry",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_eatentry",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_eatentry_eatentry",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_java_blockpos",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_java_player",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers_oneatstart",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers_onleftclickblock",
+      "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers_register"
+    ],
+    "6": [
+      "abstractappender",
+      "logevent",
+      "src_main_java_com_skd_data_miner_logs_capturedappender",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_append",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_appendcause",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_capturedappender",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_formatthrowable",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_stop",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_writeline",
+      "src_main_java_com_skd_data_miner_logs_capturedappender_java_override"
+    ],
+    "7": [
+      "modinitializer",
+      "src_main_java_com_skd_data_miner_dataminer",
+      "src_main_java_com_skd_data_miner_dataminer_dataminer",
+      "src_main_java_com_skd_data_miner_dataminer_dataminer_oninitialize",
+      "src_main_java_com_skd_data_miner_dataminer_java_logger",
+      "src_main_java_com_skd_data_miner_dataminer_java_override",
+      "src_main_java_com_skd_data_miner_error_errorcollector",
+      "src_main_java_com_skd_data_miner_error_errorcollector_errorcollector",
+      "src_main_java_com_skd_data_miner_error_errorcollector_errorcollector_register",
+      "src_main_java_com_skd_data_miner_error_errorcollector_errorcollector_saveerror",
+      "src_main_java_com_skd_data_miner_error_errorcollector_java_gson"
+    ],
+    "8": [
+      "registry",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_java_gson",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_java_jsonobject",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_dumpall",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_dumpblocks",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_dumpentities",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_dumpitems",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_dumpsimple",
+      "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper_writejson"
+    ],
+    "9": [
+      "clientmodinitializer",
+      "src_client_java_com_skd_data_miner_client_dataminerclient",
+      "src_client_java_com_skd_data_miner_client_dataminerclient_dataminerclient",
+      "src_client_java_com_skd_data_miner_client_dataminerclient_dataminerclient_oninitializeclient",
+      "src_client_java_com_skd_data_miner_client_dataminerclient_java_override",
+      "src_client_java_com_skd_data_miner_latency_clientperfhandlers",
+      "src_client_java_com_skd_data_miner_latency_clientperfhandlers_clientperfhandlers",
+      "src_client_java_com_skd_data_miner_latency_clientperfhandlers_clientperfhandlers_register",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_isrunning",
+      "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_recordframe"
+    ],
+    "10": [
+      "src_main_java_com_skd_data_miner_dataminerconfig",
+      "src_main_java_com_skd_data_miner_dataminerconfig_configdata",
+      "src_main_java_com_skd_data_miner_dataminerconfig_dataminerconfig",
+      "src_main_java_com_skd_data_miner_dataminerconfig_dataminerconfig_load",
+      "src_main_java_com_skd_data_miner_dataminerconfig_dataminerconfig_save",
+      "src_main_java_com_skd_data_miner_dataminerconfig_java_gson"
+    ],
+    "11": [
+      "gradlew",
+      "gradlew__entry",
+      "gradlew_die",
+      "gradlew_warn"
+    ],
+    "12": [
+      "build"
+    ],
+    "13": [
+      "image_1"
+    ],
+    "14": [
+      "settings"
+    ]
+  },
+  "cohesion": {
+    "0": 0.14624505928853754,
+    "1": 0.14624505928853754,
+    "2": 0.1645021645021645,
+    "3": 0.3157894736842105,
+    "4": 0.18382352941176472,
+    "5": 0.3484848484848485,
+    "6": 0.2909090909090909,
+    "7": 0.2727272727272727,
+    "8": 0.43636363636363634,
+    "9": 0.24444444444444444,
+    "10": 0.5333333333333333,
+    "11": 0.8333333333333334,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer",
+      "label": "LatencyTracer",
+      "degree": 14
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_event_eventhandlers_eventhandlers",
+      "label": "EventHandlers",
+      "degree": 9
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_event_eventtracer_eventtracer",
+      "label": "EventTracer",
+      "degree": 9
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor",
+      "label": "PerformanceMonitor",
+      "degree": 9
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_dumper_registrydumper_registrydumper",
+      "label": "RegistryDumper",
+      "degree": 8
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender",
+      "label": "CapturedAppender",
+      "degree": 8
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_latency_latencyeventhandlers_latencyeventhandlers",
+      "label": "LatencyEventHandlers",
+      "degree": 7
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_init_initializer_initializer",
+      "label": "Initializer",
+      "degree": 6
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_logs_issues_issuedetector_issuedetector",
+      "label": "IssueDetector",
+      "degree": 5
+    },
+    {
+      "id": "src_main_java_com_skd_data_miner_logs_issues_issueregistry_issueregistry",
+      "label": "IssueRegistry",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "IssueRegistry",
+      "target": "IssueDetector",
+      "source_files": [
+        "src/main/java/com/skd/data_miner/logs/issues/IssueRegistry.java",
+        "src/main/java/com/skd/data_miner/logs/issues/IssueDetector.java"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `PerformanceMonitor` connect `Data Mining` to `Client Performance`, `Server Performance`?",
+      "why": "High betweenness centrality (0.060) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `Icon for Data Miner mod` to the rest of the system?",
+      "why": "1 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Data Mining` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14624505928853754 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `Server Performance` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.14624505928853754 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
