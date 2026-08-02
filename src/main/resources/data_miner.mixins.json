@@ -1,0 +1,12 @@
+{
+	"required": true,
+	"package": "com.skd.data_miner.mixin",
+	"compatibilityLevel": "JAVA_25",
+	"mixins": [],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}
