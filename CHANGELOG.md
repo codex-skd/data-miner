@@ -5,6 +5,12 @@ Todos los cambios notables de DataMiner (Fabric) se documentan en este archivo.
 El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.0.0-beta.2] - 2026-08-02
+
+### Cambiado
+
+- Rebuild del JAR para subida a CurseForge con nombre de archivo correcto (`data_miner-26.2-fabric-0.0.0-beta.2.jar`).
+
 ## [0.0.0-beta.1] - 2026-08-02
 
 ### Añadido

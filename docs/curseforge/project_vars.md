@@ -34,7 +34,7 @@ Autenticación Core: cabecera `x-api-key`
 | `framework` | `fabric` |
 | `java_version` | `25` |
 | `environment` | `Client`, `Server` |
-| `mod_version` | `0.0.0-beta.1` |
+| `mod_version` | `0.0.0-beta.2` |
 
 ## Rama
 
@@ -45,13 +45,13 @@ minecraft/26.2/fabric-0.19.3/production
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.2-fabric-0.0.0-beta.1`
+Ejemplo: `26.2-fabric-0.0.0-beta.2`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Data Miner (0.0.0-beta.1)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Data Miner (0.0.0-beta.2)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
 | `releaseType` | `beta` | Según el tipo de versión |
@@ -60,7 +60,7 @@ Ejemplo: `26.2-fabric-0.0.0-beta.1`
 ## Estructura del changelog (HTML)
 
 ```html
-<h2>v0.0.0-beta.1 - Initial Fabric Port</h2>
+<h2>v0.0.0-beta.2 - Initial Fabric Port</h2>
 
 <h3>Added</h3>
 <ul>
@@ -70,7 +70,7 @@ Ejemplo: `26.2-fabric-0.0.0-beta.1`
 
 <hr>
 
-<p><strong>JAR</strong>: <code>data_miner-26.2-fabric-0.0.0-beta.1.jar</code></p>
+<p><strong>JAR</strong>: <code>data_miner-26.2-fabric-0.0.0-beta.2.jar</code></p>
 ```
 
 ## Subir archivo (JAR) con Python
