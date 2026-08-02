@@ -5,7 +5,8 @@
 project_id = 1584390
 api_token = ee776b0a-ee95-4850-b554-06be02a8657f
 game_versions = 9638, 9639, 16498, 7499
-release_type = release
+release_type = beta
+relations = fabric-api:requiredDependency
 
 ## Proyecto
 
@@ -33,6 +34,7 @@ Autenticación Core: cabecera `x-api-key`
 | `framework` | `fabric` |
 | `java_version` | `25` |
 | `environment` | `Client`, `Server` |
+| `mod_version` | `0.0.0-beta.1` |
 
 ## Rama
 
@@ -43,22 +45,22 @@ minecraft/26.2/fabric-0.19.3/production
 ## Tag
 
 Formato: `<mc-version>-<framework>-<version>`
-Ejemplo: `26.2-fabric-1.0.0`
+Ejemplo: `26.2-fabric-0.0.0-beta.1`
 
 ## Parámetros del upload
 
 | Campo | Valor | Notas |
 |-------|-------|-------|
-| `displayName` | `Data Miner (1.0.0)` | Nombre visible: `display_name (version)` |
+| `displayName` | `Data Miner (0.0.0-beta.1)` | Nombre visible: `display_name (version)` |
 | `changelog` | HTML (no Markdown) | Ver estructura abajo |
 | `changelogType` | `html` | Obligatorio para que se vea bien |
-| `releaseType` | `release` | Según el tipo de versión |
-| `gameVersionNames` | `["Client", "Server", "26.2", "Fabric"]` | Entorno + MC + modloader |
+| `releaseType` | `beta` | Según el tipo de versión |
+| `gameVersions` | `[9638, 9639, 16498, 7499]` | IDs: Client, Server, 26.2, Fabric |
 
 ## Estructura del changelog (HTML)
 
 ```html
-<h2>v1.0.0 - First Fabric Release</h2>
+<h2>v0.0.0-beta.1 - Initial Fabric Port</h2>
 
 <h3>Added</h3>
 <ul>
@@ -68,7 +70,7 @@ Ejemplo: `26.2-fabric-1.0.0`
 
 <hr>
 
-<p><strong>JAR</strong>: <code>data_miner-26.2-fabric-1.0.0.jar</code></p>
+<p><strong>JAR</strong>: <code>data_miner-26.2-fabric-0.0.0-beta.1.jar</code></p>
 ```
 
 ## Subir archivo (JAR) con Python
