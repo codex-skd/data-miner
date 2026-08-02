@@ -133,5 +133,65 @@
     "mtime": 1785632564.1261618,
     "ast_hash": "be46f5e1a127447619aece8647f1ef3e",
     "semantic_hash": "be46f5e1a127447619aece8647f1ef3e"
+  },
+  ".claude/CLAUDE.md": {
+    "mtime": 1785633664.8215337,
+    "ast_hash": "cafc43949af2e6cdbf03894108172549",
+    "semantic_hash": ""
+  },
+  ".github/workflows/build.yml": {
+    "mtime": 1785632547.9545488,
+    "ast_hash": "c6ae081b79ae74539feace5c819ac233",
+    "semantic_hash": ""
+  },
+  ".gitlab-ci.yml": {
+    "mtime": 1785633975.2964451,
+    "ast_hash": "075837d192768b1cf94bed61a7ba7dae",
+    "semantic_hash": ""
+  },
+  "CHANGELOG.md": {
+    "mtime": 1785636749.9159024,
+    "ast_hash": "5aa62f51d4f5e7c584abfb6aff0c5317",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1785636562.7728858,
+    "ast_hash": "1ae32050c7b59d4dd131312e8f1de0ec",
+    "semantic_hash": ""
+  },
+  "docs/WORKFLOW_DATA_MINER_26-2.md": {
+    "mtime": 1785633646.4649189,
+    "ast_hash": "5c8c4f2daf55d422889dce7d9fa34dc8",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_description.md": {
+    "mtime": 1785633924.2001646,
+    "ast_hash": "098bf42ae35f3ba92601311a63d1c5af",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/project_vars.md": {
+    "mtime": 1785636744.8978574,
+    "ast_hash": "1eceb8cf0fb4b6e2babe536bc3ab2815",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.1.md": {
+    "mtime": 1785635326.1917248,
+    "ast_hash": "bae837f88748ab73560c96366bd1919c",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/0.0.0-beta.2.md": {
+    "mtime": 1785636550.0490744,
+    "ast_hash": "ec022e02197aa4383ab6a4e43f6f500a",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.0.md": {
+    "mtime": 1785636734.3009639,
+    "ast_hash": "4c8c2291f7ad7b4bb7cca6f79f4610ae",
+    "semantic_hash": ""
+  },
+  "src/main/resources/assets/data_miner/icon.png": {
+    "mtime": 1785632978.280468,
+    "ast_hash": "814d57d687d946811f9c2717c3845876",
+    "semantic_hash": ""
   }
 }
