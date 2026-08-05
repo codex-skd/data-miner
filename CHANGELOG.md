@@ -4,6 +4,13 @@ Todos los cambios notables de DataMiner se documentan en este archivo.
 
 El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+---
+
+## [1.0.1] - 2026-08-05
+
+### Change
+
+- **Recompilado contra NeoForge `26.2.0.37-beta`**: bump de `neo_version` en `gradle.properties` (`26.2.0.32-beta` -> `26.2.0.37-beta`). Verificado con `runServer` (arranque sin errores).
 
 ## [1.0.0] - 2026-07-27
 
