@@ -796,7 +796,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer",
-      "community": 11,
+      "community": 2,
       "norm_label": "initializer.java"
     },
     {
@@ -806,7 +806,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer",
-      "community": 11,
+      "community": 2,
       "norm_label": "initializer"
     },
     {
@@ -816,7 +816,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_java_gson",
-      "community": 11,
+      "community": 2,
       "norm_label": "gson"
     },
     {
@@ -826,7 +826,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_init",
-      "community": 11,
+      "community": 2,
       "norm_label": ".init()"
     },
     {
@@ -836,7 +836,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_generatemodsjson",
-      "community": 11,
+      "community": 2,
       "norm_label": ".generatemodsjson()"
     },
     {
@@ -846,7 +846,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_generateinfojson",
-      "community": 11,
+      "community": 2,
       "norm_label": ".generateinfojson()"
     },
     {
@@ -856,7 +856,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_isclientside",
-      "community": 11,
+      "community": 2,
       "norm_label": ".isclientside()"
     },
     {
@@ -1136,7 +1136,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_stop",
-      "community": 0,
+      "community": 5,
       "norm_label": ".stop()"
     },
     {
@@ -1226,7 +1226,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender",
-      "community": 10,
+      "community": 4,
       "norm_label": "capturedappender.java"
     },
     {
@@ -1236,7 +1236,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender",
-      "community": 10,
+      "community": 4,
       "norm_label": "capturedappender"
     },
     {
@@ -1246,7 +1246,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "abstractappender",
-      "community": 10,
+      "community": 4,
       "norm_label": "abstractappender"
     },
     {
@@ -1256,7 +1256,7 @@
       "source_location": "L25",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_capturedappender",
-      "community": 10,
+      "community": 4,
       "norm_label": ".capturedappender()"
     },
     {
@@ -1266,7 +1266,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_append",
-      "community": 10,
+      "community": 4,
       "norm_label": ".append()"
     },
     {
@@ -1276,7 +1276,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "logevent",
-      "community": 10,
+      "community": 4,
       "norm_label": "logevent"
     },
     {
@@ -1286,7 +1286,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_java_override",
-      "community": 10,
+      "community": 4,
       "norm_label": "override"
     },
     {
@@ -1296,7 +1296,7 @@
       "source_location": "L60",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_formatthrowable",
-      "community": 10,
+      "community": 4,
       "norm_label": ".formatthrowable()"
     },
     {
@@ -1306,7 +1306,7 @@
       "source_location": "L76",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_appendcause",
-      "community": 10,
+      "community": 4,
       "norm_label": ".appendcause()"
     },
     {
@@ -1316,7 +1316,7 @@
       "source_location": "L91",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_writeline",
-      "community": 10,
+      "community": 4,
       "norm_label": ".writeline()"
     },
     {
@@ -1326,7 +1326,7 @@
       "source_location": "L107",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_capturedappender_capturedappender_stop",
-      "community": 10,
+      "community": 4,
       "norm_label": ".stop()"
     },
     {
@@ -1336,7 +1336,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_logredirector",
-      "community": 11,
+      "community": 2,
       "norm_label": "logredirector.java"
     },
     {
@@ -1346,7 +1346,7 @@
       "source_location": "L15",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_logredirector_logredirector",
-      "community": 11,
+      "community": 2,
       "norm_label": "logredirector"
     },
     {
@@ -1356,7 +1356,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_logredirector_java_logger",
-      "community": 11,
+      "community": 2,
       "norm_label": "logger"
     },
     {
@@ -1366,7 +1366,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_logs_logredirector_logredirector_init",
-      "community": 11,
+      "community": 2,
       "norm_label": ".init()"
     },
     {
@@ -1656,7 +1656,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers",
-      "community": 2,
+      "community": 7,
       "norm_label": "perfeventhandlers.java"
     },
     {
@@ -1666,7 +1666,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers",
-      "community": 2,
+      "community": 7,
       "norm_label": "perfeventhandlers"
     },
     {
@@ -1676,7 +1676,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_eventbussubscriber",
-      "community": 2,
+      "community": 7,
       "norm_label": "eventbussubscriber"
     },
     {
@@ -1686,7 +1686,7 @@
       "source_location": "L17",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_onservertickpre",
-      "community": 2,
+      "community": 7,
       "norm_label": ".onservertickpre()"
     },
     {
@@ -1696,7 +1696,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_pre",
-      "community": 2,
+      "community": 7,
       "norm_label": "pre"
     },
     {
@@ -1706,7 +1706,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_subscribeevent",
-      "community": 2,
+      "community": 7,
       "norm_label": "subscribeevent"
     },
     {
@@ -1716,7 +1716,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_onservertickpost",
-      "community": 2,
+      "community": 7,
       "norm_label": ".onservertickpost()"
     },
     {
@@ -1726,7 +1726,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "post",
-      "community": 2,
+      "community": 7,
       "norm_label": "post"
     },
     {
@@ -1806,7 +1806,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_recordtick",
-      "community": 2,
+      "community": 7,
       "norm_label": ".recordtick()"
     },
     {
@@ -1890,10 +1890,30 @@
       "norm_label": "changelog"
     },
     {
+      "label": "[1.0.1] - 2026-08-05",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "changelog_1_0_1_2026_08_05",
+      "community": 13,
+      "norm_label": "[1.0.1] - 2026-08-05"
+    },
+    {
+      "label": "Change",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "changelog_change",
+      "community": 13,
+      "norm_label": "change"
+    },
+    {
       "label": "[1.0.0] - 2026-07-27",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L8",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "changelog_1_0_0_2026_07_27",
       "community": 13,
@@ -1903,7 +1923,7 @@
       "label": "Cambiado",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "changelog_cambiado",
       "community": 13,
@@ -1913,7 +1933,7 @@
       "label": "[0.0.0-beta.1] - 2026-07-26",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L16",
+      "source_location": "L23",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_1_2026_07_26",
       "community": 13,
@@ -1923,7 +1943,7 @@
       "label": "A\u00f1adido",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L25",
       "_origin": "ast",
       "id": "changelog_a\u00f1adido",
       "community": 13,
@@ -2163,7 +2183,7 @@
       "label": "Proyecto",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L3",
+      "source_location": "L9",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_proyecto",
       "community": 8,
@@ -2173,7 +2193,7 @@
       "label": "Tokens",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L11",
+      "source_location": "L17",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_tokens",
       "community": 8,
@@ -2183,7 +2203,7 @@
       "label": "Versi\u00f3n actual",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L21",
+      "source_location": "L27",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_versi\u00f3n_actual",
       "community": 8,
@@ -2193,7 +2213,7 @@
       "label": "Rama",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L30",
+      "source_location": "L36",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_rama",
       "community": 8,
@@ -2203,7 +2223,7 @@
       "label": "Tag",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L36",
+      "source_location": "L42",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_tag",
       "community": 8,
@@ -2213,7 +2233,7 @@
       "label": "Par\u00e1metros del upload",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L41",
+      "source_location": "L47",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_par\u00e1metros_del_upload",
       "community": 8,
@@ -2223,7 +2243,7 @@
       "label": "Estructura del changelog (HTML)",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L51",
+      "source_location": "L57",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_estructura_del_changelog_html",
       "community": 8,
@@ -2233,7 +2253,7 @@
       "label": "Subir archivo (JAR) con Python",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L67",
+      "source_location": "L73",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_subir_archivo_jar_con_python",
       "community": 8,
@@ -2243,7 +2263,7 @@
       "label": "Verificar con GET",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L113",
+      "source_location": "L119",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_verificar_con_get",
       "community": 8,
@@ -2253,7 +2273,7 @@
       "label": "Changelog",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L120",
+      "source_location": "L126",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_changelog",
       "community": 8,
@@ -2263,7 +2283,7 @@
       "label": "Descripcion del proyecto",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L127",
+      "source_location": "L133",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_descripcion_del_proyecto",
       "community": 8,
@@ -2273,7 +2293,7 @@
       "label": "Flujo completo",
       "file_type": "document",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L131",
+      "source_location": "L137",
       "_origin": "ast",
       "id": "docs_curseforge_project_vars_flujo_completo",
       "community": 8,
@@ -2298,6 +2318,16 @@
       "id": "docs_curseforge_versions_1_0_0",
       "community": 19,
       "norm_label": "1.0.0.md"
+    },
+    {
+      "label": "1.0.1.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/1.0.1.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_1_0_1",
+      "community": 10,
+      "norm_label": "1.0.1.md"
     }
   ],
   "links": [
@@ -6225,7 +6255,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L16",
+      "source_location": "L23",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_0_0_0_beta_1_2026_07_26",
@@ -6235,7 +6265,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L8",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "changelog_changelog",
       "target": "changelog_1_0_0_2026_07_27",
@@ -6245,7 +6275,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L10",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "changelog_changelog",
+      "target": "changelog_1_0_1_2026_08_05",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "changelog_1_0_1_2026_08_05",
+      "target": "changelog_change",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "changelog_1_0_0_2026_07_27",
       "target": "changelog_cambiado",
@@ -6255,7 +6305,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L18",
+      "source_location": "L25",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_1_2026_07_26",
       "target": "changelog_a\u00f1adido",
@@ -6455,7 +6505,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L120",
+      "source_location": "L126",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_changelog",
@@ -6465,7 +6515,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L127",
+      "source_location": "L133",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_descripcion_del_proyecto",
@@ -6475,7 +6525,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L51",
+      "source_location": "L57",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_estructura_del_changelog_html",
@@ -6485,7 +6535,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L131",
+      "source_location": "L137",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_flujo_completo",
@@ -6495,7 +6545,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L41",
+      "source_location": "L47",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_par\u00e1metros_del_upload",
@@ -6505,7 +6555,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L3",
+      "source_location": "L9",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_proyecto",
@@ -6515,7 +6565,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L30",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_rama",
@@ -6525,7 +6575,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L67",
+      "source_location": "L73",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_subir_archivo_jar_con_python",
@@ -6535,7 +6585,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L36",
+      "source_location": "L42",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_tag",
@@ -6545,7 +6595,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L11",
+      "source_location": "L17",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_tokens",
@@ -6555,7 +6605,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L113",
+      "source_location": "L119",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_verificar_con_get",
@@ -6565,7 +6615,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "docs/curseforge/project_vars.md",
-      "source_location": "L21",
+      "source_location": "L27",
       "weight": 1.0,
       "source": "docs_curseforge_project_vars_curseforge_variables_del_proyecto",
       "target": "docs_curseforge_project_vars_versi\u00f3n_actual",
@@ -6573,5 +6623,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "955a370e69af3777548927d831f1020f7a38c1fd"
+  "built_at_commit": "b588ed95056213f0dc6001a051ff1bd2af8e1490"
 }

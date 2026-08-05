@@ -125,13 +125,13 @@
     "semantic_hash": ""
   },
   ".gitlab-ci.yml": {
-    "mtime": 1785111654.7793572,
+    "mtime": 1785801080.638687,
     "ast_hash": "075837d192768b1cf94bed61a7ba7dae",
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785113417.656986,
-    "ast_hash": "6ee22b4722c01d55f56e0ff6edf5ae3a",
+    "mtime": 1785972327.5536866,
+    "ast_hash": "f2f53da66169977605813b4cf0461088",
     "semantic_hash": ""
   },
   "README.md": {
@@ -150,8 +150,8 @@
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785113428.0078588,
-    "ast_hash": "3c28da8f95ef51da7dd85cd3760f3e0b",
+    "mtime": 1785972793.5893629,
+    "ast_hash": "912355e02025aef270eca27d3ea0c197",
     "semantic_hash": ""
   },
   "docs/curseforge/versions/0.0.0-beta.1.md": {
@@ -167,6 +167,11 @@
   "src/main/resources/data_miner.png": {
     "mtime": 1785111654.7580502,
     "ast_hash": "d75bfd94abe46dc4e1b3cfeb62810aba",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.1.md": {
+    "mtime": 1785972327.554186,
+    "ast_hash": "5c9d038e956bd970c6b503983cba5a81",
     "semantic_hash": ""
   }
 }
