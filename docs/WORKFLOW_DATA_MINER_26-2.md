@@ -38,7 +38,7 @@
 ## Versionado
 
 - Beta `0.0.0-beta.X` · Release `X.Y.Z` (SemVer: MAJOR breaking / MINOR feature / PATCH fix)
-- `mod_version` en `gradle.properties`. JAR: `<mod_id>-<mc>-fabric-<version>.jar`
+- `mod_version` en `gradle.properties`. JAR: `<mod_id>-<mc>-fabric-<loader>-<version>.jar`
 
 ## Commits (Conventional Commits)
 

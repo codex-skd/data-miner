@@ -1,5 +1,12 @@
 # Changelog
 
+
+## [1.0.2] - 2026-08-12
+
+### Change
+
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `data_miner-26.2-fabric-0.19.3-1.0.2.jar` (se añade la versión de cargador/NeoForge al nombre del archivo). Empaquetado y documentación; sin cambios de funcionalidad.
+
 Todos los cambios notables de DataMiner (Fabric) se documentan en este archivo.
 
 El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
