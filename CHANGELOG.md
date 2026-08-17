@@ -6,12 +6,21 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ---
 
+## [1.0.3] - 2026-08-17
+
+### Change
+
+- **Actualización de NeoForge**: actualizado de 26.2.0.37-beta a 26.2.0.45-beta.
+- **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `data_miner-26.2-neoforge-26.2.0.45-beta-1.0.3.jar`.
+- **Documentación del workflow**: actualizada `docs/WORKFLOW_DATA_MINER_26-2.md` para reflejar la nueva rama de trabajo.
+
+---
+
 ## [1.0.2] - 2026-08-12
 
 ### Change
 
 - **Nombre de JAR con versión del cargador**: el artefacto ahora se compila como `data_miner-26.2-neoforge-26.2.0.37-beta-1.0.2.jar` (se añade la versión de cargador/NeoForge al nombre del archivo). Empaquetado y documentación; sin cambios de funcionalidad.
-
 
 ## [1.0.1] - 2026-08-05
 
