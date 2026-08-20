@@ -1,7 +1,7 @@
 {
   "build.gradle": {
-    "mtime": 1785111661.9261146,
-    "ast_hash": "90c2bbfb9fa0801176f765f14607d754",
+    "mtime": 1786569058.4626813,
+    "ast_hash": "2a9385658507cea0ac60121517045993",
     "semantic_hash": ""
   },
   "gradlew": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1785972327.5536866,
-    "ast_hash": "f2f53da66169977605813b4cf0461088",
+    "mtime": 1787184746.215853,
+    "ast_hash": "979f788af7925ceb004389c128f6812a",
     "semantic_hash": ""
   },
   "README.md": {
@@ -140,18 +140,18 @@
     "semantic_hash": ""
   },
   "docs/WORKFLOW_DATA_MINER_26-2.md": {
-    "mtime": 1785626678.1409397,
-    "ast_hash": "159ae7ff9dcfcf325d4bb03f815f7122",
+    "mtime": 1787184746.2459714,
+    "ast_hash": "29af1e2cf51336508994b9d40bf8e8e7",
     "semantic_hash": ""
   },
   "docs/curseforge/project_description.md": {
-    "mtime": 1785111654.765654,
-    "ast_hash": "098bf42ae35f3ba92601311a63d1c5af",
+    "mtime": 1786567703.3338554,
+    "ast_hash": "e17cde6939c87d45eaef1064324f167e",
     "semantic_hash": ""
   },
   "docs/curseforge/project_vars.md": {
-    "mtime": 1785972793.5893629,
-    "ast_hash": "912355e02025aef270eca27d3ea0c197",
+    "mtime": 1787184746.2561042,
+    "ast_hash": "23ad80f9d15b08ffe5bd1c5a4e2d4431",
     "semantic_hash": ""
   },
   "docs/curseforge/versions/0.0.0-beta.1.md": {
@@ -172,6 +172,21 @@
   "docs/curseforge/versions/1.0.1.md": {
     "mtime": 1785972327.554186,
     "ast_hash": "5c9d038e956bd970c6b503983cba5a81",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.2.md": {
+    "mtime": 1786569058.4636805,
+    "ast_hash": "ae6c922218449bbecdc5abda04847f0d",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.0.3.md": {
+    "mtime": 1787060101.2677433,
+    "ast_hash": "b91728f702e1fd216d862e70ab9ae406",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.1.0.md": {
+    "mtime": 1787184742.714704,
+    "ast_hash": "bb3f5fa8f345b6b862efcd7377604092",
     "semantic_hash": ""
   }
 }
