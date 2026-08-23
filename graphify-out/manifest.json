@@ -75,8 +75,8 @@
     "semantic_hash": ""
   },
   "src/main/java/com/skd/data_miner/logs/CapturedAppender.java": {
-    "mtime": 1785111654.717965,
-    "ast_hash": "b0d73544dfe8d6d9dbf100da35956fa9",
+    "mtime": 1787484082.8252742,
+    "ast_hash": "4e291141ffd6f281df4f6538dc16e601",
     "semantic_hash": ""
   },
   "src/main/java/com/skd/data_miner/logs/LogRedirector.java": {
@@ -90,8 +90,8 @@
     "semantic_hash": ""
   },
   "src/main/java/com/skd/data_miner/logs/issues/IssueRegistry.java": {
-    "mtime": 1785111654.7159238,
-    "ast_hash": "8c7332e5425c6196e694ba02a3835e61",
+    "mtime": 1787484022.1207452,
+    "ast_hash": "1f30887d564194cfc2591b10762fe003",
     "semantic_hash": ""
   },
   "src/main/java/com/skd/data_miner/modimpact/ModAnalyzer.java": {
@@ -130,8 +130,8 @@
     "semantic_hash": ""
   },
   "CHANGELOG.md": {
-    "mtime": 1787184746.215853,
-    "ast_hash": "979f788af7925ceb004389c128f6812a",
+    "mtime": 1787484511.9359982,
+    "ast_hash": "d7b2799a120361d40c4c5be639a90dff",
     "semantic_hash": ""
   },
   "README.md": {
@@ -187,6 +187,11 @@
   "docs/curseforge/versions/1.1.0.md": {
     "mtime": 1787184742.714704,
     "ast_hash": "bb3f5fa8f345b6b862efcd7377604092",
+    "semantic_hash": ""
+  },
+  "docs/curseforge/versions/1.2.0.md": {
+    "mtime": 1787484515.4390922,
+    "ast_hash": "e9e0220d192af9fb9871cae30de32c06",
     "semantic_hash": ""
   }
 }
