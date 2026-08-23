@@ -6,6 +6,19 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ---
 
+## [1.2.0] - 2026-08-23
+
+### Added
+
+- **Lootr missing loot table detection**: new issue detector captures "Error con mod [X], no con Lootr! The loot table for this container [ResourceKey[minecraft:loot_table / X:path]] does not exist" messages.
+- **Dedicated log file**: detected issues saved to `startup/logs/lootr_missing_tables.jsonl` with `mod_id`, `loot_table`, and `timestamp` for automated datapack stub generation.
+- **INFO-level capture for System logger**: captures Lootr chat messages (logged at INFO level) in addition to WARN/ERROR.
+
+### Change
+
+- Updated `IssueRegistry.java` with new `lootr_missing_loot_table` detector pattern.
+- Updated `CapturedAppender.java` to capture Level.INFO from "System" logger.
+
 ## [1.1.0] - 2026-08-19
 
 ### Change

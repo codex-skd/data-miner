@@ -99,6 +99,30 @@ public class IssueRegistry {
                 return json;
             }
         });
+
+        DETECTORS.add(new IssueDetector() {
+            private final Pattern p = Pattern.compile(
+                    "Error con mod \\[(\\w+)\\].*loot table for this container \\[ResourceKey\\[minecraft:loot_table / ([^\\]]+)\\]\\] does not exist",
+                    Pattern.CASE_INSENSITIVE);
+
+            @Override public Pattern pattern() { return p; }
+            @Override public String type() { return "lootr_missing_loot_table"; }
+
+            @Override
+            public JsonObject extract(String loggerName, String message, String thread) {
+                JsonObject json = new JsonObject();
+                json.addProperty("logger", loggerName);
+                Matcher m = p.matcher(message);
+                if (m.find()) {
+                    json.addProperty("mod_id", m.group(1));
+                    json.addProperty("loot_table", m.group(2));
+                }
+                json.addProperty("message", message);
+                json.addProperty("thread", thread);
+                json.addProperty("timestamp", Instant.now().toString());
+                return json;
+            }
+        });
     }
 
     public static String check(String loggerName, String message, String thread) {
@@ -122,6 +146,26 @@ public class IssueRegistry {
                     java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
         } catch (IOException e) {
             DataMiner.LOGGER.error("Failed to save issue report", e);
+        }
+
+        if ("lootr_missing_loot_table".equals(type)) {
+            saveLootrIssue(json);
+        }
+    }
+
+    private static synchronized void saveLootrIssue(JsonObject json) {
+        if (Initializer.baseDir == null) return;
+        try {
+            Path file = Initializer.baseDir.resolve("startup/logs/lootr_missing_tables.jsonl");
+            Files.createDirectories(file.getParent());
+            JsonObject minimal = new JsonObject();
+            minimal.addProperty("mod_id", json.get("mod_id").getAsString());
+            minimal.addProperty("loot_table", json.get("loot_table").getAsString());
+            minimal.addProperty("timestamp", json.get("timestamp").getAsString());
+            Files.writeString(file, GSON_COMPACT.toJson(minimal) + System.lineSeparator(),
+                    java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            DataMiner.LOGGER.error("Failed to save lootr issue report", e);
         }
     }
 }

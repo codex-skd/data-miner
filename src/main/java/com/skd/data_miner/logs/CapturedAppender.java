@@ -29,11 +29,14 @@ public class CapturedAppender extends AbstractAppender {
 
     @Override
     public void append(LogEvent event) {
-        if (event.getLevel() != Level.WARN && event.getLevel() != Level.ERROR) {
-            return;
-        }
+        Level level = event.getLevel();
         String loggerName = event.getLoggerName();
         if (loggerName != null && loggerName.startsWith("com.skd.data_miner")) {
+            return;
+        }
+
+        boolean isLootrChat = "System".equals(loggerName) && level == Level.INFO;
+        if (level != Level.WARN && level != Level.ERROR && !isLootrChat) {
             return;
         }
 
