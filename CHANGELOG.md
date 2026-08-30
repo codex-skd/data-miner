@@ -6,6 +6,16 @@ El formato sigue [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 y el proyecto adhiere a [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ---
 
+## [1.2.1] - 2026-08-30
+
+### Added
+
+- **Client reload detection & server reporting**: `data_miner` now registers a `PreparableReloadListener` on the client `ReloadableResourceManager`. When a resource reload occurs (F3+T, language change, resource pack change, or any mod-triggered reload), the client captures the stack trace and sends a `ClientReloadPayload` to the server. Server logs show: `[DataMiner] Client reload from <player> (UUID=...) at <timestamp>` with full stack trace — allowing diagnosis of "random" reloads in multiplayer.
+
+### Change
+
+- Updated `DataMiner.java` to register payload handlers (`RegisterPayloadHandlersEvent`) and activate reload listener client-side via `FMLEnvironment.getDist().isClient()`.
+
 ## [1.2.0] - 2026-08-23
 
 ### Added
