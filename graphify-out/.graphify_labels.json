@@ -1,0 +1,21 @@
+{
+  "0": ".register",
+  "1": "LatencyTracer",
+  "2": "DataMiner.java",
+  "3": "Initializer.java",
+  "4": ".recordEvent",
+  "5": "ClientReloadPayload",
+  "6": "ModAnalyzer.java",
+  "7": "IssueRegistry.java",
+  "8": "RegistryDumper.java",
+  "9": "Flujo de trabajo — Data Miner (NeoForge)",
+  "10": "Project Variables — Data Miner (1.21.1)",
+  "11": "Data Miner",
+  "12": "[0.0.0-beta.1] - 2026-09-01",
+  "13": "CLAUDE.md — data_miner (26.2)",
+  "14": "gradlew",
+  "15": "build.gradle",
+  "16": "project_description.md",
+  "17": "0.0.0-beta.1.md",
+  "18": "settings.gradle"
+}
