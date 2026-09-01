@@ -1,0 +1,68 @@
+name: Build & Upload to CurseForge
+
+on:
+  push:
+    tags:
+      - '26.2-neoforge-*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-upload:
+    runs-on: windows-2022
+    env:
+      MOD_PROJECT_PATH: ${{ github.workspace }}/data_miner/neoforge/26.2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Validate Gradle wrapper
+        uses: gradle/actions/wrapper-validation@v6
+        with:
+          working-directory: data_miner/neoforge/26.2
+
+      - name: Setup JDK 25
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'microsoft'
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+        working-directory: data_miner/neoforge/26.2
+
+      - name: Build project
+        run: ./gradlew clean build
+        working-directory: data_miner/neoforge/26.2
+
+      - name: Verify JAR exists
+        run: |
+          $modPath = "${{ github.workspace }}/data_miner/neoforge/26.2"
+          $gradleFile = "$modPath/gradle.properties"
+          $modId = (Select-String -Path $gradleFile -Pattern '^mod_id=(.+)').Matches.Groups[1].Value.Trim()
+          $mcVersion = (Select-String -Path $gradleFile -Pattern '^minecraft_version=(.+)').Matches.Groups[1].Value.Trim()
+          $modFramework = (Select-String -Path $gradleFile -Pattern '^mod_framework=(.+)').Matches.Groups[1].Value.Trim()
+          $loaderVersion = (Select-String -Path $gradleFile -Pattern '^neo_version=(.+)').Matches.Groups[1].Value.Trim()
+          $modVersion = (Select-String -Path $gradleFile -Pattern '^mod_version=(.+)').Matches.Groups[1].Value.Trim()
+          $jarName = "${modId}-${mcVersion}-${modFramework}-${loaderVersion}-${modVersion}.jar"
+          $jarPath = "$modPath/build/libs/$jarName"
+          if (-not (Test-Path $jarPath)) {
+            Write-Error "JAR not found at $jarPath"
+            exit 1
+          }
+          Write-Host "JAR found: $jarPath"
+          echo "JAR_PATH=$jarPath" >> $env:GITHUB_ENV
+          echo "JAR_NAME=$jarName" >> $env:GITHUB_ENV
+
+      - name: Upload to CurseForge
+        if: startsWith(github.ref, 'refs/tags/26.2-neoforge-')
+        env:
+          CURSEFORGE_API_TOKEN: ${{ secrets.CURSEFORGE_API_TOKEN }}
+        run: |
+          powershell -File "${{ github.workspace }}/codex-docs/scripts/curseforge-upload.ps1"
+        working-directory: data_miner/neoforge/26.2

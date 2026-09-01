@@ -1,0 +1,12 @@
+{
+    "required": true,
+    "minVersion": "0.8",
+    "package": "com.skd.data_miner.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "refmap": "data_miner.refmap.json",
+    "mixins": [],
+    "client": [],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}
