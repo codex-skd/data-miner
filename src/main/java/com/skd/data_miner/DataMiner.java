@@ -13,8 +13,6 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
-import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 
 import org.slf4j.Logger;
 
@@ -27,15 +25,10 @@ public class DataMiner {
     public DataMiner(IEventBus modEventBus, ModContainer modContainer) {
         ErrorCollector.register();
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::onRegisterPayloads);
 
         modContainer.registerConfig(ModConfig.Type.COMMON, DataMinerConfig.SPEC);
 
         NeoForge.EVENT_BUS.addListener(this::onRegisterCommands);
-
-        if (net.neoforged.fml.loading.FMLEnvironment.dist.isClient()) {
-            DataMinerClientNetworking.registerReloadListener();
-        }
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
@@ -50,18 +43,6 @@ public class DataMiner {
                 LOGGER.info("Registry dump completed.");
             }
         });
-    }
-
-    private void onRegisterPayloads(RegisterPayloadHandlersEvent event) {
-        PayloadRegistrar registrar = event.registrar("1");
-        registrar.playToServer(
-            DataMinerNetworkPayloads.ClientReloadPayload.TYPE,
-            DataMinerNetworkPayloads.ClientReloadPayload.STREAM_CODEC,
-            (payload, context) -> {
-                var player = (net.minecraft.server.level.ServerPlayer) context.player();
-                if (player != null) DataMinerServerNetworking.handleClientReload(player, payload);
-            }
-        );
     }
 
     private void onRegisterCommands(RegisterCommandsEvent event) {

@@ -3,15 +3,19 @@ package com.skd.data_miner.logs.issues;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.skd.data_miner.DataMiner;
 import com.skd.data_miner.init.Initializer;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +23,11 @@ public class IssueRegistry {
 
     private static final Gson GSON_COMPACT = new GsonBuilder().disableHtmlEscaping().create();
     private static final List<IssueDetector> DETECTORS = new ArrayList<>();
+
+    private record PendingWrite(Path file, String line) {}
+
+    private static final BlockingQueue<PendingWrite> WRITE_QUEUE = new ArrayBlockingQueue<>(4096);
+    private static final AtomicBoolean WRITER_STARTED = new AtomicBoolean(false);
 
     static {
         DETECTORS.add(new IssueDetector() {
@@ -136,36 +145,58 @@ public class IssueRegistry {
         return "";
     }
 
-    private static synchronized void saveIssue(String type, JsonObject json) {
+    private static void saveIssue(String type, JsonObject json) {
         if (Initializer.baseDir == null) return;
         json.addProperty("type", type);
-        try {
-            Path file = Initializer.baseDir.resolve("startup/logs/issues.jsonl");
-            Files.createDirectories(file.getParent());
-            Files.writeString(file, GSON_COMPACT.toJson(json) + System.lineSeparator(),
-                    java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            DataMiner.LOGGER.error("Failed to save issue report", e);
-        }
+        enqueue(Initializer.baseDir.resolve("startup/logs/issues.jsonl"),
+                GSON_COMPACT.toJson(json) + System.lineSeparator());
 
-        if ("lootr_missing_loot_table".equals(type)) {
-            saveLootrIssue(json);
-        }
-    }
-
-    private static synchronized void saveLootrIssue(JsonObject json) {
-        if (Initializer.baseDir == null) return;
-        try {
-            Path file = Initializer.baseDir.resolve("startup/logs/lootr_missing_tables.jsonl");
-            Files.createDirectories(file.getParent());
+        if ("lootr_missing_loot_table".equals(type)
+                && json.has("mod_id") && json.has("loot_table") && json.has("timestamp")) {
             JsonObject minimal = new JsonObject();
             minimal.addProperty("mod_id", json.get("mod_id").getAsString());
             minimal.addProperty("loot_table", json.get("loot_table").getAsString());
             minimal.addProperty("timestamp", json.get("timestamp").getAsString());
-            Files.writeString(file, GSON_COMPACT.toJson(minimal) + System.lineSeparator(),
-                    java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
-        } catch (IOException e) {
-            DataMiner.LOGGER.error("Failed to save lootr issue report", e);
+            enqueue(Initializer.baseDir.resolve("startup/logs/lootr_missing_tables.jsonl"),
+                    GSON_COMPACT.toJson(minimal) + System.lineSeparator());
+        }
+    }
+
+    private static void enqueue(Path file, String line) {
+        ensureWriter();
+        WRITE_QUEUE.offer(new PendingWrite(file, line));
+    }
+
+    private static void ensureWriter() {
+        if (WRITER_STARTED.compareAndSet(false, true)) {
+            Thread t = new Thread(IssueRegistry::drainLoop, "DataMiner-IssueWriter");
+            t.setDaemon(true);
+            t.start();
+        }
+    }
+
+    private static void drainLoop() {
+        List<PendingWrite> batch = new ArrayList<>(256);
+        while (true) {
+            try {
+                PendingWrite first = WRITE_QUEUE.poll(500, TimeUnit.MILLISECONDS);
+                if (first == null) continue;
+                batch.clear();
+                batch.add(first);
+                WRITE_QUEUE.drainTo(batch, 255);
+                for (PendingWrite pw : batch) {
+                    try {
+                        Files.createDirectories(pw.file().getParent());
+                        Files.writeString(pw.file(), pw.line(),
+                                StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+                    } catch (IOException e) {
+                        System.err.println("[DataMiner] Failed to save issue report: " + e.getMessage());
+                    }
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
         }
     }
 }

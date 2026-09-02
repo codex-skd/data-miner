@@ -2,6 +2,27 @@
 
 Branch `minecraft/1.21.1/neoforge-21.1.249/production`. History independent of the 26.2 branch.
 
+## [Unreleased]
+
+### Removed
+
+- **Client reload detection with server reporting.** The client `PreparableReloadListener` that
+  logged a stack trace and sent a `ClientReloadPayload` to the server on every resource reload,
+  plus its payload type and server handler (`DataMinerClientNetworking`,
+  `DataMinerServerNetworking`, `DataMinerNetworkPayloads`), have been deleted.
+
+### Fixed
+
+- **Client freeze / extremely slow resource-pack reload (F3+T).** `CapturedAppender` now hands
+  formatted lines to a bounded queue drained by a single daemon writer thread with one flush per
+  batch, instead of `flush()`-ing under a lock on every WARN/ERROR record on the logging thread.
+  `IssueRegistry` file writes moved off the logging thread onto their own daemon writer. Under a
+  large modpack's reload the logging threads no longer serialize on per-line disk I/O.
+
+- **Server tick cost while the latency tracer is running.** `PerfEventHandlers` now captures the
+  all-entities / all-chunks slow-tick snapshot at most once per second instead of on every slow
+  tick (which, on an overloaded server, meant every tick).
+
 ## [0.0.0-beta.1] - 2026-09-01
 
 ### Added

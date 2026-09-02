@@ -13,18 +13,48 @@ import java.nio.file.StandardOpenOption;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * Async, non-blocking log capture appender.
+ *
+ * <p>{@link #append(LogEvent)} only formats the line and hands it to a bounded
+ * queue; a single daemon thread owns the file and drains the queue in batches
+ * with one flush per batch. The logging thread never touches disk and never
+ * blocks: if the queue is full the line is dropped and counted.
+ */
 public class CapturedAppender extends AbstractAppender {
 
     private static final DateTimeFormatter TIME_FMT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
             .withZone(ZoneId.systemDefault());
 
+    private static final int QUEUE_CAPACITY = 8192;
+    private static final int DRAIN_BATCH = 1024;
+
     private final Path logFile;
-    private BufferedWriter writer;
+    private final BlockingQueue<String> queue = new ArrayBlockingQueue<>(QUEUE_CAPACITY);
+    private final AtomicLong dropped = new AtomicLong();
+
+    private volatile boolean stopped = false;
+    private Thread writerThread;
 
     public CapturedAppender(Path logFile) {
-        super("DataMinerCapture", null, null, false);
+        super("DataMinerCapture", null, null, true);
         this.logFile = logFile;
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        stopped = false;
+        writerThread = new Thread(this::drainLoop, "DataMiner-LogCapture");
+        writerThread.setDaemon(true);
+        writerThread.start();
     }
 
     @Override
@@ -43,7 +73,7 @@ public class CapturedAppender extends AbstractAppender {
         String timestamp = TIME_FMT.format(Instant.ofEpochMilli(event.getTimeMillis()));
         String msg = event.getMessage().getFormattedMessage();
         StringBuilder sb = new StringBuilder();
-        sb.append('[').append(timestamp).append("][").append(event.getLevel().name())
+        sb.append('[').append(timestamp).append("][").append(level.name())
                 .append("][").append(loggerName != null ? loggerName : "?").append("] ")
                 .append(msg);
 
@@ -57,7 +87,77 @@ public class CapturedAppender extends AbstractAppender {
             sb.append(System.lineSeparator()).append(formatThrowable(thrown));
         }
 
-        writeLine(sb.toString());
+        if (!queue.offer(sb.toString())) {
+            dropped.incrementAndGet();
+        }
+    }
+
+    private void drainLoop() {
+        BufferedWriter writer = null;
+        try {
+            List<String> batch = new ArrayList<>(DRAIN_BATCH);
+            while (true) {
+                String first;
+                try {
+                    first = queue.poll(200, TimeUnit.MILLISECONDS);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    first = queue.poll();
+                }
+
+                if (first == null) {
+                    if (stopped && queue.isEmpty()) {
+                        break;
+                    }
+                    continue;
+                }
+
+                if (writer == null) {
+                    writer = openWriter();
+                    if (writer == null) {
+                        // Could not open the file; drop this line rather than spinning on I/O.
+                        continue;
+                    }
+                }
+
+                batch.clear();
+                batch.add(first);
+                queue.drainTo(batch, DRAIN_BATCH - 1);
+
+                try {
+                    for (String line : batch) {
+                        writer.write(line);
+                        writer.newLine();
+                    }
+                    writer.flush();
+                } catch (IOException e) {
+                    System.err.println("[DataMiner] Failed to write captured log: " + e.getMessage());
+                }
+            }
+        } finally {
+            if (writer != null) {
+                try {
+                    long d = dropped.get();
+                    if (d > 0) {
+                        writer.write("[DataMiner] " + d + " captured log line(s) dropped (queue full)");
+                        writer.newLine();
+                    }
+                    writer.flush();
+                    writer.close();
+                } catch (IOException ignored) {
+                }
+            }
+        }
+    }
+
+    private BufferedWriter openWriter() {
+        try {
+            Files.createDirectories(logFile.getParent());
+            return Files.newBufferedWriter(logFile, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+        } catch (IOException e) {
+            System.err.println("[DataMiner] Failed to open captured log: " + e.getMessage());
+            return null;
+        }
     }
 
     private String formatThrowable(Throwable t) {
@@ -91,29 +191,18 @@ public class CapturedAppender extends AbstractAppender {
         }
     }
 
-    private void writeLine(String line) {
-        try {
-            if (writer == null) {
-                Files.createDirectories(logFile.getParent());
-                writer = Files.newBufferedWriter(logFile, StandardOpenOption.CREATE, StandardOpenOption.APPEND);
-            }
-            synchronized (this) {
-                writer.write(line);
-                writer.newLine();
-                writer.flush();
-            }
-        } catch (IOException e) {
-            System.err.println("[DataMiner] Failed to write captured log: " + e.getMessage());
-        }
-    }
-
     @Override
-    public synchronized void stop() {
-        super.stop();
-        if (writer != null) {
+    public void stop() {
+        stopped = true;
+        Thread t = writerThread;
+        if (t != null) {
+            t.interrupt();
             try {
-                writer.close();
-            } catch (IOException ignored) {}
+                t.join(2000);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
         }
+        super.stop();
     }
 }

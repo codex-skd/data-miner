@@ -13,6 +13,8 @@ import net.neoforged.neoforge.event.tick.ServerTickEvent;
 public class PerfEventHandlers {
 
     private static long serverTickStart;
+    private static long lastSlowTickCaptureMs = 0L;
+    private static final long SLOW_TICK_CAPTURE_INTERVAL_MS = 1000L;
 
     @SubscribeEvent
     public static void onServerTickPre(ServerTickEvent.Pre event) {
@@ -28,6 +30,12 @@ public class PerfEventHandlers {
         }
 
         if (LatencyTracer.isRunning() && mspt > 50) {
+            long now = System.currentTimeMillis();
+            if (now - lastSlowTickCaptureMs < SLOW_TICK_CAPTURE_INTERVAL_MS) {
+                return;
+            }
+            lastSlowTickCaptureMs = now;
+
             MinecraftServer server = event.getServer();
             int entityCount = 0;
             int chunkCount = 0;
