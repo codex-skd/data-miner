@@ -1,16 +1,16 @@
-# Graph Report - 1.21.1  (2026-09-01)
+# Graph Report - 1.21.1  (2026-09-02)
 
 ## Corpus Check
-- 34 files · ~55,954 words
+- 32 files · ~56,479 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 246 nodes · 437 edges · 19 communities
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.8)
+- 227 nodes · 405 edges · 19 communities
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1320b9e1`
+- Built from commit: `1d325749`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -20,7 +20,6 @@
 - DataMiner.java
 - Initializer.java
 - .recordEvent
-- ClientReloadPayload
 - ModAnalyzer.java
 - IssueRegistry.java
 - RegistryDumper.java
@@ -35,13 +34,13 @@
 1. `LatencyTracer` - 14 edges
 2. `Flujo de trabajo — Data Miner (NeoForge)` - 11 edges
 3. `EventHandlers` - 10 edges
-4. `ClientReloadPayload` - 9 edges
+4. `CapturedAppender` - 10 edges
 5. `EventTracer` - 9 edges
-6. `PerformanceMonitor` - 9 edges
-7. `RegistryDumper` - 8 edges
-8. `CapturedAppender` - 8 edges
-9. `DataMiner` - 7 edges
-10. `LatencyEventHandlers` - 7 edges
+6. `IssueRegistry` - 9 edges
+7. `PerformanceMonitor` - 9 edges
+8. `RegistryDumper` - 8 edges
+9. `LatencyEventHandlers` - 7 edges
+10. `DataMiner` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `IssueRegistry` --references--> `IssueDetector`  [EXTRACTED]
@@ -53,7 +52,7 @@
 ## Communities (19 total, 0 thin omitted)
 
 ### Community 0 - ".register"
-Cohesion: 0.11
+Cohesion: 0.10
 Nodes (13): CommandDispatcher, CommandSourceStack, DataMinerCommands, DataMinerExecutor, EventTracer, Gson, JsonObject, ClientPerfHandlers (+5 more)
 
 ### Community 1 - "LatencyTracer"
@@ -61,28 +60,24 @@ Cohesion: 0.13
 Nodes (12): BlockPos, LeftClickBlock, BreakEntry, EventBusSubscriber, Pre, SubscribeEvent, LatencyEventHandlers, Gson (+4 more)
 
 ### Community 2 - "DataMiner.java"
-Cohesion: 0.13
-Nodes (12): FMLCommonSetupEvent, IEventBus, Mod, ModContainer, RegisterCommandsEvent, RegisterPayloadHandlersEvent, DataMiner, Logger (+4 more)
+Cohesion: 0.15
+Nodes (11): FMLCommonSetupEvent, IEventBus, Mod, ModContainer, RegisterCommandsEvent, DataMiner, Logger, ErrorCollector (+3 more)
 
 ### Community 3 - "Initializer.java"
-Cohesion: 0.15
-Nodes (8): AbstractAppender, LogEvent, Initializer, Gson, CapturedAppender, Override, Logger, LogRedirector
+Cohesion: 0.19
+Nodes (6): AbstractAppender, LogEvent, CapturedAppender, Override, Logger, LogRedirector
 
 ### Community 4 - ".recordEvent"
 Cohesion: 0.26
 Nodes (11): EntityJoinLevelEvent, EntityPlaceEvent, LivingDeathEvent, Load, Player, RightClickBlock, EventHandlers, EventBusSubscriber (+3 more)
-
-### Community 5 - "ClientReloadPayload"
-Cohesion: 0.15
-Nodes (11): CustomPacketPayload, FriendlyByteBuf, ResourceLocation, ServerPlayer, ClientReloadPayload, DataMinerNetworkPayloads, Override, DataMinerServerNetworking (+3 more)
 
 ### Community 6 - "ModAnalyzer.java"
 Cohesion: 0.17
 Nodes (10): MinecraftServer, Post, Gson, JsonObject, ModAnalyzer, ModStats, EventBusSubscriber, Pre (+2 more)
 
 ### Community 7 - "IssueRegistry.java"
-Cohesion: 0.18
-Nodes (10): Pattern, IssueDetector, JsonObject, extract(), IssueRegistry, Gson, JsonObject, Override (+2 more)
+Cohesion: 0.16
+Nodes (11): Pattern, IssueDetector, JsonObject, extract(), IssueRegistry, Gson, JsonObject, Override (+3 more)
 
 ### Community 8 - "RegistryDumper.java"
 Cohesion: 0.23
@@ -101,8 +96,8 @@ Cohesion: 0.33
 Nodes (5): Data Miner, License, Quick Start, Requirements, Status
 
 ### Community 12 - "[0.0.0-beta.1] - 2026-09-01"
-Cohesion: 0.40
-Nodes (4): [0.0.0-beta.1] - 2026-09-01, Added, Data Miner (1.21.1) — Changelog, Technical
+Cohesion: 0.25
+Nodes (7): [0.0.0-beta.1] - 2026-09-01, [0.0.0-beta.2] - 2026-09-02, Added, Data Miner (1.21.1) — Changelog, Fixed, Removed, Technical
 
 ### Community 13 - "CLAUDE.md — data_miner (26.2)"
 Cohesion: 0.50
@@ -113,19 +108,17 @@ Cohesion: 0.83
 Nodes (3): gradlew script, die(), warn()
 
 ## Knowledge Gaps
-- **23 isolated node(s):** `Workflow del mod`, `Prioridad de instrucciones`, `Added`, `Technical`, `Status` (+18 more)
+- **25 isolated node(s):** `Workflow del mod`, `Prioridad de instrucciones`, `Removed`, `Fixed`, `Added` (+20 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **What connects `Workflow del mod`, `Prioridad de instrucciones`, `Added` to the rest of the system?**
-  _23 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Why does `LatencyTracer` connect `LatencyTracer` to `.register`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
+- **What connects `Workflow del mod`, `Prioridad de instrucciones`, `Removed` to the rest of the system?**
+  _25 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `.register` be split into smaller, more focused modules?**
-  _Cohesion score 0.1053763440860215 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10080645161290322 - nodes in this community are weakly interconnected._
 - **Should `LatencyTracer` be split into smaller, more focused modules?**
-  _Cohesion score 0.12643678160919541 - nodes in this community are weakly interconnected._
-- **Should `DataMiner.java` be split into smaller, more focused modules?**
-  _Cohesion score 0.13043478260869565 - nodes in this community are weakly interconnected._
-- **Should `ClientReloadPayload` be split into smaller, more focused modules?**
-  _Cohesion score 0.14761904761904762 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1330049261083744 - nodes in this community are weakly interconnected._
