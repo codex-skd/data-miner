@@ -2,7 +2,7 @@
 
 Branch `minecraft/1.21.1/neoforge-21.1.249/production`. History independent of the 26.2 branch.
 
-## [Unreleased]
+## [0.0.0-beta.2] - 2026-09-02
 
 ### Removed
 
