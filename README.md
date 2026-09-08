@@ -4,7 +4,7 @@ Comprehensive diagnostic and profiling mod for Minecraft 1.21.1 (NeoForge). Dump
 
 ## Status
 
-Beta (`0.0.0-beta.1`). API port of the 26.2 source (22 classes, no mixins, no dependencies) to the 1.21.1 API. `./gradlew build` and `./gradlew runServer` verified: `Done`, 0 FATAL, DataMiner's async startup reports generate cleanly.
+Stable (`1.0.0`). API port of the 26.2 source (22 classes, no mixins, no dependencies) to the 1.21.1 API. `./gradlew build` and `./gradlew runServer` verified: `Done`, 0 FATAL, DataMiner's async startup reports generate cleanly; this build has been running server-side in a full modded-server pack.
 
 ## Requirements
 

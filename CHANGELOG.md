@@ -2,6 +2,35 @@
 
 Branch `minecraft/1.21.1/neoforge-21.1.249/production`. History independent of the 26.2 branch.
 
+## [1.0.0] - 2026-09-09
+
+First stable release for **Minecraft 1.21.1 / NeoForge 21.1.249** (Java 21). Consolidates the
+`0.0.0-beta.1` → `0.0.0-beta.3` line with no further code changes. This build has been running
+server-side in the *(Develop) Mystical Realms* modded-server pack.
+
+### Summary of the beta line
+
+- **beta.1** — initial port to 1.21.1: API port of the 26.2 source (22 classes, no mixins, no
+  dependencies). Full diagnostic toolkit unchanged: registry dumps, FPS/MSPT monitor, event
+  tracer, latency analyzer, per-mod impact analysis, log redirect, known-issue detection, error
+  collection — all async. Also fixed `Initializer.isClientSide()`, which detected the client via
+  `Class.forName("net.minecraft.client.Minecraft")` and aborted the async startup thread on a
+  dedicated server under NeoForge's `RuntimeDistCleaner`.
+- **beta.2** — fixed a client freeze / very slow resource-pack reload: `CapturedAppender` now
+  hands lines to a bounded queue drained by a single daemon writer thread (one flush per batch)
+  instead of `flush()`-ing under a lock on every WARN/ERROR record; `IssueRegistry` file writes
+  moved off the logging thread. `PerfEventHandlers` now snapshots all-entities / all-chunks at
+  most once per second instead of on every slow tick. Removed the client reload-detection
+  networking (`DataMinerClientNetworking`, `DataMinerServerNetworking`,
+  `DataMinerNetworkPayloads`).
+- **beta.3** — bundled the Spanish (`es_es`) locale: all 6 command-feedback keys.
+
+### Notes
+
+- No gameplay content (diagnostic / pack-maker tool). Verified: `./gradlew clean build` is green.
+- Same CurseForge project as the 26.2 line (`1584390`); pick the file that matches your Minecraft
+  version.
+
 ## [0.0.0-beta.3] - 2026-09-08
 
 ### Added
