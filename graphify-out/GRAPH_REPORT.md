@@ -1,16 +1,16 @@
-# Graph Report - 1.21.1  (2026-09-02)
+# Graph Report - 1.21.1  (2026-09-08)
 
 ## Corpus Check
-- 32 files · ~56,479 words
+- 34 files · ~56,660 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 227 nodes · 405 edges · 19 communities
+- 230 nodes · 407 edges · 21 communities
 - Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 3 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1d325749`
+- Built from commit: `5e306793`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,6 +29,7 @@
 - [0.0.0-beta.1] - 2026-09-01
 - CLAUDE.md — data_miner (26.2)
 - gradlew
+- PerformanceMonitor
 
 ## God Nodes (most connected - your core abstractions)
 1. `LatencyTracer` - 14 edges
@@ -49,19 +50,19 @@
 ## Import Cycles
 - None detected.
 
-## Communities (19 total, 0 thin omitted)
+## Communities (21 total, 0 thin omitted)
 
 ### Community 0 - ".register"
-Cohesion: 0.10
-Nodes (13): CommandDispatcher, CommandSourceStack, DataMinerCommands, DataMinerExecutor, EventTracer, Gson, JsonObject, ClientPerfHandlers (+5 more)
+Cohesion: 0.21
+Nodes (7): CommandDispatcher, CommandSourceStack, DataMinerCommands, DataMinerExecutor, EventTracer, Gson, JsonObject
 
 ### Community 1 - "LatencyTracer"
 Cohesion: 0.13
 Nodes (12): BlockPos, LeftClickBlock, BreakEntry, EventBusSubscriber, Pre, SubscribeEvent, LatencyEventHandlers, Gson (+4 more)
 
 ### Community 2 - "DataMiner.java"
-Cohesion: 0.15
-Nodes (11): FMLCommonSetupEvent, IEventBus, Mod, ModContainer, RegisterCommandsEvent, DataMiner, Logger, ErrorCollector (+3 more)
+Cohesion: 0.20
+Nodes (9): FMLCommonSetupEvent, IEventBus, Mod, ModContainer, RegisterCommandsEvent, DataMiner, Logger, ErrorCollector (+1 more)
 
 ### Community 3 - "Initializer.java"
 Cohesion: 0.19
@@ -72,8 +73,8 @@ Cohesion: 0.26
 Nodes (11): EntityJoinLevelEvent, EntityPlaceEvent, LivingDeathEvent, Load, Player, RightClickBlock, EventHandlers, EventBusSubscriber (+3 more)
 
 ### Community 6 - "ModAnalyzer.java"
-Cohesion: 0.17
-Nodes (10): MinecraftServer, Post, Gson, JsonObject, ModAnalyzer, ModStats, EventBusSubscriber, Pre (+2 more)
+Cohesion: 0.21
+Nodes (7): MinecraftServer, Initializer, Gson, Gson, JsonObject, ModAnalyzer, ModStats
 
 ### Community 7 - "IssueRegistry.java"
 Cohesion: 0.16
@@ -96,8 +97,8 @@ Cohesion: 0.33
 Nodes (5): Data Miner, License, Quick Start, Requirements, Status
 
 ### Community 12 - "[0.0.0-beta.1] - 2026-09-01"
-Cohesion: 0.25
-Nodes (7): [0.0.0-beta.1] - 2026-09-01, [0.0.0-beta.2] - 2026-09-02, Added, Data Miner (1.21.1) — Changelog, Fixed, Removed, Technical
+Cohesion: 0.20
+Nodes (9): [0.0.0-beta.1] - 2026-09-01, [0.0.0-beta.2] - 2026-09-02, [0.0.0-beta.3] - 2026-09-08, Added, Added, Data Miner (1.21.1) — Changelog, Fixed, Removed (+1 more)
 
 ### Community 13 - "CLAUDE.md — data_miner (26.2)"
 Cohesion: 0.50
@@ -107,18 +108,20 @@ Nodes (3): CLAUDE.md — data_miner (26.2), Prioridad de instrucciones, Workflow
 Cohesion: 0.83
 Nodes (3): gradlew script, die(), warn()
 
+### Community 19 - "PerformanceMonitor"
+Cohesion: 0.12
+Nodes (11): Post, ClientPerfHandlers, EventBusSubscriber, Pre, SubscribeEvent, EventBusSubscriber, Pre, SubscribeEvent (+3 more)
+
 ## Knowledge Gaps
-- **25 isolated node(s):** `Workflow del mod`, `Prioridad de instrucciones`, `Removed`, `Fixed`, `Added` (+20 more)
+- **26 isolated node(s):** `Workflow del mod`, `Prioridad de instrucciones`, `Added`, `Removed`, `Fixed` (+21 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `LatencyTracer` connect `LatencyTracer` to `.register`?**
-  _High betweenness centrality (0.049) - this node is a cross-community bridge._
-- **What connects `Workflow del mod`, `Prioridad de instrucciones`, `Removed` to the rest of the system?**
-  _25 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `.register` be split into smaller, more focused modules?**
-  _Cohesion score 0.10080645161290322 - nodes in this community are weakly interconnected._
+- **What connects `Workflow del mod`, `Prioridad de instrucciones`, `Added` to the rest of the system?**
+  _26 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `LatencyTracer` be split into smaller, more focused modules?**
-  _Cohesion score 0.1330049261083744 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.12643678160919541 - nodes in this community are weakly interconnected._
+- **Should `PerformanceMonitor` be split into smaller, more focused modules?**
+  _Cohesion score 0.11956521739130435 - nodes in this community are weakly interconnected._

@@ -796,7 +796,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer",
-      "community": 2,
+      "community": 6,
       "norm_label": "initializer.java"
     },
     {
@@ -806,7 +806,7 @@
       "source_location": "L22",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer",
-      "community": 2,
+      "community": 6,
       "norm_label": "initializer"
     },
     {
@@ -816,7 +816,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_java_gson",
-      "community": 2,
+      "community": 6,
       "norm_label": "gson"
     },
     {
@@ -826,7 +826,7 @@
       "source_location": "L30",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_init",
-      "community": 2,
+      "community": 6,
       "norm_label": ".init()"
     },
     {
@@ -836,7 +836,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_generatemodsjson",
-      "community": 2,
+      "community": 6,
       "norm_label": ".generatemodsjson()"
     },
     {
@@ -846,7 +846,7 @@
       "source_location": "L79",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_generateinfojson",
-      "community": 2,
+      "community": 6,
       "norm_label": ".generateinfojson()"
     },
     {
@@ -856,7 +856,7 @@
       "source_location": "L97",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_init_initializer_initializer_isclientside",
-      "community": 2,
+      "community": 6,
       "norm_label": ".isclientside()"
     },
     {
@@ -866,7 +866,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers",
-      "community": 0,
+      "community": 19,
       "norm_label": "clientperfhandlers.java"
     },
     {
@@ -876,7 +876,7 @@
       "source_location": "L11",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers_clientperfhandlers",
-      "community": 0,
+      "community": 19,
       "norm_label": "clientperfhandlers"
     },
     {
@@ -886,7 +886,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers_java_eventbussubscriber",
-      "community": 0,
+      "community": 19,
       "norm_label": "eventbussubscriber"
     },
     {
@@ -896,7 +896,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers_clientperfhandlers_onclienttick",
-      "community": 0,
+      "community": 19,
       "norm_label": ".onclienttick()"
     },
     {
@@ -906,7 +906,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers_java_pre",
-      "community": 0,
+      "community": 19,
       "norm_label": "pre"
     },
     {
@@ -916,7 +916,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_clientperfhandlers_java_subscribeevent",
-      "community": 0,
+      "community": 19,
       "norm_label": "subscribeevent"
     },
     {
@@ -1136,7 +1136,7 @@
       "source_location": "L55",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_latency_latencytracer_latencytracer_stop",
-      "community": 0,
+      "community": 1,
       "norm_label": ".stop()"
     },
     {
@@ -1716,7 +1716,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers",
-      "community": 6,
+      "community": 19,
       "norm_label": "perfeventhandlers.java"
     },
     {
@@ -1726,7 +1726,7 @@
       "source_location": "L12",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers",
-      "community": 6,
+      "community": 19,
       "norm_label": "perfeventhandlers"
     },
     {
@@ -1736,7 +1736,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_eventbussubscriber",
-      "community": 6,
+      "community": 19,
       "norm_label": "eventbussubscriber"
     },
     {
@@ -1746,7 +1746,7 @@
       "source_location": "L19",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_onservertickpre",
-      "community": 6,
+      "community": 19,
       "norm_label": ".onservertickpre()"
     },
     {
@@ -1756,7 +1756,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_pre",
-      "community": 6,
+      "community": 19,
       "norm_label": "pre"
     },
     {
@@ -1766,7 +1766,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_java_subscribeevent",
-      "community": 6,
+      "community": 19,
       "norm_label": "subscribeevent"
     },
     {
@@ -1776,7 +1776,7 @@
       "source_location": "L24",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_perfeventhandlers_perfeventhandlers_onservertickpost",
-      "community": 6,
+      "community": 19,
       "norm_label": ".onservertickpost()"
     },
     {
@@ -1786,7 +1786,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "post",
-      "community": 6,
+      "community": 19,
       "norm_label": "post"
     },
     {
@@ -1796,7 +1796,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor",
-      "community": 0,
+      "community": 19,
       "norm_label": "performancemonitor.java"
     },
     {
@@ -1806,7 +1806,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor",
-      "community": 0,
+      "community": 19,
       "norm_label": "performancemonitor"
     },
     {
@@ -1816,7 +1816,7 @@
       "source_location": "",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_java_gson",
-      "community": 0,
+      "community": 19,
       "norm_label": "gson"
     },
     {
@@ -1826,7 +1826,7 @@
       "source_location": "L32",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_start",
-      "community": 0,
+      "community": 19,
       "norm_label": ".start()"
     },
     {
@@ -1836,7 +1836,7 @@
       "source_location": "L39",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_stop",
-      "community": 0,
+      "community": 19,
       "norm_label": ".stop()"
     },
     {
@@ -1846,7 +1846,7 @@
       "source_location": "L45",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_isrunning",
-      "community": 0,
+      "community": 19,
       "norm_label": ".isrunning()"
     },
     {
@@ -1856,7 +1856,7 @@
       "source_location": "L49",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_recordframe",
-      "community": 0,
+      "community": 19,
       "norm_label": ".recordframe()"
     },
     {
@@ -1866,7 +1866,7 @@
       "source_location": "L57",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_recordtick",
-      "community": 6,
+      "community": 19,
       "norm_label": ".recordtick()"
     },
     {
@@ -1876,7 +1876,7 @@
       "source_location": "L65",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_savereport",
-      "community": 0,
+      "community": 19,
       "norm_label": ".savereport()"
     },
     {
@@ -1886,7 +1886,7 @@
       "source_location": "L102",
       "_origin": "ast",
       "id": "src_main_java_com_skd_data_miner_perf_performancemonitor_performancemonitor_resetdata",
-      "community": 0,
+      "community": 19,
       "norm_label": ".resetdata()"
     },
     {
@@ -1950,10 +1950,30 @@
       "norm_label": "data miner (1.21.1) \u2014 changelog"
     },
     {
-      "label": "[0.0.0-beta.2] - 2026-09-02",
+      "label": "[0.0.0-beta.3] - 2026-09-08",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": "L5",
+      "_origin": "ast",
+      "id": "changelog_0_0_0_beta_3_2026_09_08",
+      "community": 12,
+      "norm_label": "[0.0.0-beta.3] - 2026-09-08"
+    },
+    {
+      "label": "Added",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "changelog_added",
+      "community": 12,
+      "norm_label": "added"
+    },
+    {
+      "label": "[0.0.0-beta.2] - 2026-09-02",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L13",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_2_2026_09_02",
       "community": 12,
@@ -1963,7 +1983,7 @@
       "label": "Removed",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L7",
+      "source_location": "L15",
       "_origin": "ast",
       "id": "changelog_removed",
       "community": 12,
@@ -1973,7 +1993,7 @@
       "label": "Fixed",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L14",
+      "source_location": "L22",
       "_origin": "ast",
       "id": "changelog_fixed",
       "community": 12,
@@ -1983,7 +2003,7 @@
       "label": "[0.0.0-beta.1] - 2026-09-01",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L26",
+      "source_location": "L34",
       "_origin": "ast",
       "id": "changelog_0_0_0_beta_1_2026_09_01",
       "community": 12,
@@ -1993,9 +2013,9 @@
       "label": "Added",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L36",
       "_origin": "ast",
-      "id": "changelog_added",
+      "id": "changelog_added_36",
       "community": 12,
       "norm_label": "added"
     },
@@ -2003,7 +2023,7 @@
       "label": "Technical",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L43",
       "_origin": "ast",
       "id": "changelog_technical",
       "community": 12,
@@ -2288,6 +2308,16 @@
       "id": "docs_curseforge_versions_0_0_0_beta_2",
       "community": 5,
       "norm_label": "0.0.0-beta.2.md"
+    },
+    {
+      "label": "0.0.0-beta.3.md",
+      "file_type": "document",
+      "source_file": "docs/curseforge/versions/0.0.0-beta.3.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "docs_curseforge_versions_0_0_0_beta_3",
+      "community": 20,
+      "norm_label": "0.0.0-beta.3.md"
     }
   ],
   "links": [
@@ -6330,7 +6360,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L26",
+      "source_location": "L34",
       "weight": 1.0,
       "source": "changelog_data_miner_1_21_1_changelog",
       "target": "changelog_0_0_0_beta_1_2026_09_01",
@@ -6340,7 +6370,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L5",
+      "source_location": "L13",
       "weight": 1.0,
       "source": "changelog_data_miner_1_21_1_changelog",
       "target": "changelog_0_0_0_beta_2_2026_09_02",
@@ -6350,7 +6380,27 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L14",
+      "source_location": "L5",
+      "weight": 1.0,
+      "source": "changelog_data_miner_1_21_1_changelog",
+      "target": "changelog_0_0_0_beta_3_2026_09_08",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "changelog_0_0_0_beta_3_2026_09_08",
+      "target": "changelog_added",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "CHANGELOG.md",
+      "source_location": "L22",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_2_2026_09_02",
       "target": "changelog_fixed",
@@ -6360,7 +6410,7 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L7",
+      "source_location": "L15",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_2_2026_09_02",
       "target": "changelog_removed",
@@ -6370,17 +6420,17 @@
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L28",
+      "source_location": "L36",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_1_2026_09_01",
-      "target": "changelog_added",
+      "target": "changelog_added_36",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
       "source_file": "CHANGELOG.md",
-      "source_location": "L35",
+      "source_location": "L43",
       "weight": 1.0,
       "source": "changelog_0_0_0_beta_1_2026_09_01",
       "target": "changelog_technical",
@@ -6608,5 +6658,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "1d3257497134aec0dc49fad8d68930866b6079cf"
+  "built_at_commit": "5e306793d0134229fe4bbb45c831a48c7314dcab"
 }
