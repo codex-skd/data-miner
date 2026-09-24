@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "data_miner",
+	"version": "${version}",
+	"name": "Data Miner",
+	"description": "Comprehensive diagnostic and profiling mod. Dumps game registries to JSON, monitors FPS/MSPT, traces events, measures latency, analyzes mod impact, redirects noisy logs.",
+	"authors": [
+		"stalking-dragons"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://gitlab.com/stalking-dragons/minecraft/data-miner"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/data_miner/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.skd.data_miner.DataMiner"
+		],
+		"client": [
+			"com.skd.data_miner.client.DataMinerClient"
+		]
+	},
+	"mixins": [
+		"data_miner.mixins.json",
+		{
+			"config": "data_miner.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.19.3",
+		"minecraft": "~26.2",
+		"java": ">=25",
+		"fabric-api": "*"
+	}
+}
