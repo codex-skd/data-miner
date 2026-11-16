@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "将所有注册表导出为 JSON",
+  "dataminer.command.dump.success": "注册表导出完成。文件已保存至 %s",
+  "dataminer.command.dump.fail": "注册表导出失败。请查看日志了解详情。",
+  "dataminer.command.perf.start": "性能监视器已启动。使用 /dataminer perf stop 结束。",
+  "dataminer.command.perf.stop": "性能报告已保存至 %s",
+  "dataminer.command.perf.fail": "保存性能报告失败。"
+}

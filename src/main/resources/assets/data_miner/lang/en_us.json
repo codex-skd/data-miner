@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Dump all registries to JSON",
+  "dataminer.command.dump.success": "Registry dump completed. Files saved to %s",
+  "dataminer.command.dump.fail": "Failed to dump registries. Check logs for details.",
+  "dataminer.command.perf.start": "Performance monitor started. Use /dataminer perf stop to finish.",
+  "dataminer.command.perf.stop": "Performance report saved to %s",
+  "dataminer.command.perf.fail": "Failed to save performance report."
+}

@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "すべてのレジストリをJSONに出力",
+  "dataminer.command.dump.success": "レジストリの出力が完了しました。ファイルの保存先: %s",
+  "dataminer.command.dump.fail": "レジストリの出力に失敗しました。詳細はログを確認してください。",
+  "dataminer.command.perf.start": "パフォーマンスモニターを開始しました。終了するには /dataminer perf stop を使用してください。",
+  "dataminer.command.perf.stop": "パフォーマンスレポートを %s に保存しました",
+  "dataminer.command.perf.fail": "パフォーマンスレポートの保存に失敗しました。"
+}

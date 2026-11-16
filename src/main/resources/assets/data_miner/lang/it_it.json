@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Esporta tutti i registri in JSON",
+  "dataminer.command.dump.success": "Esportazione dei registri completata. File salvati in %s",
+  "dataminer.command.dump.fail": "Impossibile esportare i registri. Controlla i log per i dettagli.",
+  "dataminer.command.perf.start": "Monitor delle prestazioni avviato. Usa /dataminer perf stop per terminare.",
+  "dataminer.command.perf.stop": "Rapporto sulle prestazioni salvato in %s",
+  "dataminer.command.perf.fail": "Impossibile salvare il rapporto sulle prestazioni."
+}
