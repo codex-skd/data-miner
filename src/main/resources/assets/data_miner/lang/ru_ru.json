@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Выгрузить все реестры в JSON",
+  "dataminer.command.dump.success": "Выгрузка реестров завершена. Файлы сохранены в %s",
+  "dataminer.command.dump.fail": "Не удалось выгрузить реестры. Подробности смотрите в журналах.",
+  "dataminer.command.perf.start": "Мониторинг производительности запущен. Для завершения используйте /dataminer perf stop.",
+  "dataminer.command.perf.stop": "Отчёт о производительности сохранён в %s",
+  "dataminer.command.perf.fail": "Не удалось сохранить отчёт о производительности."
+}
