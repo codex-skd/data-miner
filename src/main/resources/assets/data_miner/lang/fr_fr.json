@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Exporter tous les registres en JSON",
+  "dataminer.command.dump.success": "Export des registres terminé. Fichiers enregistrés dans %s",
+  "dataminer.command.dump.fail": "Échec de l'export des registres. Consultez les journaux pour plus de détails.",
+  "dataminer.command.perf.start": "Moniteur de performances démarré. Utilisez /dataminer perf stop pour terminer.",
+  "dataminer.command.perf.stop": "Rapport de performances enregistré dans %s",
+  "dataminer.command.perf.fail": "Échec de l'enregistrement du rapport de performances."
+}

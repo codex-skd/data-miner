@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Volcar todos los registros a JSON",
+  "dataminer.command.dump.success": "Volcado de registros completado. Archivos guardados en %s",
+  "dataminer.command.dump.fail": "No se pudieron volcar los registros. Consulta los registros para más detalles.",
+  "dataminer.command.perf.start": "Monitor de rendimiento iniciado. Usa /dataminer perf stop para terminar.",
+  "dataminer.command.perf.stop": "Informe de rendimiento guardado en %s",
+  "dataminer.command.perf.fail": "No se pudo guardar el informe de rendimiento."
+}

@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Despejar todos os registros em JSON",
+  "dataminer.command.dump.success": "Despejo de registros concluído. Arquivos salvos em %s",
+  "dataminer.command.dump.fail": "Falha ao despejar os registros. Consulte os logs para mais detalhes.",
+  "dataminer.command.perf.start": "Monitor de desempenho iniciado. Use /dataminer perf stop para finalizar.",
+  "dataminer.command.perf.stop": "Relatório de desempenho salvo em %s",
+  "dataminer.command.perf.fail": "Falha ao salvar o relatório de desempenho."
+}

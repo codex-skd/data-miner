@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Alle Register als JSON ausgeben",
+  "dataminer.command.dump.success": "Registerausgabe abgeschlossen. Dateien gespeichert unter %s",
+  "dataminer.command.dump.fail": "Registerausgabe fehlgeschlagen. Details findest du in den Logs.",
+  "dataminer.command.perf.start": "Leistungsüberwachung gestartet. Mit /dataminer perf stop beenden.",
+  "dataminer.command.perf.stop": "Leistungsbericht gespeichert unter %s",
+  "dataminer.command.perf.fail": "Der Leistungsbericht konnte nicht gespeichert werden."
+}

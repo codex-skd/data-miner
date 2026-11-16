@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "Zrzuć wszystkie rejestry do JSON",
+  "dataminer.command.dump.success": "Zrzut rejestrów ukończony. Pliki zapisano w %s",
+  "dataminer.command.dump.fail": "Nie udało się zrzucić rejestrów. Szczegóły znajdziesz w logach.",
+  "dataminer.command.perf.start": "Monitor wydajności uruchomiony. Użyj /dataminer perf stop, aby zakończyć.",
+  "dataminer.command.perf.stop": "Raport wydajności zapisano w %s",
+  "dataminer.command.perf.fail": "Nie udało się zapisać raportu wydajności."
+}

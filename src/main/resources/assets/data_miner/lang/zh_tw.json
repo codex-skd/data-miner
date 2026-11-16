@@ -1,0 +1,8 @@
+{
+  "dataminer.command.dump": "將所有註冊表匯出為 JSON",
+  "dataminer.command.dump.success": "註冊表匯出完成。檔案已儲存至 %s",
+  "dataminer.command.dump.fail": "註冊表匯出失敗。請查看日誌了解詳情。",
+  "dataminer.command.perf.start": "效能監視器已啟動。使用 /dataminer perf stop 結束。",
+  "dataminer.command.perf.stop": "效能報告已儲存至 %s",
+  "dataminer.command.perf.fail": "儲存效能報告失敗。"
+}
